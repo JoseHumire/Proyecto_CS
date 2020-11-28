@@ -24,4 +24,6 @@ urlpatterns = [
     path('logout/', views.logout),
 
     path('admin/', admin.site.urls),
+
+    path('prueba/', views.prueba),
 ]

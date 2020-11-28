@@ -65,3 +65,8 @@ def login(request):
 def logout(request):
     do_logout(request)
     return redirect('/')
+
+
+# ignorar esto
+def prueba(request):
+    return render(request, "users/index.html",)
