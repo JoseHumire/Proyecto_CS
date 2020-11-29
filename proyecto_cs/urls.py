@@ -25,5 +25,6 @@ urlpatterns = [
 
     path('admin/', admin.site.urls),
 
-    path('prueba/', views.prueba),
+    path('home/', views.home),
+    path('messages/', views.messages),
 ]

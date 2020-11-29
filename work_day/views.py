@@ -67,6 +67,10 @@ def logout(request):
     return redirect('/')
 
 
-# ignorar esto
-def prueba(request):
-    return render(request, "users/index.html",)
+# Pantalla principal
+def home(request):
+    return render(request, "home.html")
+
+# Mensajes
+def messages(request):
+    return render(request, "messages.html")
