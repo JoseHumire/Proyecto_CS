@@ -91,3 +91,8 @@ def add_job(request):
     return render(
         request, "add_job.html", {'form': form}
     )
+
+
+def employments(request):
+    return render(request, "employments.html")
+
