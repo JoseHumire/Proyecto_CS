@@ -27,4 +27,5 @@ urlpatterns = [
 
     path('home/', views.home),
     path('messages/', views.messages),
+    path('employments', views.employments),
 ]

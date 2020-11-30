@@ -74,3 +74,6 @@ def home(request):
 # Mensajes
 def messages(request):
     return render(request, "messages.html")
+
+def employments(request):
+    return render(request, "employments.html")
