@@ -2,7 +2,8 @@
 <h2>Registrar usuario</h2>
 
 <form method="POST">
-    {{ form.as_p }}
+    {{ user_form.as_p }}
+    {{ professional_form.as_p }}
     {% csrf_token %}
     <button type="submit">Registrar</button>
 </form>

@@ -83,6 +83,13 @@ class Employment(models.Model):
     status = models.BooleanField(default=True)
 
 
+class Study(models.Model):
+    cv = models.ForeignKey(Curriculum, on_delete=models.CASCADE)
+    school = models.ForeignKey(School, on_delete=models.CASCADE)
+    profession = models.ForeignKey(Profession, on_delete=models.CASCADE)
+    name = models.CharField(max_length=50, default='')
+
+
 class ChatRoom(models.Model):
     users = models.ManyToManyField(Professional)
     creation_date = models.DateTimeField(default=timezone.now)

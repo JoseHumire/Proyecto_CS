@@ -48,6 +48,11 @@ class EmploymentAdmin(admin.ModelAdmin):
     list_display = ('offer', 'profession', 'description', 'reward', 'status')
 
 
+@admin.register(Study)
+class StudyAdmin(admin.ModelAdmin):
+    list_display = ('cv', 'school', 'profession', 'name')
+
+
 @admin.register(ChatRoom)
 class ChatRoomAdmin(admin.ModelAdmin):
     list_display = ('creation_date', 'status')
