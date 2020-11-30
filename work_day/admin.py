@@ -35,7 +35,9 @@ class CurriculumAdmin(admin.ModelAdmin):
 
 @admin.register(Job)
 class JobAdmin(admin.ModelAdmin):
-    list_display = ('cv', 'profession', 'description', 'start_date', 'finish_date')
+    list_display = (
+        'description', 'cv', 'profession', 'start_date', 'finish_date'
+    )
 
 
 @admin.register(JobOffer)

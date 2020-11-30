@@ -55,13 +55,18 @@ class Curriculum(models.Model):
     contract_price = models.IntegerField(default=0)
     score = models.IntegerField(default=5)
 
+    def __str__(self):
+        return self.owner.user.get_username() + '-cv'
+
 
 class Job(models.Model):
     cv = models.ForeignKey(Curriculum, on_delete=models.CASCADE)
     profession = models.OneToOneField(Profession, on_delete=models.CASCADE)
     description = models.TextField(max_length=500, default='')
     start_date = models.DateTimeField(default=timezone.now)
-    finish_date = models.DateTimeField(default=timezone.now() + datetime.timedelta(days=1))
+    finish_date = models.DateTimeField(
+        default=timezone.now() + datetime.timedelta(days=1)
+    )
 
     def __str__(self):
         return self.profession.name

@@ -53,3 +53,25 @@ class ProfessionalForm(forms.ModelForm):
             'phone': forms.TextInput(attrs={'class': 'form-control'}),
             'id_number': forms.TextInput(attrs={'class': 'form-control'}),
         }
+
+
+class JobForm(forms.ModelForm):
+
+    class Meta:
+        model = Job
+        fields = [
+            'profession', 'description', 'start_date', 'finish_date'
+        ]
+        labels = {
+            'profession': 'Profession',
+            'description': 'Description',
+            'start_date': 'Start Date',
+            'finish_date': 'Finish Date',
+        }
+        widgets = {
+            'profession': forms.Select(attrs={'class': 'form-control'}),
+            'description': forms.TextInput(attrs={'class': 'form-control'}),
+            'start_date': forms.DateTimeInput(attrs={'class': 'form-control'}),
+            'finish_date': forms.DateTimeInput(
+                attrs={'class': 'form-control'}),
+        }

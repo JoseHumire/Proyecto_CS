@@ -1,0 +1,10 @@
+<h1>Work Day</h1>
+<h2>Add job</h2>
+
+<form method="POST">
+    {{ form.as_p }}
+    {% csrf_token %}
+    <button type="submit">Save</button>
+</form>
+
+<hr />

@@ -2,7 +2,6 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate
 from django.contrib.auth import logout as do_logout
 from django.contrib.auth import login as do_login
-from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.forms import AuthenticationForm
 from .forms import *
 
@@ -30,6 +29,7 @@ def register(request):
             professional = professional_form.save(commit=False)
             professional.user = user
             professional.save()
+            Curriculum.objects.create(owner=professional)
             # Si el usuario se crea correctamente
             return redirect('login')
 
@@ -74,3 +74,20 @@ def home(request):
 # Mensajes
 def messages(request):
     return render(request, "messages.html")
+
+
+def add_job(request):
+    form = JobForm()
+    if request.method == 'POST':
+        form = JobForm(data=request.POST)
+        if form.is_valid():
+            professional = Professional.objects.get(user=request.user)
+            cv = Curriculum.objects.get(owner=professional)
+            job = form.save(commit=False)
+            job.cv = cv
+            job.save()
+            return redirect('home')
+
+    return render(
+        request, "add_job.html", {'form': form}
+    )
