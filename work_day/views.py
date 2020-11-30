@@ -95,4 +95,3 @@ def add_job(request):
 
 def employments(request):
     return render(request, "employments.html")
-
