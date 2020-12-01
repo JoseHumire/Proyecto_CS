@@ -75,3 +75,22 @@ class JobForm(forms.ModelForm):
             'finish_date': forms.DateTimeInput(
                 attrs={'class': 'form-control'}),
         }
+
+
+class StudyForm(forms.ModelForm):
+
+    class Meta:
+        model = Study
+        fields = [
+            'school', 'profession', 'name'
+        ]
+        labels = {
+            'school': 'Institution',
+            'profession': 'Profession',
+            'name': 'Degree',
+        }
+        widgets = {
+            'school': forms.Select(attrs={'class': 'form-control'}),
+            'profession': forms.Select(attrs={'class': 'form-control'}),
+            'name': forms.TextInput(attrs={'class': 'form-control'}),
+        }

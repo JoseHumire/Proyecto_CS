@@ -19,21 +19,16 @@ def register(request):
     user_form.fields['password1'].help_text = None
     user_form.fields['password2'].help_text = None
     if request.method == "POST":
-        # Añadimos los datos recibidos al formulario
-        user_form = UserCreationForm(data=request.POST)
+        user_form = UserForm(data=request.POST)
         professional_form = ProfessionalForm(data=request.POST)
-        # Si el formulario es válido...
         if user_form.is_valid() and professional_form.is_valid():
-            # Creamos la nueva cuenta de usuario
             user = user_form.save()
             professional = professional_form.save(commit=False)
             professional.user = user
             professional.save()
             Curriculum.objects.create(owner=professional)
-            # Si el usuario se crea correctamente
             return redirect('login')
 
-    # Si llegamos al final renderizamos el formulario
     return render(
         request,
         "users/register.html",
@@ -90,6 +85,23 @@ def add_job(request):
 
     return render(
         request, "add_job.html", {'form': form}
+    )
+
+
+def add_study(request):
+    form = StudyForm()
+    if request.method == 'POST':
+        form = StudyForm(data=request.POST)
+        if form.is_valid():
+            professional = Professional.objects.get(user=request.user)
+            cv = Curriculum.objects.get(owner=professional)
+            study = form.save(commit=False)
+            study.cv = cv
+            study.save()
+            return redirect('home')
+
+    return render(
+        request, "add_study.html", {'form': form}
     )
 
 
