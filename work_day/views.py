@@ -3,7 +3,9 @@ from django.contrib.auth import authenticate
 from django.contrib.auth import logout as do_logout
 from django.contrib.auth import login as do_login
 from django.contrib.auth.forms import AuthenticationForm
-from django.http import HttpResponseForbidden
+from django.http import HttpResponseForbidden, HttpResponse
+from django.template import loader
+
 from .forms import *
 
 
@@ -94,6 +96,19 @@ def home(request):
 # Mensajes
 def messages(request):
     return render(request, "messages.html")
+
+
+def user_profile(request):
+    current_user = request.user
+    professional = Professional.objects.get(user=current_user)
+    professions = professional.professions.all()
+    template = loader.get_template('users/profile.html')
+    context = {
+        'user': current_user,
+        'professional': professional,
+        'professions': professions,
+    }
+    return HttpResponse(template.render(context, request))
 
 
 def add_job(request, pk=None):

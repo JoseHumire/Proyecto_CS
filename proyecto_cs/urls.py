@@ -31,4 +31,5 @@ urlpatterns = [
     path('user/editJob/<int:pk>', views.add_job, name='edit_job'),
     path('employments/', views.employments),
     path('job_offers/', views.create_job_offer),
+    path('user/user-profile/', views.user_profile, name='user_profile')
 ]

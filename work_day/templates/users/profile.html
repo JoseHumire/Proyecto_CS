@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+</head>
+<body>
+    {% if user %}
+        <h2>First Name: {{ user.first_name }} </h2>
+        <h2>Last Name: {{ user.last_name }} </h2>
+        <h2>Email: {{ user.email }}</h2>
+        <h2>Username: {{ user.username }}</h2>
+        <h2>City: {{ professional.city }}</h2>
+        <h2>Phone: {{ professional.phone }}</h2>
+        <h2>ID: {{ professional.id_number }}</h2>
+        <h2>Register Date: {{ professional.creation_date }}</h2>
+        {% if professions %}
+            <h2>Professions:</h2>
+            <ul>
+                {% for profession in professions %}
+                    <li><h3>{{ profession }}</h3></li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        {% else %}
+            <h1>Profession not found</h1>
+    {% endif %}
+</body>
+</html>
