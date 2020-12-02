@@ -40,6 +40,30 @@ def register(request):
     )
 
 
+def create_job_offer(request):
+    offer_form = JobOfferForm()
+    employment_form = EmploymentForm()
+    if request.method == 'POST':
+        offer_form = JobOfferForm(data=request.POST)
+        employment_form = EmploymentForm(data=request.POST)
+        if offer_form.is_valid() and employment_form.is_valid():
+            offer = offer_form.save()
+            offer.user = request.user
+            employment = employment_form.save(commit=False)
+            employment.offer = offer
+            employment.save()
+            return redirect('home')
+
+    return render(
+        request,
+        "create_offer.html",
+        {
+            'offer_form': offer_form,
+            'employment_form': employment_form
+        }
+    )
+
+
 def login(request):
     form = AuthenticationForm()
     if request.method == "POST":
@@ -72,16 +96,18 @@ def messages(request):
     return render(request, "messages.html")
 
 
-def add_job(request):
-    form = JobForm()
+def add_job(request, pk=None):
+    if pk:
+        job = get_object_or_404(Job, pk=pk)
+        if job.cv.owner.user != request.user:
+            return HttpResponseForbidden()
+    else:
+        cv = Curriculum.objects.get(owner=request.user.professional)
+        job = Job(cv=cv)
+    form = JobForm(data=request.POST or None, instance=job)
     if request.method == 'POST':
-        form = JobForm(data=request.POST)
         if form.is_valid():
-            professional = Professional.objects.get(user=request.user)
-            cv = Curriculum.objects.get(owner=professional)
-            job = form.save(commit=False)
-            job.cv = cv
-            job.save()
+            form.save()
             return redirect('home')
 
     return render(

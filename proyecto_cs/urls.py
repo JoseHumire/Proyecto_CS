@@ -28,5 +28,7 @@ urlpatterns = [
     path('user/addJob/', views.add_job, name='add_job'),
     path('user/addStudy/', views.add_study, name='add_study'),
     path('user/editStudy/<int:pk>', views.add_study, name='edit_study'),
-    path('employments', views.employments),
+    path('user/editJob/<int:pk>', views.add_job, name='edit_job'),
+    path('employments/', views.employments),
+    path('job_offers/', views.create_job_offer),
 ]

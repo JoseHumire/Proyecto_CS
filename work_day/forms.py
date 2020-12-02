@@ -73,7 +73,8 @@ class JobForm(forms.ModelForm):
             'description': forms.TextInput(attrs={'class': 'form-control'}),
             'start_date': forms.DateTimeInput(attrs={'class': 'form-control'}),
             'finish_date': forms.DateTimeInput(
-                attrs={'class': 'form-control'}),
+                attrs={'class': 'form-control'}
+            ),
         }
 
 
@@ -93,4 +94,43 @@ class StudyForm(forms.ModelForm):
             'school': forms.Select(attrs={'class': 'form-control'}),
             'profession': forms.Select(attrs={'class': 'form-control'}),
             'name': forms.TextInput(attrs={'class': 'form-control'}),
+        }
+
+
+class JobOfferForm(forms.ModelForm):
+
+    class Meta:
+        model = JobOffer
+        fields = ['city', 'description', 'status']
+        labels = {
+            'city': 'City',
+            'description': 'Description',
+            'status': 'Status',
+        }
+        widgets = {
+            'city': forms.Select(attrs={'class': 'form-control'}),
+            'description': forms.TextInput(attrs={'class': 'form-control'}),
+        }
+
+
+class EmploymentForm(forms.ModelForm):
+
+    class Meta:
+        model = Employment
+        fields = ['profession', 'description', 'reward', 'status']
+        labels = {
+            'profession': 'Profession',
+            'description': 'Description',
+            'reward': 'Reward',
+            'status': 'Status',
+        }
+        widgets = {
+            'profession': forms.Select(attrs={'class': 'form-control'}),
+            'description': forms.Textarea(attrs={'class': 'form-control'}),
+            'reward': forms.TextInput(
+                attrs={
+                    'class': 'form-control',
+                    'type': 'number',
+                }
+            ),
         }
