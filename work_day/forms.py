@@ -26,12 +26,12 @@ class UserForm(UserCreationForm):
             'last_name': 'Last Name',
         }
         widgets = {
-            'email': forms.EmailInput(attrs={'class': 'form-control'}),
-            'username': forms.TextInput(attrs={'class': 'form-control'}),
-            'password1': forms.PasswordInput(attrs={'class': 'form-control'}),
-            'password2': forms.PasswordInput(attrs={'class': 'form-control'}),
-            'first_name': forms.TextInput(attrs={'class': 'form-control'}),
-            'last_name': forms.TextInput(attrs={'class': 'form-control'}),
+            'email': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Email'}),
+            'username': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Username'}),
+            'password1': forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Password'}),
+            'password2': forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Retype password'}),
+            'first_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'First name'}),
+            'last_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Last name'}),
         }
 
 
@@ -48,10 +48,10 @@ class ProfessionalForm(forms.ModelForm):
             'status': 'Status',
         }
         widgets = {
-            'city': forms.Select(attrs={'class': 'form-control'}),
+            'city': forms.Select(attrs={'class': 'form-control', 'placeholder': 'City'}),
             'professions': forms.CheckboxSelectMultiple(),
-            'phone': forms.TextInput(attrs={'class': 'form-control'}),
-            'id_number': forms.TextInput(attrs={'class': 'form-control'}),
+            'phone': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Phone number'}),
+            'id_number': forms.TextInput(attrs={'class': 'form-control',  'placeholder': 'Identification document'}),
         }
 
 
