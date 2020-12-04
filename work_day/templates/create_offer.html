@@ -9,11 +9,15 @@
     <h2>Create job offer</h2>
 
     <form method="POST">
+        {{ employment_formset.management_form }}
+        {% csrf_token %}
         <h3>Offer</h3>
         {{ offer_form.as_p }}
         <h4>Employment</h4>
-        {{ employment_form.as_p }}
-        {% csrf_token %}
+        {% for f in employment_formset  %}
+            {{ f }}
+            <p></p>
+        {% endfor %}
         <button type="submit">Save</button>
     </form>
 </body>

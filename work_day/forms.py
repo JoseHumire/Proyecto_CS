@@ -1,12 +1,12 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
+from django.forms import inlineformset_factory
 
 from .models import *
 
 
 class UserForm(UserCreationForm):
-
     class Meta:
         model = User
         fields = [
@@ -26,10 +26,14 @@ class UserForm(UserCreationForm):
             'last_name': 'Last Name',
         }
         widgets = {
-            'email': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Email'}),
-            'username': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Username'}),
-            'first_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'First name'}),
-            'last_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Last name'}),
+            'email': forms.EmailInput(
+                attrs={'class': 'form-control', 'placeholder': 'Email'}),
+            'username': forms.TextInput(
+                attrs={'class': 'form-control', 'placeholder': 'Username'}),
+            'first_name': forms.TextInput(
+                attrs={'class': 'form-control', 'placeholder': 'First name'}),
+            'last_name': forms.TextInput(
+                attrs={'class': 'form-control', 'placeholder': 'Last name'}),
         }
 
     def __init__(self, *args, **kwargs):
@@ -43,7 +47,6 @@ class UserForm(UserCreationForm):
 
 
 class ProfessionalForm(forms.ModelForm):
-
     class Meta:
         model = Professional
         fields = ['city', 'professions', 'phone', 'id_number', 'status']
@@ -55,15 +58,17 @@ class ProfessionalForm(forms.ModelForm):
             'status': 'Status',
         }
         widgets = {
-            'city': forms.Select(attrs={'class': 'form-control', 'placeholder': 'City'}),
+            'city': forms.Select(
+                attrs={'class': 'form-control', 'placeholder': 'City'}),
             'professions': forms.CheckboxSelectMultiple(),
-            'phone': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Phone number'}),
-            'id_number': forms.TextInput(attrs={'class': 'form-control',  'placeholder': 'Identification document'}),
+            'phone': forms.TextInput(attrs={'class': 'form-control',
+                                            'placeholder': 'Phone number'}),
+            'id_number': forms.TextInput(attrs={'class': 'form-control',
+                                                'placeholder': 'Identification document'}),
         }
 
 
 class JobForm(forms.ModelForm):
-
     class Meta:
         model = Job
         fields = [
@@ -86,7 +91,6 @@ class JobForm(forms.ModelForm):
 
 
 class StudyForm(forms.ModelForm):
-
     class Meta:
         model = Study
         fields = [
@@ -105,7 +109,6 @@ class StudyForm(forms.ModelForm):
 
 
 class JobOfferForm(forms.ModelForm):
-
     class Meta:
         model = JobOffer
         fields = ['city', 'description', 'status']
@@ -121,7 +124,6 @@ class JobOfferForm(forms.ModelForm):
 
 
 class EmploymentForm(forms.ModelForm):
-
     class Meta:
         model = Employment
         fields = ['profession', 'description', 'reward', 'status']
@@ -141,3 +143,8 @@ class EmploymentForm(forms.ModelForm):
                 }
             ),
         }
+
+
+EmploymentInlineFormSet = inlineformset_factory(
+    JobOffer, Employment, form=EmploymentForm, extra=2, can_delete=True
+)

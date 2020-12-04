@@ -1,3 +1,4 @@
+from django.forms import formset_factory
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate
 from django.contrib.auth import logout as do_logout
@@ -5,6 +6,7 @@ from django.contrib.auth import login as do_login
 from django.contrib.auth.forms import AuthenticationForm
 from django.http import HttpResponseForbidden, HttpResponse
 from django.template import loader
+from django.views.generic.edit import FormView
 
 from .forms import *
 
@@ -38,30 +40,6 @@ def register(request):
         {
             'user_form': user_form,
             'professional_form': professional_form
-        }
-    )
-
-
-def create_job_offer(request):
-    offer_form = JobOfferForm()
-    employment_form = EmploymentForm()
-    if request.method == 'POST':
-        offer_form = JobOfferForm(data=request.POST)
-        employment_form = EmploymentForm(data=request.POST)
-        if offer_form.is_valid() and employment_form.is_valid():
-            offer = offer_form.save()
-            offer.user = request.user
-            employment = employment_form.save(commit=False)
-            employment.offer = offer
-            employment.save()
-            return redirect('home')
-
-    return render(
-        request,
-        "create_offer.html",
-        {
-            'offer_form': offer_form,
-            'employment_form': employment_form
         }
     )
 
@@ -151,3 +129,30 @@ def add_study(request, pk=None):
 
 def employments(request):
     return render(request, "employments.html")
+
+
+def create_job_offer(request):
+    offer_form = JobOfferForm()
+    employment_formset = EmploymentInlineFormSet()
+    if request.method == 'POST':
+        offer_form = JobOfferForm(data=request.POST)
+        if offer_form.is_valid():
+            offer = offer_form.save(commit=False)
+            professional = Professional.objects.get(user=request.user)
+            offer.user = professional
+            offer.save()
+            employment_formset = EmploymentInlineFormSet(
+                data=request.POST, instance=offer
+            )
+            if employment_formset.is_valid():
+                employment_formset.save()
+            return redirect('home')
+
+    return render(
+        request,
+        "create_offer.html",
+        {
+            'offer_form': offer_form,
+            'employment_formset': employment_formset
+        }
+    )
