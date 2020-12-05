@@ -131,6 +131,7 @@ def employments(request):
     return render(request, "employments.html")
 
 
+
 def create_job_offer(request):
     offer_form = JobOfferForm()
     employment_formset = EmploymentInlineFormSet()
