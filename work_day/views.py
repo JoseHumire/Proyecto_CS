@@ -75,6 +75,9 @@ def home(request):
 def messages(request):
     return render(request, "messages.html")
 
+# Mensajes
+def pantallaprincipal(request):
+    return render(request, "pantallaprincipal.html")
 
 def user_profile(request):
     current_user = request.user
