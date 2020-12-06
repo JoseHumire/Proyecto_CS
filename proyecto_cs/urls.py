@@ -32,6 +32,7 @@ urlpatterns = [
     path('employments/', views.employments),
 
     path('job_offers/', views.create_job_offer, name='create_offer'),
-    path('user/user-profile/', views.user_profile, name='user_profile')
-
+    path('user/user-profile/', views.user_profile, name='user_profile'),
+    path('pantallaprincipal/', views.pantallaprincipal),
+    path('prueba/', views.prueba),
 ]
