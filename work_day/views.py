@@ -79,6 +79,10 @@ def messages(request):
 def pantallaprincipal(request):
     return render(request, "pantallaprincipal.html")
 
+# Mensajes
+def prueba(request):
+    return render(request, "prueba.html")
+
 def user_profile(request):
     current_user = request.user
     professional = Professional.objects.get(user=current_user)
