@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% for offer in offers %}
+    <a href="{% url 'job_offer' offer.id %}">Offer {{ offer.id }}</a>
+    <p></p>
+{% endfor %}
+{% if offer %}
+    Offer {{ offer.id }}
+    Date: {{ offer.creation_date|date:"M d, Y" }}
+    City: {{ offer.city }}
+    <br>
+    {% for employment in offer.employment_set.all %}
+        {{ employment.profession }}:
+        {{ employment.description }}
+        Payment:{{ employment.reward }}
+        <br>
+    {% endfor %}
+{% endif %}
+</body>
+</html>
