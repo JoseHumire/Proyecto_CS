@@ -87,11 +87,17 @@ def user_profile(request):
     current_user = request.user
     professional = Professional.objects.get(user=current_user)
     professions = professional.professions.all()
+    cv = Curriculum.objects.get(owner=professional)
+    studies = cv.studies.all()
+    jobs = cv.jobs.all()
     template = loader.get_template('users/profile.html')
     context = {
         'user': current_user,
         'professional': professional,
         'professions': professions,
+        'cv': cv,
+        'studies': studies,
+        'jobs': jobs,
     }
     return HttpResponse(template.render(context, request))
 
