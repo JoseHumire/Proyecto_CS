@@ -61,7 +61,7 @@ class Curriculum(models.Model):
 
 class Job(models.Model):
     cv = models.ForeignKey(Curriculum, on_delete=models.CASCADE)
-    profession = models.OneToOneField(Profession, on_delete=models.CASCADE)
+    profession = models.ForeignKey(Profession, on_delete=models.CASCADE)
     description = models.TextField(max_length=500, default='')
     start_date = models.DateTimeField(default=timezone.now)
     finish_date = models.DateTimeField(
@@ -82,7 +82,7 @@ class JobOffer(models.Model):
 
 class Employment(models.Model):
     offer = models.ForeignKey(JobOffer, on_delete=models.CASCADE)
-    profession = models.OneToOneField(Profession, on_delete=models.CASCADE)
+    profession = models.ForeignKey(Profession, on_delete=models.CASCADE)
     description = models.TextField(max_length=200, default='')
     reward = models.FloatField(default=0)
     status = models.BooleanField(default=True)

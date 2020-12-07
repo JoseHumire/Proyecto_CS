@@ -8,17 +8,49 @@
     <h1>Work Day</h1>
     <h2>Create job offer</h2>
 
-    <form method="POST">
-        {{ employment_formset.management_form }}
+    <form id="offerForm" method="POST">
+        <div id='employmentFormContent'>
         {% csrf_token %}
         <h3>Offer</h3>
         {{ offer_form.as_p }}
+        {{ employment_formset.management_form }}
         <h4>Employment</h4>
-        {% for f in employment_formset  %}
-            {{ f }}
-            <p></p>
-        {% endfor %}
+            {% for f in employment_formset  %}
+                {{ f }}
+                <p></p>
+            {% endfor %}
+        </div>
         <button type="submit">Save</button>
     </form>
+
+        <button onclick="addInput()">Agregar input</button>
+    <script>
+        function addInput(){
+            let forms = document.querySelector('#id_employment_set-TOTAL_FORMS');
+            let newProfInput = document.getElementById("id_employment_set-0-profession").cloneNode(true);
+            newProfInput.name = 'employment_set-'+forms.value+'-profession';
+            newProfInput.id = 'id_employment_set-'+forms.value+'-profession';
+            let newDescInput = document.getElementById('id_employment_set-0-description').cloneNode(true);
+            newDescInput.name = 'employment_set-'+forms.value+'-description';
+            newDescInput.id = 'id_employment_set-'+forms.value+'-description';
+            let newRewInput = document.getElementById('id_employment_set-0-reward').cloneNode(true);
+            newRewInput.name = 'employment_set-'+forms.value+'-reward';
+            newRewInput.id = 'id_employment_set-'+forms.value+'-reward';
+            let newStatInput = document.getElementById('id_employment_set-0-status').cloneNode(true);
+            newStatInput.name = 'employment_set-'+forms.value+'-status';
+            newStatInput.id = 'id_employment_set-'+forms.value+'-status';
+            let newDelInput = document.getElementById('id_employment_set-0-DELETE').cloneNode(true);
+            newDelInput.name = 'employment_set-'+forms.value+'-DELETE';
+            newDelInput.id = 'id_employment_set-'+forms.value+'-DELETE';
+            document.querySelector('#employmentFormContent').append(newProfInput);
+            document.querySelector('#employmentFormContent').append(newDescInput);
+            document.querySelector('#employmentFormContent').append(newRewInput);
+            document.querySelector('#employmentFormContent').append(newStatInput);
+            document.querySelector('#employmentFormContent').append(newDelInput);
+            let p = document.createElement('p');
+            document.querySelector('#employmentFormContent').append(p);
+            forms.value = parseInt(forms.value) + 1;
+        }
+    </script>
 </body>
 </html>

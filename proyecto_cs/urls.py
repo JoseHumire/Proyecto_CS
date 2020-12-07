@@ -31,8 +31,10 @@ urlpatterns = [
     path('user/editJob/<int:pk>', views.add_job, name='edit_job'),
     path('employments/', views.employments),
 
-    path('job_offers/', views.create_job_offer, name='create_offer'),
+    path('createOffer/', views.create_job_offer, name='create_offer'),
     path('user/user-profile/', views.user_profile, name='user_profile'),
     path('pantallaprincipal/', views.pantallaprincipal),
     path('prueba/', views.prueba),
+
+    path('jobOffers/<int:offer_id>', views.job_offer, name='job_offer'),
 ]
