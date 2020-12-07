@@ -148,3 +148,27 @@ class EmploymentForm(forms.ModelForm):
 EmploymentInlineFormSet = inlineformset_factory(
     JobOffer, Employment, form=EmploymentForm, extra=2, can_delete=True
 )
+
+
+class EditUserForm(forms.ModelForm):
+
+    class Meta:
+        model = User
+        fields = (
+            'email',
+            'first_name',
+            'last_name',
+        )
+        labels = {
+            'email': 'Email address',
+            'first_name': 'First Name',
+            'last_name': 'Last Name',
+        }
+        widgets = {
+            'email': forms.EmailInput(
+                attrs={'class': 'form-control', 'placeholder': 'Email'}),
+            'first_name': forms.TextInput(
+                attrs={'class': 'form-control', 'placeholder': 'First name'}),
+            'last_name': forms.TextInput(
+                attrs={'class': 'form-control', 'placeholder': 'Last name'}),
+        }

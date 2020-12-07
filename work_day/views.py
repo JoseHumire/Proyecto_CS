@@ -153,7 +153,6 @@ def create_job_offer(request):
             )
             if employment_formset.is_valid():
                 employment_formset.save()
-            print(employment_formset.errors)
             return redirect('home')
 
     return render(
@@ -174,3 +173,26 @@ def job_offer(request, offer_id):
         'offer': current_offer,
     }
     return render(request, 'offers.html', context)
+
+
+def edit_profile(request):
+    user_form = EditUserForm(
+        data=request.POST or None,
+        instance=request.user,
+    )
+    professional_form = ProfessionalForm(
+        data=request.POST or None,
+        instance=request.user.professional,
+    )
+    if request.method == 'POST':
+        if user_form.is_valid() and professional_form.is_valid():
+            user_form.save()
+            professional_form.save()
+            return redirect('home')
+        print(user_form.errors)
+        print(professional_form.errors)
+    context = {
+        'user_form': user_form,
+        'professional_form': professional_form,
+    }
+    return render(request, 'users/edit_profile.html', context)

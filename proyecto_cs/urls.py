@@ -25,6 +25,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('home/', views.home, name='home'),
     path('messages/', views.messages),
+    path('user/editProfile/', views.edit_profile, name='edit_profile'),
     path('user/addJob/', views.add_job, name='add_job'),
     path('user/addStudy/', views.add_study, name='add_study'),
     path('user/editStudy/<int:pk>', views.add_study, name='edit_study'),
