@@ -14,7 +14,11 @@ class Country(models.Model):
 
 
 class City(models.Model):
-    country = models.ForeignKey(Country, on_delete=models.CASCADE)
+    country = models.ForeignKey(
+        Country,
+        related_name='cities',
+        on_delete=models.CASCADE
+    )
     name = models.CharField(max_length=50)
 
     def __str__(self):
@@ -39,7 +43,12 @@ class Profession(models.Model):
 
 class Professional(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    city = models.ForeignKey(City, on_delete=models.CASCADE, default='')
+    city = models.ForeignKey(
+        City,
+        related_name='professionals',
+        on_delete=models.CASCADE,
+        default=''
+    )
     professions = models.ManyToManyField(Profession)
     phone = models.CharField(max_length=9, default='')
     id_number = models.CharField(max_length=11, default='')
@@ -60,7 +69,11 @@ class Curriculum(models.Model):
 
 
 class Job(models.Model):
-    cv = models.ForeignKey(Curriculum, on_delete=models.CASCADE)
+    cv = models.ForeignKey(
+        Curriculum,
+        related_name='jobs',
+        on_delete=models.CASCADE
+    )
     profession = models.ForeignKey(Profession, on_delete=models.CASCADE)
     description = models.TextField(max_length=500, default='')
     start_date = models.DateTimeField(default=timezone.now)
@@ -73,15 +86,27 @@ class Job(models.Model):
 
 
 class JobOffer(models.Model):
-    user = models.ForeignKey(Professional, on_delete=models.CASCADE)
-    city = models.ForeignKey(City, on_delete=models.CASCADE, default='')
+    user = models.ForeignKey(
+        Professional,
+        related_name='job_offers',
+        on_delete=models.CASCADE
+    )
+    city = models.ForeignKey(
+        City,
+        related_name='job_offers',
+        on_delete=models.CASCADE, default=''
+    )
     description = models.CharField(max_length=100, default='')
     creation_date = models.DateTimeField(default=timezone.now)
     status = models.BooleanField(default=True)
 
 
 class Employment(models.Model):
-    offer = models.ForeignKey(JobOffer, on_delete=models.CASCADE)
+    offer = models.ForeignKey(
+        JobOffer,
+        related_name='employments',
+        on_delete=models.CASCADE
+    )
     profession = models.ForeignKey(Profession, on_delete=models.CASCADE)
     description = models.TextField(max_length=200, default='')
     reward = models.FloatField(default=0)
@@ -89,7 +114,11 @@ class Employment(models.Model):
 
 
 class Study(models.Model):
-    cv = models.ForeignKey(Curriculum, on_delete=models.CASCADE)
+    cv = models.ForeignKey(
+        Curriculum,
+        related_name='studies',
+        on_delete=models.CASCADE
+    )
     school = models.ForeignKey(School, on_delete=models.CASCADE)
     profession = models.ForeignKey(Profession, on_delete=models.CASCADE)
     name = models.CharField(max_length=50, default='')

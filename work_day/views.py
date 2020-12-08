@@ -87,11 +87,17 @@ def user_profile(request):
     current_user = request.user
     professional = Professional.objects.get(user=current_user)
     professions = professional.professions.all()
+    cv = Curriculum.objects.get(owner=professional)
+    studies = cv.studies.all()
+    jobs = cv.jobs.all()
     template = loader.get_template('users/profile.html')
     context = {
         'user': current_user,
         'professional': professional,
         'professions': professions,
+        'cv': cv,
+        'studies': studies,
+        'jobs': jobs,
     }
     return HttpResponse(template.render(context, request))
 
@@ -158,7 +164,6 @@ def create_job_offer(request):
             )
             if employment_formset.is_valid():
                 employment_formset.save()
-            print(employment_formset.errors)
             return redirect('home')
 
     return render(
@@ -180,4 +185,27 @@ def job_offer(request, offer_id):
     }
     return render(request, 'offers.html', context)
 
+
+
+def edit_profile(request):
+    user_form = EditUserForm(
+        data=request.POST or None,
+        instance=request.user,
+    )
+    professional_form = ProfessionalForm(
+        data=request.POST or None,
+        instance=request.user.professional,
+    )
+    if request.method == 'POST':
+        if user_form.is_valid() and professional_form.is_valid():
+            user_form.save()
+            professional_form.save()
+            return redirect('home')
+        print(user_form.errors)
+        print(professional_form.errors)
+    context = {
+        'user_form': user_form,
+        'professional_form': professional_form,
+    }
+    return render(request, 'users/edit_profile.html', context)
 
