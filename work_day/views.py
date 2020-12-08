@@ -7,6 +7,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.http import HttpResponseForbidden, HttpResponse
 from django.template import loader
 from django.views.generic.edit import FormView
+from django.contrib.auth.decorators import login_required
 
 from .forms import *
 
@@ -61,17 +62,18 @@ def login(request):
     )
 
 
+@login_required(login_url='/login')
 def logout(request):
     do_logout(request)
     return redirect('/')
 
 
-# Pantalla principal
+@login_required(login_url='/login')
 def home(request):
     return render(request, "home.html")
 
 
-# Mensajes
+@login_required(login_url='/login')
 def messages(request):
     return render(request, "messages.html")
 
@@ -83,6 +85,8 @@ def pantallaprincipal(request):
 def prueba(request):
     return render(request, "prueba.html")
 
+
+@login_required(login_url='/login')
 def user_profile(request):
     current_user = request.user
     professional = Professional.objects.get(user=current_user)
@@ -102,6 +106,7 @@ def user_profile(request):
     return HttpResponse(template.render(context, request))
 
 
+@login_required(login_url='/login')
 def view_professionals(request):
     professionals = Professional.objects.all()
     template = loader.get_template('professionals.html')
@@ -111,6 +116,7 @@ def view_professionals(request):
     return HttpResponse(template.render(context, request))
 
 
+@login_required(login_url='/login')
 def add_job(request, pk=None):
     if pk:
         job = get_object_or_404(Job, pk=pk)
@@ -130,6 +136,7 @@ def add_job(request, pk=None):
     )
 
 
+@login_required(login_url='/login')
 def add_study(request, pk=None):
     if pk:
         study = get_object_or_404(Study, pk=pk)
@@ -149,15 +156,21 @@ def add_study(request, pk=None):
     )
 
 
+@login_required(login_url='/login')
 def employments(request):
     return render(request, "employments.html")
+
 
 def index(request):
     return render(request, "index.html")
 
+
+@login_required(login_url='/login')
 def my_posts(request):
     return render(request, "my_posts.html")
 
+
+@login_required(login_url='/login')
 def create_job_offer(request):
     offer_form = JobOfferForm()
     employment_formset = EmploymentInlineFormSet()
@@ -185,6 +198,7 @@ def create_job_offer(request):
     )
 
 
+@login_required(login_url='/login')
 def job_offer(request, offer_id):
     offer_list = JobOffer.objects.all()
     current_offer = JobOffer.objects.get(pk=offer_id)
@@ -195,7 +209,7 @@ def job_offer(request, offer_id):
     return render(request, 'offers.html', context)
 
 
-
+@login_required(login_url='/login')
 def edit_profile(request):
     user_form = EditUserForm(
         data=request.POST or None,
@@ -210,8 +224,6 @@ def edit_profile(request):
             user_form.save()
             professional_form.save()
             return redirect('home')
-        print(user_form.errors)
-        print(professional_form.errors)
     context = {
         'user_form': user_form,
         'professional_form': professional_form,
