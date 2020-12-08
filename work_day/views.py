@@ -102,6 +102,15 @@ def user_profile(request):
     return HttpResponse(template.render(context, request))
 
 
+def view_professionals(request):
+    professionals = Professional.objects.all()
+    template = loader.get_template('professionals.html')
+    context = {
+        'professionals': professionals,
+    }
+    return HttpResponse(template.render(context, request))
+
+
 def add_job(request, pk=None):
     if pk:
         job = get_object_or_404(Job, pk=pk)
