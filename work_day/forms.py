@@ -49,7 +49,9 @@ class UserForm(UserCreationForm):
 class ProfessionalForm(forms.ModelForm):
     class Meta:
         model = Professional
-        fields = ['city', 'professions', 'phone', 'id_number', 'status']
+        fields = [
+            'city', 'phone', 'id_number', 'status', 'profile_picture'
+        ]
         labels = {
             'city': 'City',
             'professions': 'Profession',

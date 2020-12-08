@@ -15,6 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf import settings
+from django.conf.urls.static import static
 from work_day import views
 
 urlpatterns = [
@@ -40,3 +42,5 @@ urlpatterns = [
     path('jobOffers/<int:offer_id>', views.job_offer, name='job_offer'),
     path('my_posts', views.my_posts),
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

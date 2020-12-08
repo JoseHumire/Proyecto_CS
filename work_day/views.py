@@ -26,7 +26,9 @@ def register(request):
     user_form.fields['password2'].help_text = None
     if request.method == "POST":
         user_form = UserForm(data=request.POST)
-        professional_form = ProfessionalForm(data=request.POST)
+        professional_form = ProfessionalForm(
+            data=request.POST, files=request.FILES
+        )
         if user_form.is_valid() and professional_form.is_valid():
             user = user_form.save()
             professional = professional_form.save(commit=False)
@@ -225,6 +227,7 @@ def edit_profile(request):
     professional_form = ProfessionalForm(
         data=request.POST or None,
         instance=request.user.professional,
+        files=request.FILES
     )
     if request.method == 'POST':
         if user_form.is_valid() and professional_form.is_valid():
@@ -233,7 +236,8 @@ def edit_profile(request):
             return redirect('home')
     context = {
         'user_form': user_form,
-        'professional_form': professional_form,
+        'professional_form': ProfessionalForm(
+            instance=request.user.professional),
     }
     return render(request, 'users/edit_profile.html', context)
 
