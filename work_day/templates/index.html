@@ -1,0 +1,86 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AdminLTE 3 | Lockscreen</title>
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&amp;display=fallback">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="{% static 'lib/adminlte-3.0.4/css/all.min.css' %}">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="{% static 'lib/adminlte-3.0.4/css/adminlte.min.css' %}">
+    <style type="text/css">
+        #image {
+
+            background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url({% static 'lib/adminlte-3.0.4/img/img-background.jpg' %});
+
+            background-attachment: fixed;
+
+            background-position: center center;
+            background-size: cover;
+
+        }
+
+
+    </style>
+</head>
+<body class="" id="image">
+
+<!-- Automatic element centering -->
+
+<div class="wrapper">
+
+
+
+    <div class="lockscreen-logo " style="color:white; margin-top: 15%; ">
+        <!-- text-shadow: 0.1em 0.1em #333; -->
+
+        <h1 style=" font-size: 250%; font-weight: 900;">
+            Welcome to Work Day
+        </h1>
+        <h4 style=" font-weight: 900;">
+            Find employments or post your employment advertise.
+        </h4>
+    </div>
+
+
+    <div class="lockscreen-footer text-center" style="margin-left: 25%;
+    margin-right: 25%;">
+
+        <!-- /.lockscreen-image -->
+
+        <!-- lockscreen credentials (contains the form) -->
+
+        <div class="row ">
+            <div class="col-6" style="padding-left: 5%; padding-right: 5%;">
+                <a href="/login" type="button" class="btn btn-block btn-outline-info" style=" font-weight: 900; ">Login
+                </a>
+            </div>
+            <div class="col-6" style="padding-left: 5%; padding-right: 5%;">
+                <a href="/register" type="button" class="btn btn-block btn-outline-info" style=" font-weight: 900;">Register
+                </a>
+            </div>
+
+        </div>
+
+        <!-- /.lockscreen credentials -->
+
+    </div>
+
+
+</div>
+
+
+</div>
+
+<!-- /.center -->
+</body>
+<!-- jQuery -->
+<script src="{% static 'lib/adminlte-3.0.4/plugins/jquery/jquery.min.js' %}"></script>
+<!-- Bootstrap 4 -->
+<script src="{% static 'lib/adminlte-3.0.4/plugins/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+</html>

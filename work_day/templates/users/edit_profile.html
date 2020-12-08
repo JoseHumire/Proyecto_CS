@@ -5,7 +5,7 @@
     <title>Title</title>
 </head>
 <body>
-<form method="POST">
+<form method="POST" enctype="multipart/form-data">
     {{ user_form.as_p }}
     {{ professional_form.as_p }}
     {% csrf_token %}

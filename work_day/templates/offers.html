@@ -14,7 +14,7 @@
     Date: {{ offer.creation_date|date:"M d, Y" }}
     City: {{ offer.city }}
     <br>
-    {% for employment in offer.employment_set.all %}
+    {% for employment in offer.employments.all %}
         {{ employment.profession }}:
         {{ employment.description }}
         Payment:{{ employment.reward }}

@@ -7,6 +7,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.http import HttpResponseForbidden, HttpResponse
 from django.template import loader
 from django.views.generic.edit import FormView
+from django.contrib.auth.decorators import login_required
 
 from .forms import *
 
@@ -25,7 +26,9 @@ def register(request):
     user_form.fields['password2'].help_text = None
     if request.method == "POST":
         user_form = UserForm(data=request.POST)
-        professional_form = ProfessionalForm(data=request.POST)
+        professional_form = ProfessionalForm(
+            data=request.POST, files=request.FILES
+        )
         if user_form.is_valid() and professional_form.is_valid():
             user = user_form.save()
             professional = professional_form.save(commit=False)
@@ -54,24 +57,25 @@ def login(request):
             user = authenticate(username=username, password=password)
             if user is not None:
                 do_login(request, user)
-                return redirect('/')
+                return redirect('/home')
 
     return render(
         request, "users/login.html", {'form': form}
     )
 
 
+@login_required(login_url='/login')
 def logout(request):
     do_logout(request)
     return redirect('/')
 
 
-# Pantalla principal
+@login_required(login_url='/login')
 def home(request):
     return render(request, "home.html")
 
 
-# Mensajes
+@login_required(login_url='/login')
 def messages(request):
     return render(request, "messages.html")
 
@@ -83,6 +87,8 @@ def pantallaprincipal(request):
 def prueba(request):
     return render(request, "prueba.html")
 
+
+@login_required(login_url='/login')
 def user_profile(request):
     current_user = request.user
     professional = Professional.objects.get(user=current_user)
@@ -102,6 +108,17 @@ def user_profile(request):
     return HttpResponse(template.render(context, request))
 
 
+@login_required(login_url='/login')
+def view_professionals(request):
+    professionals = Professional.objects.all()
+    template = loader.get_template('professionals.html')
+    context = {
+        'professionals': professionals,
+    }
+    return HttpResponse(template.render(context, request))
+
+
+@login_required(login_url='/login')
 def add_job(request, pk=None):
     if pk:
         job = get_object_or_404(Job, pk=pk)
@@ -121,6 +138,7 @@ def add_job(request, pk=None):
     )
 
 
+@login_required(login_url='/login')
 def add_study(request, pk=None):
     if pk:
         study = get_object_or_404(Study, pk=pk)
@@ -140,26 +158,43 @@ def add_study(request, pk=None):
     )
 
 
+@login_required(login_url='/login')
 def employments(request):
     return render(request, "employments.html")
 
 
-def create_job_offer(request):
-    offer_form = JobOfferForm()
-    employment_formset = EmploymentInlineFormSet()
+def index(request):
+    return render(request, "index.html")
+
+
+@login_required(login_url='/login')
+def my_posts(request):
+    current_user = request.user
+    professional = Professional.objects.get(user=current_user)
+    offers = professional.job_offers.all()
+    template = loader.get_template('my_posts.html')
+    context = {
+        'offers': offers,
+    }
+    return HttpResponse(template.render(context, request))
+
+
+@login_required(login_url='/login')
+def create_job_offer(request, pk=None):
+    if pk:
+        offer = get_object_or_404(JobOffer, pk=pk)
+        if offer.user.user != request.user:
+            return HttpResponseForbidden()
+    else:
+        offer = JobOffer(user=request.user.professional)
+    offer_form = JobOfferForm(data=request.POST or None, instance=offer)
+    employment_formset = EmploymentInlineFormSet(data=request.POST or None, instance=offer)
     if request.method == 'POST':
-        offer_form = JobOfferForm(data=request.POST)
         if offer_form.is_valid():
-            offer = offer_form.save(commit=False)
-            professional = Professional.objects.get(user=request.user)
-            offer.user = professional
             offer.save()
-            employment_formset = EmploymentInlineFormSet(
-                data=request.POST, instance=offer
-            )
             if employment_formset.is_valid():
                 employment_formset.save()
-            return redirect('home')
+            return redirect('home/')
 
     return render(
         request,
@@ -171,6 +206,7 @@ def create_job_offer(request):
     )
 
 
+@login_required(login_url='/login')
 def job_offer(request, offer_id):
     offer_list = JobOffer.objects.all()
     current_offer = JobOffer.objects.get(pk=offer_id)
@@ -181,6 +217,7 @@ def job_offer(request, offer_id):
     return render(request, 'offers.html', context)
 
 
+@login_required(login_url='/login')
 def edit_profile(request):
     user_form = EditUserForm(
         data=request.POST or None,
@@ -189,16 +226,17 @@ def edit_profile(request):
     professional_form = ProfessionalForm(
         data=request.POST or None,
         instance=request.user.professional,
+        files=request.FILES
     )
     if request.method == 'POST':
         if user_form.is_valid() and professional_form.is_valid():
             user_form.save()
             professional_form.save()
             return redirect('home')
-        print(user_form.errors)
-        print(professional_form.errors)
     context = {
         'user_form': user_form,
-        'professional_form': professional_form,
+        'professional_form': ProfessionalForm(
+            instance=request.user.professional),
     }
     return render(request, 'users/edit_profile.html', context)
+
