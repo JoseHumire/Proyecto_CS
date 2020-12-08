@@ -1,17 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "format/base.html" %}
+{% load static %}
+{% block css %}
+    <link rel="stylesheet" href="{%static 'lib/adminlte-3.0.4/css/adminlte.min.css'">
+  <!-- overlayScrollbars -->
+  <link rel="stylesheet" href="{%static 'lib/adminlte-3.0.4/plugins/overlayScrollbars/css/OverlayScrollbars.min.css'">
+<html>
+{% endblock %}
+
+
+{% block content %}
 <head>
     <meta charset="UTF-8">
     <title>Create offer</title>
 </head>
-<body>
-    <h1>Work Day</h1>
-    <h2>Create job offer</h2>
+    <div class="container">
+        <div class="row mb-2">
+          <div class="col">
+    <p><h1 class="text-center">Create job offer</h1> </p>
 
     <form id="offerForm" method="POST">
         <div id='employmentFormContent'>
         {% csrf_token %}
-        <h3>Offer</h3>
+
+            <p>
+               <h3>Offer</h3>
+            </p>
         {{ offer_form.as_p }}
         {{ employment_formset.management_form }}
         <h4>Employment</h4>
@@ -20,10 +33,13 @@
                 <p></p>
             {% endfor %}
         </div>
-        <button type="submit">Save</button>
+        <div class="social-auth-links text-center mt-2 mb-3">
+         <p></p><button type="submit" class="btn btn-primary" class="toast-bottom-center">Save</button></p>
+        </div>
     </form>
-
-        <button onclick="addInput()">Agregar input</button>
+        <div class="social-auth-links text-center mt-2 mb-3">
+            <p></p><button onclick="addInput() " class="btn btn-primary" >Add input</button></p>
+        </div>
     <script>
         function addInput(){
             let forms = document.querySelector('#id_employment_set-TOTAL_FORMS');
@@ -52,5 +68,7 @@
             forms.value = parseInt(forms.value) + 1;
         }
     </script>
-</body>
+    </div>
+    </div>
+{% endblock %}
 </html>

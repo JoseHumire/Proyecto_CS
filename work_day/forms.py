@@ -119,7 +119,7 @@ class JobOfferForm(forms.ModelForm):
         }
         widgets = {
             'city': forms.Select(attrs={'class': 'form-control'}),
-            'description': forms.TextInput(attrs={'class': 'form-control'}),
+            'description': forms.TextInput(attrs={'class': 'form-control', 'placeholder' : 'Enter description'}),
         }
 
 
@@ -135,7 +135,7 @@ class EmploymentForm(forms.ModelForm):
         }
         widgets = {
             'profession': forms.Select(attrs={'class': 'form-control'}),
-            'description': forms.Textarea(attrs={'class': 'form-control'}),
+            'description': forms.Textarea(attrs={'class': 'form-control', 'placeholder' : 'Enter description'}),
             'reward': forms.TextInput(
                 attrs={
                     'class': 'form-control',
