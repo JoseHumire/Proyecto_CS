@@ -167,7 +167,14 @@ def index(request):
 
 @login_required(login_url='/login')
 def my_posts(request):
-    return render(request, "my_posts.html")
+    current_user = request.user
+    professional = Professional.objects.get(user=current_user)
+    offers = professional.job_offers.all()
+    template = loader.get_template('my_posts.html')
+    context = {
+        'offers': offers,
+    }
+    return HttpResponse(template.render(context, request))
 
 
 @login_required(login_url='/login')
