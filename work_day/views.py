@@ -178,22 +178,21 @@ def my_posts(request):
 
 
 @login_required(login_url='/login')
-def create_job_offer(request):
-    offer_form = JobOfferForm()
-    employment_formset = EmploymentInlineFormSet()
+def create_job_offer(request, pk=None):
+    if pk:
+        offer = get_object_or_404(JobOffer, pk=pk)
+        if offer.user.user != request.user:
+            return HttpResponseForbidden()
+    else:
+        offer = JobOffer(user=request.user.professional)
+    offer_form = JobOfferForm(data=request.POST or None, instance=offer)
+    employment_formset = EmploymentInlineFormSet(data=request.POST or None, instance=offer)
     if request.method == 'POST':
-        offer_form = JobOfferForm(data=request.POST)
         if offer_form.is_valid():
-            offer = offer_form.save(commit=False)
-            professional = Professional.objects.get(user=request.user)
-            offer.user = professional
             offer.save()
-            employment_formset = EmploymentInlineFormSet(
-                data=request.POST, instance=offer
-            )
             if employment_formset.is_valid():
                 employment_formset.save()
-            return redirect('home')
+            return redirect('home/')
 
     return render(
         request,

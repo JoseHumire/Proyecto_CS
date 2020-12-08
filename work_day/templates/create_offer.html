@@ -26,22 +26,22 @@
         <button onclick="addInput()">Agregar input</button>
     <script>
         function addInput(){
-            let forms = document.querySelector('#id_employment_set-TOTAL_FORMS');
-            let newProfInput = document.getElementById("id_employment_set-0-profession").cloneNode(true);
-            newProfInput.name = 'employment_set-'+forms.value+'-profession';
-            newProfInput.id = 'id_employment_set-'+forms.value+'-profession';
-            let newDescInput = document.getElementById('id_employment_set-0-description').cloneNode(true);
-            newDescInput.name = 'employment_set-'+forms.value+'-description';
-            newDescInput.id = 'id_employment_set-'+forms.value+'-description';
-            let newRewInput = document.getElementById('id_employment_set-0-reward').cloneNode(true);
-            newRewInput.name = 'employment_set-'+forms.value+'-reward';
-            newRewInput.id = 'id_employment_set-'+forms.value+'-reward';
-            let newStatInput = document.getElementById('id_employment_set-0-status').cloneNode(true);
-            newStatInput.name = 'employment_set-'+forms.value+'-status';
-            newStatInput.id = 'id_employment_set-'+forms.value+'-status';
-            let newDelInput = document.getElementById('id_employment_set-0-DELETE').cloneNode(true);
-            newDelInput.name = 'employment_set-'+forms.value+'-DELETE';
-            newDelInput.id = 'id_employment_set-'+forms.value+'-DELETE';
+            let forms = document.querySelector('#id_employments-TOTAL_FORMS');
+            let newProfInput = document.getElementById("id_employments-0-profession").cloneNode(true);
+            newProfInput.name = 'employments-'+forms.value+'-profession';
+            newProfInput.id = 'id_employments-'+forms.value+'-profession';
+            let newDescInput = document.getElementById('id_employments-0-description').cloneNode(true);
+            newDescInput.name = 'employments-'+forms.value+'-description';
+            newDescInput.id = 'id_employments-'+forms.value+'-description';
+            let newRewInput = document.getElementById('id_employments-0-reward').cloneNode(true);
+            newRewInput.name = 'employments-'+forms.value+'-reward';
+            newRewInput.id = 'id_employments-'+forms.value+'-reward';
+            let newStatInput = document.getElementById('id_employments-0-status').cloneNode(true);
+            newStatInput.name = 'employments-'+forms.value+'-status';
+            newStatInput.id = 'id_employments-'+forms.value+'-status';
+            let newDelInput = document.getElementById('id_employments-0-DELETE').cloneNode(true);
+            newDelInput.name = 'employments-'+forms.value+'-DELETE';
+            newDelInput.id = 'id_employments-'+forms.value+'-DELETE';
             document.querySelector('#employmentFormContent').append(newProfInput);
             document.querySelector('#employmentFormContent').append(newDescInput);
             document.querySelector('#employmentFormContent').append(newRewInput);
