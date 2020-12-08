@@ -31,7 +31,7 @@ urlpatterns = [
     path('user/editStudy/<int:pk>', views.add_study, name='edit_study'),
     path('user/editJob/<int:pk>', views.add_job, name='edit_job'),
     path('employments/', views.employments),
-
+    path('professionals/', views.view_professionals),
     path('createOffer/', views.create_job_offer, name='create_offer'),
     path('user/user-profile/', views.user_profile, name='user_profile'),
     path('pantallaprincipal/', views.pantallaprincipal),
