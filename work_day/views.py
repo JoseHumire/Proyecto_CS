@@ -54,7 +54,7 @@ def login(request):
             user = authenticate(username=username, password=password)
             if user is not None:
                 do_login(request, user)
-                return redirect('/')
+                return redirect('/home')
 
     return render(
         request, "users/login.html", {'form': form}
@@ -137,6 +137,11 @@ def add_study(request, pk=None):
 def employments(request):
     return render(request, "employments.html")
 
+def index(request):
+    return render(request, "index.html")
+
+def my_posts(request):
+    return render(request, "my_posts.html")
 
 def create_job_offer(request):
     offer_form = JobOfferForm()
@@ -174,3 +179,5 @@ def job_offer(request, offer_id):
         'offer': current_offer,
     }
     return render(request, 'offers.html', context)
+
+

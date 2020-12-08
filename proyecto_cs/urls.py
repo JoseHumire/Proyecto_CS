@@ -18,7 +18,7 @@ from django.urls import path
 from work_day import views
 
 urlpatterns = [
-    path('', views.welcome),
+    path('', views.index),
     path('register/', views.register),
     path('login/', views.login, name='login'),
     path('logout/', views.logout),
@@ -37,4 +37,5 @@ urlpatterns = [
     path('prueba/', views.prueba),
 
     path('jobOffers/<int:offer_id>', views.job_offer, name='job_offer'),
+    path('my_posts', views.my_posts),
 ]
