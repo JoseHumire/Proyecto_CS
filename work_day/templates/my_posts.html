@@ -13,6 +13,7 @@
 {% endblock %}
 
 {% block content %}
+
     <!-- Header Employments -->
     <div class="content-header">
         <div class="container-fluid">
@@ -35,595 +36,167 @@
             <section class="col-lg-3">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Offers</h3>
-                        <div class="card-tools">
-                            <div class="input-group input-group-sm">
-                                <input type="text" class="form-control" placeholder="Search offer">
-                                <div class="input-group-append">
-                                    <div class="btn btn-primary">
-                                        <i class="fas fa-search"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <h4 class="text-center align-content-center">You offers</h4>
                     </div>
 
                     <div class="card-body p-0 ">
-                            <table class="table table-hover table-striped">
-                                <tbody>
-                                <tr>
-                                    <td>
-                                        <div class="user-block">
-                                            <div class="row">
-                                                <div class="col-8">
-                                                    <img class="img-circle"
-                                                         src="{% static 'lib/adminlte-3.0.4/img/default-150x150.png' %}"
-                                                         alt="User Image">
-                                                    <span class="username"><a href="#">Offer 04</a></span>
-                                                    <span class="description">City: Arequipa</span>
+                        <div class="table table-hover table-striped">
 
-                                                </div>
-                                                <div class="col-4 float-lg-right " >
-                                                    <a class="btn btn-info btn-sm w-100" href="#">
-                                                        <i class="fas fa-pencil-alt">
-                                                        </i>
-                                                        Edit
-                                                    </a>
-                                                    <a class="btn btn-danger btn-sm w-100" href="#">
-                                                        <i class="fas fa-trash">
-                                                        </i>
-                                                        Delete
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </td>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="user-block">
-                                            <div class="row">
-                                                <div class="col-8">
-                                                    <img class="img-circle"
-                                                         src="{% static 'lib/adminlte-3.0.4/img/default-150x150.png' %}"
-                                                         alt="User Image">
-                                                    <span class="username"><a href="#">Offer 04</a></span>
-                                                    <span class="description">City: Arequipa</span>
-
-                                                </div>
-                                                <div class="col-4 float-lg-right " >
-                                                    <a class="btn btn-info btn-sm w-100" href="#">
-                                                        <i class="fas fa-pencil-alt">
-                                                        </i>
-                                                        Edit
-                                                    </a>
-                                                    <a class="btn btn-danger btn-sm w-100" href="#">
-                                                        <i class="fas fa-trash">
-                                                        </i>
-                                                        Delete
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </td>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="user-block">
-                                            <div class="row">
-                                                <div class="col-8">
-                                                    <img class="img-circle"
-                                                         src="{% static 'lib/adminlte-3.0.4/img/default-150x150.png' %}"
-                                                         alt="User Image">
-                                                    <span class="username"><a href="#">Offer 04</a></span>
-                                                    <span class="description">City: Arequipa</span>
-
-                                                </div>
-                                                <div class="col-4 float-lg-right " >
-                                                    <a class="btn btn-info btn-sm w-100" href="#">
-                                                        <i class="fas fa-pencil-alt">
-                                                        </i>
-                                                        Edit
-                                                    </a>
-                                                    <a class="btn btn-danger btn-sm w-100" href="#">
-                                                        <i class="fas fa-trash">
-                                                        </i>
-                                                        Delete
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </td>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="user-block">
-                                            <div class="row">
-                                                <div class="col-8">
-                                                    <img class="img-circle"
-                                                         src="{% static 'lib/adminlte-3.0.4/img/default-150x150.png' %}"
-                                                         alt="User Image">
-                                                    <span class="username"><a href="#">Offer 04</a></span>
-                                                    <span class="description">City: Arequipa</span>
-
-                                                </div>
-                                                <div class="col-4 float-lg-right " >
-                                                    <a class="btn btn-info btn-sm w-100" href="#">
-                                                        <i class="fas fa-pencil-alt">
-                                                        </i>
-                                                        Edit
-                                                    </a>
-                                                    <a class="btn btn-danger btn-sm w-100" href="#">
-                                                        <i class="fas fa-trash">
-                                                        </i>
-                                                        Delete
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </td>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-
-                                            <div class="text-center m-2 " style="padding-left: 10%; padding-right: 10%;">
-                                               <button type="button" class="btn btn-block btn-success">Create new offer</button>
-                                            </div>
+                            <div class="nav flex-column nav-pills text-center m-2 " style="padding-left: 10%; padding-right: 10%;">
+                                {% for offer in offers.all %}
+                                    {% if offer.id == 1 %}
+                                        <a class="btn btn-block btn-outline-info active" data-toggle="pill" href="#v-pills-Offer-{{ offer.id }}"
+                                       role="tab" ria-selected="true" style="margin-top: 5%; margin-bottom: 5%;">Offer {{ offer.id }}</a>
 
 
-                                    </td>
+                                    {% else %}
+                                        <a class="btn btn-block btn-outline-info" data-toggle="pill" href="#v-pills-Offer-{{ offer.id }}"
+                                       role="tab" ria-selected="true" style="margin-top: 5%; margin-bottom: 5%;">Offer {{ offer.id }}</a>
+                                    {% endif %}
 
-                                </tr>
-                                </tbody>
-                            </table>
-
+                                    <!--
+                                            <span class="username"><a href="#">Offer {{ offer.id }}</a></span>
+                                            <span class="description">City: {{ offer.city }}</span>
+                                            -->
+                                {% endfor %}
+                            </div>
+                            <div class="text-center m-2 " style="padding-left: 10%; padding-right: 10%;">
+                                <a type="button" class="btn btn-primary btn-success " href="/createOffer">
+                                    <i class="fa fa-bell"></i>
+                                    Create new offer
+                                </a>
+                            </div>
+                        </div>
                     </div>
-
                 </div>
             </section>
             <!-- End Offer -->
 
             <!-- Employments -->
             <section class="col-lg-9">
-                <div class="card card-solid">
+                <div class="tab-content " id="v-pills-tabContent">
 
+                        {% for offer in offers.all %}
+                            {% if offer.id == 1 %}
+                            <div class="tab-pane fade show active" id="v-pills-Offer-{{ offer.id }}" >
+                            {% else %}
+                            <div class="tab-pane fade show " id="v-pills-Offer-{{ offer.id }}" >
+                            {% endif %}
 
-                    <div class="card-header">
-                        <h2 class="text-center">Offer 01</h2>
-                        <div class="row">
-                            <div class="card-text col-lg-12">
-                                <h3> Description:</h3>
-                                <p class="text-muted">
-                                    Professionals are needed to perform the cleaning task and activity that are not
-                                    related
-                                    to your career.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="card-body pb-0">
-                        <div class="row d-flex align-items-stretch">
-                            <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch">
-                                <div class="card bg-light">
-                                    <div class="card-header text-muted border-bottom-0">
-                                        Employment 01
+                                <div class="card card-solid">
+                            <div class="card-header">
+                                <h2 class="text-center">Offer {{ offer.id }}</h2>
+                                <div class="row">
+                                    <div class="card-text col-lg-10">
+                                        <h3> Description:</h3>
+                                        <p class="text-muted">
+                                            {{ offer.description  }}
+                                        </p>
                                     </div>
-                                    <div class="card-body pt-0">
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <h2 class="lead"><b>Software Engineer</b></h2>
-                                                <p class="text-muted"><b>About: </b> Web Designer / UX /
-                                                    Graphic
-                                                    Artist / Coffee Lover </p>
-                                                <ul class="ml-4 mb-0 fa-ul text-muted">
-                                                    <li class="small"><span class="fa-li"><i
-                                                            class="fas fa-lg fa-building"></i></span> Address: Demo
-                                                        Street
-                                                        123, Demo City 04312, NJ
-                                                    </li>
-                                                    <li class="small"><span class="fa-li"><i
-                                                            class="fas fa-lg fa-phone"></i></span>
-                                                        Phone #: + 800 - 12 12 23 52
-                                                    </li>
-                                                </ul>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                    <div class="card-footer">
-                                        <div class="text-right">
-
-
-                                            <a class="btn btn-info btn-sm" href="#">
-                                                <i class="fas fa-pencil-alt">
-                                                </i>
-                                                Edit
-                                            </a>
-                                            <a class="btn btn-danger btn-sm" href="#">
-                                                <i class="fas fa-trash">
-                                                </i>
-                                                Delete
-                                            </a>
-
-
-                                        </div>
+                                    <div class="card-text col-lg-2">
+                                        <a class="btn btn-info btn-sm w-100" href="#">
+                                            <i class="fas fa-pencil-alt">
+                                            </i>
+                                            Edit
+                                        </a>
+                                        <a class="btn btn-danger btn-sm w-100" href="#">
+                                            <i class="fas fa-trash">
+                                            </i>
+                                            Delete
+                                        </a>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch">
-                                <div class="card bg-light">
-                                    <div class="card-header text-muted border-bottom-0">
-                                        Employment 01
-                                    </div>
-                                    <div class="card-body pt-0">
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <h2 class="lead"><b>Software Engineer</b></h2>
-                                                <p class="text-muted"><b>About: </b> Web Designer / UX /
-                                                    Graphic
-                                                    Artist / Coffee Lover </p>
-                                                <ul class="ml-4 mb-0 fa-ul text-muted">
-                                                    <li class="small"><span class="fa-li"><i
-                                                            class="fas fa-lg fa-building"></i></span> Address: Demo
-                                                        Street
-                                                        123, Demo City 04312, NJ
-                                                    </li>
-                                                    <li class="small"><span class="fa-li"><i
-                                                            class="fas fa-lg fa-phone"></i></span>
-                                                        Phone #: + 800 - 12 12 23 52
-                                                    </li>
-                                                </ul>
+
+                            <div class="card-body pb-0">
+                                <div class="row d-flex align-items-stretch">
+                                    {% for employment in offer.employments.all %}
+                                    <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch">
+                                        <div class="card bg-light">
+                                            <div class="card-header text-muted border-bottom-0">
+                                                Employment {{ employment.id }}
                                             </div>
-
-                                        </div>
-                                    </div>
-                                    <div class="card-footer">
-                                        <div class="text-right">
-
-
-                                            <a class="btn btn-info btn-sm" href="#">
-                                                <i class="fas fa-pencil-alt">
-                                                </i>
-                                                Edit
-                                            </a>
-                                            <a class="btn btn-danger btn-sm" href="#">
-                                                <i class="fas fa-trash">
-                                                </i>
-                                                Delete
-                                            </a>
-
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch">
-                                <div class="card bg-light">
-                                    <div class="card-header text-muted border-bottom-0">
-                                        Employment 01
-                                    </div>
-                                    <div class="card-body pt-0">
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <h2 class="lead"><b>Software Engineer</b></h2>
-                                                <p class="text-muted"><b>About: </b> Web Designer / UX /
-                                                    Graphic
-                                                    Artist / Coffee Lover </p>
-                                                <ul class="ml-4 mb-0 fa-ul text-muted">
-                                                    <li class="small"><span class="fa-li"><i
-                                                            class="fas fa-lg fa-building"></i></span> Address: Demo
-                                                        Street
-                                                        123, Demo City 04312, NJ
-                                                    </li>
-                                                    <li class="small"><span class="fa-li"><i
-                                                            class="fas fa-lg fa-phone"></i></span>
-                                                        Phone #: + 800 - 12 12 23 52
-                                                    </li>
-                                                </ul>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                    <div class="card-footer">
-                                        <div class="text-right">
-
-
-                                            <a class="btn btn-info btn-sm" href="#">
-                                                <i class="fas fa-pencil-alt">
-                                                </i>
-                                                Edit
-                                            </a>
-                                            <a class="btn btn-danger btn-sm" href="#">
-                                                <i class="fas fa-trash">
-                                                </i>
-                                                Delete
-                                            </a>
-
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch">
-                                <div class="card bg-light">
-                                    <div class="card-header text-muted border-bottom-0">
-                                        Employment 01
-                                    </div>
-                                    <div class="card-body pt-0">
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <h2 class="lead"><b>Software Engineer</b></h2>
-                                                <p class="text-muted"><b>About: </b> Web Designer / UX /
-                                                    Graphic
-                                                    Artist / Coffee Lover </p>
-                                                <ul class="ml-4 mb-0 fa-ul text-muted">
-                                                    <li class="small"><span class="fa-li"><i
-                                                            class="fas fa-lg fa-building"></i></span> Address: Demo
-                                                        Street
-                                                        123, Demo City 04312, NJ
-                                                    </li>
-                                                    <li class="small"><span class="fa-li"><i
-                                                            class="fas fa-lg fa-phone"></i></span>
-                                                        Phone #: + 800 - 12 12 23 52
-                                                    </li>
-                                                </ul>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                    <div class="card-footer">
-                                        <div class="text-right">
-
-
-                                            <a class="btn btn-info btn-sm" href="#">
-                                                <i class="fas fa-pencil-alt">
-                                                </i>
-                                                Edit
-                                            </a>
-                                            <a class="btn btn-danger btn-sm" href="#">
-                                                <i class="fas fa-trash">
-                                                </i>
-                                                Delete
-                                            </a>
-
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch">
-                                <div class="card bg-light">
-                                    <div class="card-header text-muted border-bottom-0">
-                                        Employment 01
-                                    </div>
-                                    <div class="card-body pt-0">
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <h2 class="lead"><b>Software Engineer</b></h2>
-                                                <p class="text-muted"><b>About: </b> Web Designer / UX /
-                                                    Graphic
-                                                    Artist / Coffee Lover </p>
-                                                <ul class="ml-4 mb-0 fa-ul text-muted">
-                                                    <li class="small"><span class="fa-li"><i
-                                                            class="fas fa-lg fa-building"></i></span> Address: Demo
-                                                        Street
-                                                        123, Demo City 04312, NJ
-                                                    </li>
-                                                    <li class="small"><span class="fa-li"><i
-                                                            class="fas fa-lg fa-phone"></i></span>
-                                                        Phone #: + 800 - 12 12 23 52
-                                                    </li>
-                                                </ul>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                    <div class="card-footer">
-                                        <div class="text-right">
-
-
-                                            <a class="btn btn-info btn-sm" href="#">
-                                                <i class="fas fa-pencil-alt">
-                                                </i>
-                                                Edit
-                                            </a>
-                                            <a class="btn btn-danger btn-sm" href="#">
-                                                <i class="fas fa-trash">
-                                                </i>
-                                                Delete
-                                            </a>
-
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch">
-                                <div class="card bg-light">
-                                    <div class="card-header text-muted border-bottom-0">
-                                        Employment 01
-                                    </div>
-                                    <div class="card-body pt-0">
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <h2 class="lead"><b>Software Engineer</b></h2>
-                                                <p class="text-muted"><b>About: </b> Web Designer / UX /
-                                                    Graphic
-                                                    Artist / Coffee Lover </p>
-                                                <ul class="ml-4 mb-0 fa-ul text-muted">
-                                                    <li class="small"><span class="fa-li"><i
-                                                            class="fas fa-lg fa-building"></i></span> Address: Demo
-                                                        Street
-                                                        123, Demo City 04312, NJ
-                                                    </li>
-                                                    <li class="small"><span class="fa-li"><i
-                                                            class="fas fa-lg fa-phone"></i></span>
-                                                        Phone #: + 800 - 12 12 23 52
-                                                    </li>
-                                                </ul>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                    <div class="card-footer">
-                                        <div class="text-right">
-
-
-                                            <a class="btn btn-info btn-sm" href="#">
-                                                <i class="fas fa-pencil-alt">
-                                                </i>
-                                                Edit
-                                            </a>
-                                            <a class="btn btn-danger btn-sm" href="#">
-                                                <i class="fas fa-trash">
-                                                </i>
-                                                Delete
-                                            </a>
-
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch">
-                                <div class="card bg-light">
-                                    <div class="card-header text-muted border-bottom-0">
-                                        Employment 01
-                                    </div>
-                                    <div class="card-body pt-0">
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <h2 class="lead"><b>Software Engineer</b></h2>
-                                                <p class="text-muted"><b>About: </b> Web Designer / UX /
-                                                    Graphic
-                                                    Artist / Coffee Lover </p>
-                                                <ul class="ml-4 mb-0 fa-ul text-muted">
-                                                    <li class="small"><span class="fa-li"><i
-                                                            class="fas fa-lg fa-building"></i></span> Address: Demo
-                                                        Street
-                                                        123, Demo City 04312, NJ
-                                                    </li>
-                                                    <li class="small"><span class="fa-li"><i
-                                                            class="fas fa-lg fa-phone"></i></span>
-                                                        Phone #: + 800 - 12 12 23 52
-                                                    </li>
-                                                </ul>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                    <div class="card-footer">
-                                        <div class="text-right">
-
-
-                                            <a class="btn btn-info btn-sm" href="#">
-                                                <i class="fas fa-pencil-alt">
-                                                </i>
-                                                Edit
-                                            </a>
-                                            <a class="btn btn-danger btn-sm" href="#">
-                                                <i class="fas fa-trash">
-                                                </i>
-                                                Delete
-                                            </a>
-
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch">
-                                <div class="card bg-light">
-                                    <div class="card-header text-muted border-bottom-0">
-                                        Employment 01
-                                    </div>
-                                    <div class="card-body pt-0">
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <h2 class="lead"><b>Software Engineer</b></h2>
-                                                <p class="text-muted"><b>About: </b> Web Designer / UX /
-                                                    Graphic
-                                                    Artist / Coffee Lover </p>
-                                                <ul class="ml-4 mb-0 fa-ul text-muted">
-                                                    <li class="small"><span class="fa-li"><i
-                                                            class="fas fa-lg fa-building"></i></span> Address: Demo
-                                                        Street
-                                                        123, Demo City 04312, NJ
-                                                    </li>
-                                                    <li class="small"><span class="fa-li"><i
-                                                            class="fas fa-lg fa-phone"></i></span>
-                                                        Phone #: + 800 - 12 12 23 52
-                                                    </li>
-                                                </ul>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                    <div class="card-footer">
-                                        <div class="text-right">
-
-
-                                            <a class="btn btn-info btn-sm" href="#">
-                                                <i class="fas fa-pencil-alt">
-                                                </i>
-                                                Edit
-                                            </a>
-                                            <a class="btn btn-danger btn-sm" href="#">
-                                                <i class="fas fa-trash">
-                                                </i>
-                                                Delete
-                                            </a>
-
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch">
-                                <div class="card bg-light">
-                                    <div class="card-header text-muted border-bottom-0">
-
-                                    </div>
-                                    <div class="card-body pt-0">
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <h2 class="lead"><b>New Employment</b></h2>
-                                                <p class="text-muted"><b>About: </b> Add the description of the new employment</p>
-                                                <ul class="ml-4 mb-0 fa-ul text-muted">
-                                                    <div class="text-center m-2 "
-                                                         style="padding-left: 10%; padding-right: 10%;">
-                                                        <button type="button" class="btn btn-block btn-success">Create
-                                                            new offer
-                                                        </button>
+                                            <div class="card-body pt-0">
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <h2 class="lead"><b>{{ employment.profession }}</b></h2>
+                                                        <p class="text-muted"><b>About: </b> {{ employment.description }} </p>
+                                                        <ul class="ml-4 mb-0 fa-ul text-muted">
+                                                            <li class="small"><span class="fa-li"><i
+                                                                    class="fas fa-lg fa-building"></i></span> City: {{ offer.city }}
+                                                            </li>
+                                                            <li class="small"><span class="fa-li"><i
+                                                                    class="fas fa-lg fa-money-bill"></i></span>
+                                                                Payment: {{ employment.reward }}
+                                                            </li>
+                                                        </ul>
                                                     </div>
-                                                </ul>
-                                            </div>
 
+                                                </div>
+                                            </div>
+                                            <div class="card-footer">
+                                                <div class="text-right">
+
+
+                                                    <a class="btn btn-info btn-sm" href="#">
+                                                        <i class="fas fa-pencil-alt">
+                                                        </i>
+                                                        Edit
+                                                    </a>
+                                                    <a class="btn btn-danger btn-sm" href="#">
+                                                        <i class="fas fa-trash">
+                                                        </i>
+                                                        Delete
+                                                    </a>
+
+
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="card-footer">
+                                      {% endfor %}
+                                    <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch">
+                                        <div class="card bg-light">
+                                            <div class="card-header text-muted border-bottom-0">
 
+                                            </div>
+                                            <div class="card-body pt-0">
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <h2 class="lead"><b>New Employment</b></h2>
+                                                        <p class="text-muted"><b>About: </b> Add the description of the new
+                                                            employment</p>
+                                                        <ul class="ml-4 mb-0 fa-ul text-muted">
+                                                            <div class="text-center m-2 "
+                                                                 style="padding-left: 10%; padding-right: 10%;">
+                                                                <a type="button" class="btn btn-primary btn-success "
+                                                                   href="/createEmployment">
+                                                                    <i class="fa fa-bell"></i>
+                                                                    Create new employment
+                                                                </a>
+                                                            </div>
+                                                        </ul>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="card-footer">
+
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-
-
+                            <!-- /.card -->
                         </div>
-                    </div>
+                            </div>
 
-                    <!-- /.card-body -->
+                        {% endfor %}
 
                 </div>
+                    <!-- /.card-body -->
+
+
             </section>
             <!-- End Employments -->
 
