@@ -62,7 +62,7 @@ class ProfessionalForm(forms.ModelForm):
         }
         widgets = {
             'city': forms.Select(
-                attrs={'class': 'form-control', 'placeholder': 'City'}),
+                attrs={'class': 'form-control select2bs4', 'placeholder': 'City', 'style' : 'height:100%;',}),
             'professions': forms.CheckboxSelectMultiple(),
             'phone': forms.TextInput(attrs={'class': 'form-control',
                                             'placeholder': 'Phone number'}),
@@ -70,6 +70,10 @@ class ProfessionalForm(forms.ModelForm):
                 attrs={'class': 'form-control',
                        'placeholder': 'Identification document'}
             ),
+            'status':forms.CheckboxInput(attrs={'class':'custom-file-input'}),
+            'id_image': forms.FileInput(attrs={'class':'custom-file-input'}),
+            'profile_picture': forms.FileInput(attrs={'class':'custom-file-input'}),
+
         }
 
 

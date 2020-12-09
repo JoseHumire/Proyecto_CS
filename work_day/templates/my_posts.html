@@ -42,22 +42,21 @@
                     <div class="card-body p-0 ">
                         <div class="table table-hover table-striped">
 
-                            <div class="nav flex-column nav-pills text-center m-2 " style="padding-left: 10%; padding-right: 10%;">
+                            <div class="nav flex-column nav-pills text-center m-2 nav-item user-panel" style="padding-left: 10%; padding-right: 10%;">
                                 {% for offer in offers.all %}
                                     {% if offer.id == 1 %}
+
                                         <a class="btn btn-block btn-outline-info active" data-toggle="pill" href="#v-pills-Offer-{{ offer.id }}"
-                                       role="tab" ria-selected="true" style="margin-top: 5%; margin-bottom: 5%;">Offer {{ offer.id }}</a>
+                                       role="tab" ria-selected="true" style="margin-top: 5%; margin-bottom: 5%;">Offer {{ offer.id }}  {{ offer.creation_date }}</a>
 
 
                                     {% else %}
                                         <a class="btn btn-block btn-outline-info" data-toggle="pill" href="#v-pills-Offer-{{ offer.id }}"
-                                       role="tab" ria-selected="true" style="margin-top: 5%; margin-bottom: 5%;">Offer {{ offer.id }}</a>
+                                       role="tab" ria-selected="true" style="margin-top: 5%; margin-bottom: 5%;">Offer {{ offer.id }}  {{ offer.creation_date }} </a>
                                     {% endif %}
 
-                                    <!--
-                                            <span class="username"><a href="#">Offer {{ offer.id }}</a></span>
-                                            <span class="description">City: {{ offer.city }}</span>
-                                            -->
+
+
                                 {% endfor %}
                             </div>
                             <div class="text-center m-2 " style="padding-left: 10%; padding-right: 10%;">

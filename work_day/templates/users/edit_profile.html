@@ -1,15 +1,158 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<form method="POST" enctype="multipart/form-data">
-    {{ user_form.as_p }}
-    {{ professional_form.as_p }}
-    {% csrf_token %}
-    <button type="submit">Registrar</button>
-</form>
-</body>
-</html>
+{% extends "format/base.html" %}
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet"
+          href="{% static 'lib/adminlte-3.0.4/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css' %}">
+    <link rel="stylesheet" href="{% static 'lib/adminlte-3.0.4/plugins/select2/css/select2.min.css' %}">
+    <link rel="stylesheet"
+          href="{% static 'lib/adminlte-3.0.4/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css' %}">
+    <link rel="stylesheet"
+          href="{% static 'lib/adminlte-3.0.4/plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css' %}">
+    <link rel="stylesheet" href="{% static 'lib/adminlte-3.0.4/plugins/bs-stepper/css/bs-stepper.min.css' %}">
+    <link rel="stylesheet" href="{% static 'lib/adminlte-3.0.4/plugins/dropzone/min/dropzone.min.css' %}">
+    <link rel="stylesheet" href="{% static 'lib/adminlte-3.0.4/plugins/fontawesome-free/css/fontawesome.css' %}">
+{% endblock %}
+{% block content %}
+
+    <section class="content-header">
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-5">
+                    <h1 class="m-0"><i class="fa fa-cog" aria-hidden="true"></i> Profile settings</h1>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+            <!-- /.container-fluid -->
+
+        </div>
+    </section>
+
+    <section class="content">
+        <div class="container">
+            <div class="row mb-2">
+                <div class="col">
+                    <div class="card card-default">
+                        <div class="card-header">
+                            <h3 class="card-title">Personal information settings</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <form method="POST" enctype="multipart/form-data">
+
+                                <label for="id_email">Email address:</label><br>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                                    </div>
+                                    {{ user_form.email }}
+                                </div>
+
+                                <label for="id_first_name">First Name:</label><br>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                    </div>
+                                    {{ user_form.first_name }}
+                                </div>
+
+                                <label for="id_last_name">Last Name:</label><br>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text "><i class="fas fa-user"></i></span>
+                                    </div>
+                                    {{ user_form.last_name }}
+                                </div>
+
+
+                                <label for="id_city">City:</label>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-city"></i></span>
+                                    </div>
+                                    {{ professional_form.city }}
+                                </div>
+
+                                <label for="id_phone">Phone number:</label>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                                    </div>
+                                    {{ professional_form.phone }}
+                                </div>
+
+                                <label for="id_id_number">ID Number:</label>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-id-card"></i></span>
+                                    </div>
+                                    {{ professional_form.id_number }}
+                                </div>
+
+
+                                <label for="exampleInputFile">ID Card:</label>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-upload"></i></span>
+                                    </div>
+                                    <div class="custom-file">
+                                        {{ professional_form.id_image }}
+                                        <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                                    </div>
+                                </div>
+
+
+                                <label for="exampleInputFile">Profile picture:</label>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-upload"></i></span>
+                                    </div>
+                                    <div class="custom-file">
+                                        {{ professional_form.profile_picture }}
+                                        <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                                    </div>
+                                </div>
+
+
+                                {% csrf_token %}
+                                <button type="submit">Registrar</button>
+                            </form>
+
+                        </div>
+                        <!-- /.card-body -->
+                        <div class="card-footer">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+{% endblock %}
+
+{% block scripts %}
+
+    <script src="{% static 'lib/adminlte-3.0.4/plugins/select2/js/select2.full.min.js' %}"></script>
+    <script src="{% static 'lib/adminlte-3.0.4/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js' %} "></script>
+    <script src="{% static 'lib/adminlte-3.0.4/plugins/bs-custom-file-input/bs-custom-file-input.min.js' %} "></script>
+
+    <script>
+        $(function () {
+            //Initialize Select2 Elements
+            $('.select2').select2()
+            //Date range picker
+            $('#reservationdate').datetimepicker({
+                format: 'L'
+            });
+        })
+    </script>
+    <script>
+        $(function () {
+            bsCustomFileInput.init();
+        });
+    </script>
+
+{% endblock %}
