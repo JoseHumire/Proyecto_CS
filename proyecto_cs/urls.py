@@ -38,6 +38,7 @@ urlpatterns = [
     path('createOffer/', views.create_job_offer, name='create_offer'),
     path('editOffer/<int:pk>', views.create_job_offer, name='edit_offer'),
     path('user/user-profile/', views.user_profile, name='user_profile'),
+    path('user/user-profile/<int:pk>', views.user_profile),
     path('pantallaprincipal/', views.pantallaprincipal),
     path('prueba/', views.prueba),
 
