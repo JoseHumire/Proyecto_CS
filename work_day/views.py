@@ -10,6 +10,7 @@ from django.views.generic.edit import FormView
 from django.contrib.auth.decorators import login_required
 
 from .forms import *
+from .filters import ProfessionalFilter
 
 
 def welcome(request):
@@ -120,8 +121,13 @@ def user_profile(request, pk=None):
 def view_professionals(request):
     professionals = Professional.objects.all()
     template = loader.get_template('professionals.html')
+    professional_filter = ProfessionalFilter(
+        request.GET, queryset=professionals
+    )
+    professionals = professional_filter.qs
     context = {
         'professionals': professionals,
+        'filter': professional_filter,
     }
     return HttpResponse(template.render(context, request))
 
