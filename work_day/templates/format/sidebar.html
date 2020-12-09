@@ -13,16 +13,30 @@
         <!-- Sidebar user panel (optional) -->
 
 
-
         <div class="card-primary ">
             <div class="card-body box-profile">
                 <div class="text-center">
-                    <img class="profile-user-img img-fluid img-circle"  img-size-64
-                         src="/static/lib/adminlte-3.0.4/img/user4-128x128.jpg" alt="User profile">
+                    {% if request.professional.profile_picture %}
+                        <a href="/user/user-profile/">
+                            <img class="profile-user-img img-fluid img-circle" img-size-64
+                                 src="{{ request.professional.profile_picture.url }}" alt="User profile"></a>
+                    {% else %}
+                        <a href="/user/user-profile/">
+                            <img class="profile-user-img img-fluid img-circle" img-size-64
+                                 src="{% static 'lib/adminlte-3.0.4/img/user-default.jpg' %}" alt="User profile"></a>
+                    {% endif %}
                 </div>
                 <div class="info text-center">
-                    <a href="#" class="d-block big">Alexander Pierce</a>
-                    <a class="d-block">Software Engineer</a>
+                    <a href="/user/user-profile/"
+                       class="d-block big">{{ request.user.first_name }} {{ request.user.last_name }}</a>
+                    {% if request.user.profession %}
+                        {% for profession in request.user.profession %}
+                            <a class="d-block">{{ profession }}</a>
+
+                        {% endfor %}
+                    {% else %}
+                        <a class="d-block"> You have not registered professions.</a>
+                    {% endif %}
                 </div>
             </div>
         </div>
