@@ -72,7 +72,12 @@ def logout(request):
 
 @login_required(login_url='/login')
 def home(request):
-    return render(request, "home.html")
+    offers = JobOffer.objects.order_by('creation_date')
+    template = loader.get_template('home.html')
+    context = {
+        'offers': offers
+    }
+    return HttpResponse(template.render(context, request))
 
 
 @login_required(login_url='/login')
@@ -89,8 +94,11 @@ def prueba(request):
 
 
 @login_required(login_url='/login')
-def user_profile(request):
-    current_user = request.user
+def user_profile(request, pk=None):
+    if pk:
+        current_user = User.objects.get(pk=pk)
+    else:
+        current_user = request.user
     professional = Professional.objects.get(user=current_user)
     professions = professional.professions.all()
     cv = Curriculum.objects.get(owner=professional)
