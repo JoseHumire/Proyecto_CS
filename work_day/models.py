@@ -79,9 +79,7 @@ class Job(models.Model):
     profession = models.ForeignKey(Profession, on_delete=models.CASCADE)
     description = models.TextField(max_length=500, default='')
     start_date = models.DateTimeField(default=timezone.now)
-    finish_date = models.DateTimeField(
-        default=timezone.now() + datetime.timedelta(days=1)
-    )
+    finish_date = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
         return self.profession.name
