@@ -8,9 +8,9 @@
 <h1>Work Day</h1>
 <h2>Add Study</h2>
 
-<form method="POST">
-{{ form.as_p }}
-{% csrf_token %}
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
 <button type="submit">Save</button>
 </form>
 </body>

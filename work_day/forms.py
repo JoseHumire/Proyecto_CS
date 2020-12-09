@@ -50,7 +50,8 @@ class ProfessionalForm(forms.ModelForm):
     class Meta:
         model = Professional
         fields = [
-            'city', 'phone', 'id_number', 'status', 'profile_picture'
+            'city', 'phone', 'id_number', 'id_image',
+            'status', 'profile_picture',
         ]
         labels = {
             'city': 'City',
@@ -65,8 +66,10 @@ class ProfessionalForm(forms.ModelForm):
             'professions': forms.CheckboxSelectMultiple(),
             'phone': forms.TextInput(attrs={'class': 'form-control',
                                             'placeholder': 'Phone number'}),
-            'id_number': forms.TextInput(attrs={'class': 'form-control',
-                                                'placeholder': 'Identification document'}),
+            'id_number': forms.TextInput(
+                attrs={'class': 'form-control',
+                       'placeholder': 'Identification document'}
+            ),
         }
 
 
@@ -96,7 +99,7 @@ class StudyForm(forms.ModelForm):
     class Meta:
         model = Study
         fields = [
-            'school', 'profession', 'name'
+            'school', 'profession', 'name', 'image'
         ]
         labels = {
             'school': 'Institution',

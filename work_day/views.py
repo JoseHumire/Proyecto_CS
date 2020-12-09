@@ -147,15 +147,28 @@ def add_study(request, pk=None):
     else:
         cv = Curriculum.objects.get(owner=request.user.professional)
         study = Study(cv=cv)
-    form = StudyForm(data=request.POST or None, instance=study)
+    form = StudyForm(
+        data=request.POST or None,
+        instance=study,
+        files=request.FILES
+    )
     if request.method == 'POST':
         if form.is_valid():
             form.save()
             return redirect('home')
 
-    return render(
-        request, "add_study.html", {'form': form}
-    )
+    if pk:
+        return render(
+            request,
+            "add_study.html",
+            {'form': StudyForm(instance=study)}
+        )
+    else:
+        return render(
+            request,
+            "add_study.html",
+            {'form': form}
+        )
 
 
 @login_required(login_url='/login')

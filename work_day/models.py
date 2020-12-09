@@ -52,6 +52,7 @@ class Professional(models.Model):
     professions = models.ManyToManyField(Profession)
     phone = models.CharField(max_length=9, default='')
     id_number = models.CharField(max_length=11, default='')
+    id_image = models.ImageField(null=False, blank=True)
     status = models.BooleanField(default=True)
     creation_date = models.DateTimeField(default=timezone.now)
     profile_picture = models.ImageField(null=True, blank=True)
@@ -123,6 +124,7 @@ class Study(models.Model):
     school = models.ForeignKey(School, on_delete=models.CASCADE)
     profession = models.ForeignKey(Profession, on_delete=models.CASCADE)
     name = models.CharField(max_length=50, default='')
+    image = models.ImageField(null=False, blank=True)
 
 
 class ChatRoom(models.Model):
