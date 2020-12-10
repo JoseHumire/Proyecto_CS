@@ -267,3 +267,12 @@ def edit_profile(request):
     }
     return render(request, 'users/edit_profile.html', context)
 
+
+def chat_index(request):
+    return render(request, 'chat/index.html')
+
+
+def room(request, room_name):
+    return render(request, 'chat/room.html', {
+        'room_name': room_name
+    })

@@ -55,6 +55,9 @@ urlpatterns = [
     path('resetPasswordSent/', auth_views.PasswordResetDoneView.as_view(), name='password_reset_done'),
     path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
     path('resetPasswordComplete/', auth_views.PasswordResetCompleteView.as_view(), name='password_reset_complete'),
+
+    path('chat/', views.chat_index, name='chat_index'),
+    path('chat/<str:room_name>/', views.room, name='room'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
