@@ -19,6 +19,7 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 from work_day import views
+from work_day.forms import UserPasswordResetForm
 
 urlpatterns = [
     path('', views.index),
@@ -45,7 +46,12 @@ urlpatterns = [
     path('jobOffers/<int:offer_id>', views.job_offer, name='job_offer'),
     path('my_posts', views.my_posts),
 
-    path('resetPassword/', auth_views.PasswordResetView.as_view(), name='reset_password'),
+    path('resetPassword/',
+         auth_views.PasswordResetView.as_view(
+             template_name='users/recover.html',
+             form_class=UserPasswordResetForm,
+         ),
+         name='reset_password'),
     path('resetPasswordSent/', auth_views.PasswordResetDoneView.as_view(), name='password_reset_done'),
     path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
     path('resetPasswordComplete/', auth_views.PasswordResetCompleteView.as_view(), name='password_reset_complete'),

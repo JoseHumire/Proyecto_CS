@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import PasswordResetForm
 from django.forms import inlineformset_factory
 
 from .models import *
@@ -181,3 +182,11 @@ class EditUserForm(forms.ModelForm):
             'last_name': forms.TextInput(
                 attrs={'class': 'form-control', 'placeholder': 'Last name'}),
         }
+
+
+class UserPasswordResetForm(PasswordResetForm):
+
+    email = forms.EmailField(label='', widget=forms.EmailInput(attrs={
+        'class': 'form-control',
+        'placeholder': 'Email',
+        }))
