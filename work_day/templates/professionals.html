@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div>
+        <form method="get">
+            Name: {{ filter.form.user__first_name }}
+            Last name. {{ filter.form.user__last_name }}
+            City:{{ filter.form.city }}
+            Profession: {{ filter.form.professions }}
+            <button type="submit">Search</button>
+        </form>
+    </div>
+    {% for professional in professionals %}
+        <p>{{ professional.user.first_name }}</p>
+        <p>{{ professional.city }}</p>
+    {% endfor %}
+</body>
+</html>

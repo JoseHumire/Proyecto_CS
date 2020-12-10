@@ -1,17 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "format/base.html" %}
+{% load static %}
+{% block css %}
+    <link rel="stylesheet" href="{%static 'lib/adminlte-3.0.4/css/adminlte.min.css'">
+  <!-- overlayScrollbars -->
+  <link rel="stylesheet" href="{%static 'lib/adminlte-3.0.4/plugins/overlayScrollbars/css/OverlayScrollbars.min.css'">
+<html>
+{% endblock %}
+
+
+{% block content %}
 <head>
     <meta charset="UTF-8">
     <title>Create offer</title>
 </head>
-<body>
-    <h1>Work Day</h1>
-    <h2>Create job offer</h2>
+    <div class="container">
+        <div class="row mb-2">
+          <div class="col">
+    <p><h1 class="text-center">Create job offer</h1> </p>
 
     <form id="offerForm" method="POST">
         <div id='employmentFormContent'>
         {% csrf_token %}
-        <h3>Offer</h3>
+
+            <p>
+               <h3>Offer</h3>
+            </p>
         {{ offer_form.as_p }}
         {{ employment_formset.management_form }}
         <h4>Employment</h4>
@@ -20,28 +33,31 @@
                 <p></p>
             {% endfor %}
         </div>
-        <button type="submit">Save</button>
+        <div class="social-auth-links text-center mt-2 mb-3">
+         <p></p><button type="submit" class="btn btn-primary" class="toast-bottom-center">Save</button></p>
+        </div>
     </form>
-
-        <button onclick="addInput()">Agregar input</button>
+        <div class="social-auth-links text-center mt-2 mb-3">
+            <p></p><button onclick="addInput() " class="btn btn-primary" >Add input</button></p>
+        </div>
     <script>
         function addInput(){
-            let forms = document.querySelector('#id_employment_set-TOTAL_FORMS');
-            let newProfInput = document.getElementById("id_employment_set-0-profession").cloneNode(true);
-            newProfInput.name = 'employment_set-'+forms.value+'-profession';
-            newProfInput.id = 'id_employment_set-'+forms.value+'-profession';
-            let newDescInput = document.getElementById('id_employment_set-0-description').cloneNode(true);
-            newDescInput.name = 'employment_set-'+forms.value+'-description';
-            newDescInput.id = 'id_employment_set-'+forms.value+'-description';
-            let newRewInput = document.getElementById('id_employment_set-0-reward').cloneNode(true);
-            newRewInput.name = 'employment_set-'+forms.value+'-reward';
-            newRewInput.id = 'id_employment_set-'+forms.value+'-reward';
-            let newStatInput = document.getElementById('id_employment_set-0-status').cloneNode(true);
-            newStatInput.name = 'employment_set-'+forms.value+'-status';
-            newStatInput.id = 'id_employment_set-'+forms.value+'-status';
-            let newDelInput = document.getElementById('id_employment_set-0-DELETE').cloneNode(true);
-            newDelInput.name = 'employment_set-'+forms.value+'-DELETE';
-            newDelInput.id = 'id_employment_set-'+forms.value+'-DELETE';
+            let forms = document.querySelector('#id_employments-TOTAL_FORMS');
+            let newProfInput = document.getElementById("id_employments-0-profession").cloneNode(true);
+            newProfInput.name = 'employments-'+forms.value+'-profession';
+            newProfInput.id = 'id_employments-'+forms.value+'-profession';
+            let newDescInput = document.getElementById('id_employments-0-description').cloneNode(true);
+            newDescInput.name = 'employments-'+forms.value+'-description';
+            newDescInput.id = 'id_employments-'+forms.value+'-description';
+            let newRewInput = document.getElementById('id_employments-0-reward').cloneNode(true);
+            newRewInput.name = 'employments-'+forms.value+'-reward';
+            newRewInput.id = 'id_employments-'+forms.value+'-reward';
+            let newStatInput = document.getElementById('id_employments-0-status').cloneNode(true);
+            newStatInput.name = 'employments-'+forms.value+'-status';
+            newStatInput.id = 'id_employments-'+forms.value+'-status';
+            let newDelInput = document.getElementById('id_employments-0-DELETE').cloneNode(true);
+            newDelInput.name = 'employments-'+forms.value+'-DELETE';
+            newDelInput.id = 'id_employments-'+forms.value+'-DELETE';
             document.querySelector('#employmentFormContent').append(newProfInput);
             document.querySelector('#employmentFormContent').append(newDescInput);
             document.querySelector('#employmentFormContent').append(newRewInput);
@@ -52,5 +68,7 @@
             forms.value = parseInt(forms.value) + 1;
         }
     </script>
-</body>
+    </div>
+    </div>
+{% endblock %}
 </html>

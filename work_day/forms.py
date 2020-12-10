@@ -49,7 +49,10 @@ class UserForm(UserCreationForm):
 class ProfessionalForm(forms.ModelForm):
     class Meta:
         model = Professional
-        fields = ['city', 'professions', 'phone', 'id_number', 'status']
+        fields = [
+            'city', 'phone', 'id_number', 'id_image',
+            'status', 'profile_picture',
+        ]
         labels = {
             'city': 'City',
             'professions': 'Profession',
@@ -59,12 +62,18 @@ class ProfessionalForm(forms.ModelForm):
         }
         widgets = {
             'city': forms.Select(
-                attrs={'class': 'form-control', 'placeholder': 'City'}),
+                attrs={'class': 'form-control select2bs4', 'placeholder': 'City', 'style' : 'height:100%;',}),
             'professions': forms.CheckboxSelectMultiple(),
             'phone': forms.TextInput(attrs={'class': 'form-control',
                                             'placeholder': 'Phone number'}),
-            'id_number': forms.TextInput(attrs={'class': 'form-control',
-                                                'placeholder': 'Identification document'}),
+            'id_number': forms.TextInput(
+                attrs={'class': 'form-control',
+                       'placeholder': 'Identification document'}
+            ),
+            'status':forms.CheckboxInput(attrs={'class':'custom-file-input'}),
+            'id_image': forms.FileInput(attrs={'class':'custom-file-input'}),
+            'profile_picture': forms.FileInput(attrs={'class':'custom-file-input'}),
+
         }
 
 
@@ -94,7 +103,7 @@ class StudyForm(forms.ModelForm):
     class Meta:
         model = Study
         fields = [
-            'school', 'profession', 'name'
+            'school', 'profession', 'name', 'image'
         ]
         labels = {
             'school': 'Institution',
@@ -119,7 +128,7 @@ class JobOfferForm(forms.ModelForm):
         }
         widgets = {
             'city': forms.Select(attrs={'class': 'form-control'}),
-            'description': forms.TextInput(attrs={'class': 'form-control'}),
+            'description': forms.TextInput(attrs={'class': 'form-control', 'placeholder' : 'Enter description'}),
         }
 
 
@@ -135,7 +144,7 @@ class EmploymentForm(forms.ModelForm):
         }
         widgets = {
             'profession': forms.Select(attrs={'class': 'form-control'}),
-            'description': forms.Textarea(attrs={'class': 'form-control'}),
+            'description': forms.Textarea(attrs={'class': 'form-control', 'placeholder' : 'Enter description'}),
             'reward': forms.TextInput(
                 attrs={
                     'class': 'form-control',
