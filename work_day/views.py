@@ -73,7 +73,10 @@ def logout(request):
 
 @login_required(login_url='/login')
 def home(request):
-    offers = JobOffer.objects.order_by('creation_date')
+    offers = JobOffer.objects.filter(
+        employments__profession__name__contains=
+        request.user.professional.professions.all()[0]
+    ).distinct()
     template = loader.get_template('home.html')
     context = {
         'offers': offers
