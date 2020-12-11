@@ -272,7 +272,25 @@ def chat_index(request):
     return render(request, 'chat/index.html')
 
 
-def room(request, room_name):
-    return render(request, 'chat/room.html', {
-        'room_name': room_name
-    })
+def start_room(request, user_id):
+    user = request.user.professional
+    other_user = User.objects.get(pk=user_id).professional
+    current_room = ChatRoom.objects.filter(users__in=[user, other_user]).first()
+    if not current_room:
+        current_room = ChatRoom.objects.create()
+        current_room.users.add(user)
+        current_room.users.add(other_user)
+    new_url = '/chat/' + str(current_room.id)
+    return redirect(new_url)
+
+
+def room(request, room_id):
+    user = request.user.professional
+    current_room = ChatRoom.objects.get(pk=room_id)
+    chat_messages = Message.objects.filter(chat_room=current_room)
+    context = {
+        'user': user,
+        'messages': chat_messages,
+        'room_name': room_id,
+    }
+    return render(request, 'chat/room.html', context)

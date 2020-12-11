@@ -57,7 +57,8 @@ urlpatterns = [
     path('resetPasswordComplete/', auth_views.PasswordResetCompleteView.as_view(), name='password_reset_complete'),
 
     path('chat/', views.chat_index, name='chat_index'),
-    path('chat/<str:room_name>/', views.room, name='room'),
+    path('startChat/<int:user_id>/', views.start_room, name='start_room'),
+    path('chat/<int:room_id>/', views.room, name='room'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

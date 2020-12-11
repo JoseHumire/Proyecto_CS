@@ -132,6 +132,9 @@ class ChatRoom(models.Model):
 
 
 class Message(models.Model):
+    class Meta:
+        ordering = ['creation_date']
+
     chat_room = models.ForeignKey(ChatRoom, on_delete=models.CASCADE)
     user = models.ForeignKey(Professional, on_delete=models.CASCADE)
     message = models.CharField(max_length=400)
