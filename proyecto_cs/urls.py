@@ -42,7 +42,7 @@ urlpatterns = [
     path('user/user-profile/<int:pk>', views.user_profile),
     path('pantallaprincipal/', views.pantallaprincipal),
     path('prueba/', views.prueba),
-
+    path('nuevoprincipal/', views.nuevoprincipal),
     path('jobOffers/<int:offer_id>', views.job_offer, name='job_offer'),
     path('my_posts', views.my_posts),
 
