@@ -103,6 +103,9 @@ def pantallaprincipal(request):
 def prueba(request):
     return render(request, "prueba.html")
 
+# Mensajes
+def nuevoprincipal(request):
+    return render(request, "nuevoprincipal.html")
 
 @login_required(login_url='/login')
 def user_profile(request, pk=None):
