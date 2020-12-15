@@ -241,9 +241,13 @@ def create_job_offer(request, pk=None):
 
 
 @login_required(login_url='/login')
-def job_offer(request, offer_id):
+def job_offer(request, offer_id=None):
     offer_list = JobOffer.objects.all()
-    current_offer = JobOffer.objects.get(pk=offer_id)
+    if offer_id:
+        current_offer = JobOffer.objects.get(pk=offer_id)
+    else:
+        current_offer = JobOffer.objects.all().first()
+
     context = {
         'offers': offer_list,
         'offer': current_offer,

@@ -43,8 +43,9 @@ urlpatterns = [
     path('pantallaprincipal/', views.pantallaprincipal),
     path('prueba/', views.prueba),
     path('nuevoprincipal/', views.nuevoprincipal),
-    path('jobOffers/<int:offer_id>', views.job_offer, name='job_offer'),
-    path('my_posts', views.my_posts),
+    path('jobOffers/<int:offer_id>/', views.job_offer, name='job_offer'),
+    path('jobOffers/', views.job_offer, name='job_offer'),
+    path('my_posts/', views.my_posts),
 
     path('resetPassword/',
          auth_views.PasswordResetView.as_view(
