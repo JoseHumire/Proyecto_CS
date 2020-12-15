@@ -1,21 +1,324 @@
-<!-- chat/templates/chat/room.html -->
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8"/>
-    <title>Chat Room</title>
-</head>
-<body>
-    {% for message in messages %}
-        {{ message.user }}:
-        {{ message.message }}
-    {% endfor %}
-    <textarea id="chat-log" cols="100" rows="20"></textarea><br>
-    <input id="chat-message-input" type="text" size="100"><br>
-    <input id="chat-message-submit" type="button" value="Send">
-    {{ room_name|json_script:"room-name" }}
+{% extends "format/base.html" %}
+{% load static %}
+
+{% block content %}
+    <!-- Header messages -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-2">
+                    <h1 class="m-0"><i class="fa fa-comments" aria-hidden="true"></i> Messages</h1>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+            <!-- /.container-fluid -->
+        </div>
+    </div>
+    <!-- End header messages -->
+
+    <!-- Content messages -->
+    <div class="container-fluid">
+
+        <div class="row">
+
+            <!-- Contacts -->
+            <section class="col-lg-3">
+                <div class="card" style="height: 75vh;">
+                    <div class="card-header">
+                        <h3 class="card-title">Contacts</h3>
+                        <div class="card-tools">
+                            <div class="input-group input-group-sm">
+                                <input type="text" class="form-control" placeholder="Search Contact">
+                                <div class="input-group-append">
+                                    <div class="btn btn-primary">
+                                        <i class="fas fa-search"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-body p-0 ">
+                        <div class="direct-chat-messages h-100">
+                            <table class="table table-hover table-striped">
+                                <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="user-block">
+                                            <img class="img-circle"
+                                                 src="{% static 'lib/adminlte-3.0.4/img/user1-128x128.jpg' %}"
+                                                 alt="User Image">
+                                            <span class="username"><a href="#">Jonathan Burke Jr.</a></span>
+                                            <span class="description">Shared publicly </span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="user-block">
+                                            <img class="img-circle"
+                                                 src="{% static 'lib/adminlte-3.0.4/img/user1-128x128.jpg' %}"
+                                                 alt="User Image">
+                                            <span class="username"><a href="#">Jonathan Burke Jr.</a></span>
+                                            <span class="description">Shared publicly </span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="user-block">
+                                            <img class="img-circle"
+                                                 src="{% static 'lib/adminlte-3.0.4/img/user1-128x128.jpg' %}"
+                                                 alt="User Image">
+                                            <span class="username"><a href="#">Jonathan Burke Jr.</a></span>
+                                            <span class="description">Shared publicly - 7:30 PM Today</span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="user-block">
+                                            <img class="img-circle"
+                                                 src="{% static 'lib/adminlte-3.0.4/img/user1-128x128.jpg' %}"
+                                                 alt="User Image">
+                                            <span class="username"><a href="#">Jonathan Burke Jr.</a></span>
+                                            <span class="description">Shared publicly - 7:30 PM Today</span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="user-block">
+                                            <img class="img-circle"
+                                                 src="{% static 'lib/adminlte-3.0.4/img/user1-128x128.jpg' %}"
+                                                 alt="User Image">
+                                            <span class="username"><a href="#">Jonathan Burke Jr.</a></span>
+                                            <span class="description">Shared publicly - 7:30 PM Today</span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="user-block">
+                                            <img class="img-circle"
+                                                 src="{% static 'lib/adminlte-3.0.4/img/user1-128x128.jpg' %}"
+                                                 alt="User Image">
+                                            <span class="username"><a href="#">Jonathan Burke Jr.</a></span>
+                                            <span class="description">Shared publicly - 7:30 PM Today</span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="user-block">
+                                            <img class="img-circle"
+                                                 src="{% static 'lib/adminlte-3.0.4/img/user1-128x128.jpg' %}"
+                                                 alt="User Image">
+                                            <span class="username"><a href="#">Jonathan Burke Jr.</a></span>
+                                            <span class="description">Shared publicly - 7:30 PM Today</span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="user-block">
+                                            <img class="img-circle"
+                                                 src="{% static 'lib/adminlte-3.0.4/img/user1-128x128.jpg' %}"
+                                                 alt="User Image">
+                                            <span class="username"><a href="#">Jonathan Burke Jr.</a></span>
+                                            <span class="description">Shared publicly - 7:30 PM Today</span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="user-block">
+                                            <img class="img-circle"
+                                                 src="{% static 'lib/adminlte-3.0.4/img/user1-128x128.jpg' %}"
+                                                 alt="User Image">
+                                            <span class="username"><a href="#">Jonathan Burke Jr.</a></span>
+                                            <span class="description">Shared publicly - 7:30 PM Today</span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="user-block">
+                                            <img class="img-circle"
+                                                 src="{% static 'lib/adminlte-3.0.4/img/user1-128x128.jpg' %}"
+                                                 alt="User Image">
+                                            <span class="username"><a href="#">Jonathan Burke Jr.</a></span>
+                                            <span class="description">Shared publicly - 7:30 PM Today</span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="user-block">
+                                            <img class="img-circle"
+                                                 src="{% static 'lib/adminlte-3.0.4/img/user1-128x128.jpg' %}"
+                                                 alt="User Image">
+                                            <span class="username"><a href="#">Jonathan Burke Jr.</a></span>
+                                            <span class="description">Shared publicly - 7:30 PM Today</span>
+                                        </div>
+                                    </td>
+                                </tr>
+
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+            <!-- End contacts -->
+
+            <!-- Chat -->
+            <section class="col-lg-6 ui-sortable">
+                <div class="card direct-chat direct-chat-primary "
+                     style="position: relative; left: 0px; top: 0px; height: 75vh;">
+                    <div class="card-header ui-sortable-handle">
+                        <div class="user-block">
+                            <a href="user/user-profile/{{ other_user.user.id }}">
+                                <img class="img-circle" src="{{ other_user.user.professional.profile_picture.url }}"
+                                     alt="User Image"></a>
+                            <span class="username"><a
+                                    href="user/user-profile/{{ other_user.user.id }}">{{ other_user.user.first_name }} {{ other_user.user.last_name }}</a></span>
+                            {% if other_user.user.professional.professions %}
+                                <span class="description">Has no professions</span>
+
+                            {% else %}
+                                <span class="description">{{ other_user.user.professional.professions.all }} </span>
+                            {% endif %}
+
+                        </div>
+                    </div>
+                    <div class="card-body h-100">
+                        <!-- Conversations are loaded here -->
+                        <div class="direct-chat-messages h-100" id="chat">
+
+                            {% for message in messages %}
+                                {% if message.user.user.id == request.user.id %}
+                                    <div class="direct-chat-msg right">
+                                        <div class="direct-chat-infos clearfix">
+                                            <span class="direct-chat-name float-right">{{ request.user.first_name }} {{ request.user.last_name }}</span>
+                                            <span class="direct-chat-timestamp float-left">{{ message.creation_date }}</span>
+                                        </div>
+                                        <!-- /.direct-chat-infos -->
+                                        <img class="direct-chat-img"
+                                             src="{{ request.user.professional.profile_picture.url }}"
+                                             alt="message user image">
+                                        <!-- /.direct-chat-img -->
+                                        <div class="direct-chat-text">
+                                            {{ message.message }}
+                                        </div>
+                                        <!-- /.direct-chat-text -->
+                                    </div>
+                                {% else %}
+                                    <div class="direct-chat-msg">
+                                        <div class="direct-chat-infos clearfix">
+                                            <span class="direct-chat-name float-left">{{ other_user.user.first_name }} {{ other_user.user.last_name }}</span>
+                                            <span class="direct-chat-timestamp float-right">{{ message.creation_date }}</span>
+                                        </div>
+                                        <!-- /.direct-chat-infos -->
+                                        <img class="direct-chat-img"
+                                             src="{{ other_user.user.professional.profile_picture.url }}"
+                                             alt="message user image">
+                                        <!-- /.direct-chat-img -->
+                                        <div class="direct-chat-text">
+                                            {{ message.message }}
+                                        </div>
+                                        <!-- /.direct-chat-text -->
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+
+
+                        </div>
+                        <!--/.direct-chat-messages-->
+
+                    </div>
+                    <!-- /.card-body -->
+                    <div class="card-footer">
+
+                        <div class="input-group">
+                            <input id="chat-message-input" type="text" name="message" placeholder="Type Message ..."
+                                   class="form-control">
+                            <span class="input-group-append">
+                                    <input id="chat-message-submit" type="button" value="Send"
+                                           class="btn btn-primary"></input>
+                                </span>
+
+                        </div>
+
+                    </div>
+                    <!-- /.card-footer-->
+                </div>
+            </section>
+            <!-- End chat -->
+
+
+            {{ room_name|json_script:"room-name" }}
+            <!-- Profile -->
+            <section class="col-lg-3 ">
+                <div class="card card-primary " style="height: 50vh;">
+                    <div class="card-body box-profile">
+                        <div class="text-center">
+
+
+                            <img class="profile-user-img img-fluid img-circle"
+                                 src="{{ other_user.user.professional.profile_picture.url }}"
+                                 alt="User profile picture">
+                        </div>
+                        <h3 class="profile-username text-center">{{ other_user.user.first_name }} {{ other_user.user.last_name }}</h3>
+                        {% if other_user.user.professional.professions %}
+
+                            <p class="text-muted text-center">Has no professions</p>
+                        {% else %}
+                            <p class="text-muted text-center">{{ other_user.user.professional.professions.all }}</p>
+
+                        {% endif %}
+
+                        <ul class="list-group list-group-unbordered mb-3">
+                            <li class="list-group-item text-muted">
+                                <b>City</b> <b class="float-right">{{ other_user.user.professional.city }}</b>
+                            </li>
+                            <li class="list-group-item text-muted">
+                                <b>Phone</b> <b class="float-right">{{ other_user.user.professional.phone }}</b>
+                            </li>
+                            <li class="list-group-item text-muted">
+                                <b>Age</b> <b class="float-right">{{ other_user.user.professional.creation_date }}</b>
+                            </li>
+                        </ul>
+                        <a href="user/user-profile/{{ other_user.user.id }}" class="btn btn-primary btn-block"><b>View profile</b></a>
+                    </div>
+                </div>
+                <div class="card" style="height: 23vh;">
+                    <div class="card-header sidebar-dark-*">
+                        <b class="card-title text-center" style="">Configuration chat</b>
+                    </div>
+                    <div class="card-body">
+
+                    </div>
+                </div>
+            </section>
+            <!-- End Profile -->
+
+        </div>
+    </div>
+    <!-- End Content messages -->
+
+{% endblock %}
+
+
+
+
+{% block scripts %}
     <script>
+         $("#chat").animate({scrollTop: $('#chat').prop("scrollHeight")}, 1000);
         const roomName = JSON.parse(document.getElementById('room-name').textContent);
+        let data;
+        let userID;
 
         const chatSocket = new WebSocket(
             'ws://'
@@ -25,31 +328,104 @@
             + '/'
         );
 
-        chatSocket.onmessage = function(e) {
-            const data = JSON.parse(e.data);
-            document.querySelector('#chat-log').value += (data.message + '\n');
-        };
 
-        chatSocket.onclose = function(e) {
+        chatSocket.onclose = function (e) {
             console.error('Chat socket closed unexpectedly');
         };
 
         document.querySelector('#chat-message-input').focus();
-        document.querySelector('#chat-message-input').onkeyup = function(e) {
+        document.querySelector('#chat-message-input').onkeyup = function (e) {
             if (e.keyCode === 13) {  // enter, return
                 document.querySelector('#chat-message-submit').click();
             }
         };
 
-        document.querySelector('#chat-message-submit').onclick = function(e) {
+        document.querySelector('#chat-message-submit').onclick = function (e) {
             const messageInputDom = document.querySelector('#chat-message-input');
             const message = messageInputDom.value;
             chatSocket.send(JSON.stringify({
+                'user': {{ request.user.id }},
                 'message': message,
-                'user': "{{ request.user.id }}",
             }));
+            userID = JSON.parse({{request.user.id}});
+
             messageInputDom.value = '';
         };
+
+        chatSocket.onmessage = function (e) {
+            data = JSON.parse(e.data);
+            console.log({{ request.user.id }});
+            console.log("{{ other_user.user.first_name}}");
+            //document.querySelector('#chat-log').value += (data.message + '\n');
+
+            var divChatGeneral = document.getElementById("chat");
+
+            if (data.user == {{request.user.id}}) {
+                var divChat = document.createElement("div");
+                divChat.className = "direct-chat-msg right";
+
+                var divInfo = document.createElement("div");
+                divInfo.className = "direct-chat-infos clearfix";
+
+                var spanName = document.createElement("span");
+                spanName.className = "direct-chat-name float-right";
+                spanName.innerHTML = "{{ request.user.first_name }} {{ request.user.last_name }}";
+
+                var spanTime = document.createElement("span");
+                spanTime.className = "direct-chat-timestamp float-left";
+                spanTime.innerHTML = data.time;
+
+                var img = document.createElement("img");
+                img.className = "direct-chat-img"
+                img.src = "{{request.user.professional.profile_picture.url}}";
+
+                divInfo.appendChild(spanName);
+                divInfo.appendChild(spanTime);
+
+                var chatText = document.createElement("div");
+
+                chatText.className = "direct-chat-text";
+                chatText.innerHTML = data.message;
+
+                divChat.appendChild(divInfo);
+                divChat.appendChild(img);
+                divChat.appendChild(chatText);
+                divChatGeneral.appendChild(divChat);
+            } else {
+                var divChat = document.createElement("div");
+                divChat.className = "direct-chat-msg";
+
+                var divInfo = document.createElement("div");
+                divInfo.className = "direct-chat-infos clearfix";
+
+                var spanName = document.createElement("span");
+                spanName.className = "direct-chat-name float-left";
+                spanName.innerHTML = "{{ other_user.user.first_name }} {{ other_user.user.last_name }}";
+
+                var spanTime = document.createElement("span");
+                spanTime.className = "direct-chat-timestamp float-right";
+                spanTime.innerHTML = data.time;
+
+                var img = document.createElement("img");
+                img.className = "direct-chat-img"
+                img.src = "{{other_user.user.professional.profile_picture.url}}";
+
+                divInfo.appendChild(spanName);
+                divInfo.appendChild(spanTime);
+
+                var chatText = document.createElement("div");
+
+                chatText.className = "direct-chat-text";
+                chatText.innerHTML = data.message;
+
+                divChat.appendChild(divInfo);
+                divChat.appendChild(img);
+                divChat.appendChild(chatText);
+                divChatGeneral.appendChild(divChat);
+            }
+            $("#chat").animate({scrollTop: $('#chat').prop("scrollHeight")}, 1000);
+        };
+
     </script>
-</body>
-</html>
+{% endblock %}
+
