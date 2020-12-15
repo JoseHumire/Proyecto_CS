@@ -59,10 +59,11 @@ def login(request):
             if user is not None:
                 do_login(request, user)
                 return redirect('/home')
-
-    return render(
-        request, "users/login.html", {'form': form}
-    )
+    template = loader.get_template('users/login.html')
+    context = {
+        'form': form
+    }
+    return HttpResponse(template.render(context, request))
 
 
 @login_required(login_url='/login')
@@ -73,7 +74,16 @@ def logout(request):
 
 @login_required(login_url='/login')
 def home(request):
-    offers = JobOffer.objects.order_by('creation_date')
+    try:
+        offers = JobOffer.objects.filter(
+            employments__profession__name__contains=
+            request.user.professional.professions.all()[0]
+        ).distinct()
+    except IndexError:
+        professional = Professional.objects.get(user=request.user)
+        offers = JobOffer.objects.filter(
+            city=professional.city
+        )
     template = loader.get_template('home.html')
     context = {
         'offers': offers
@@ -93,6 +103,9 @@ def pantallaprincipal(request):
 def prueba(request):
     return render(request, "prueba.html")
 
+# Mensajes
+def nuevoprincipal(request):
+    return render(request, "nuevoprincipal.html")
 
 @login_required(login_url='/login')
 def user_profile(request, pk=None):
@@ -173,16 +186,10 @@ def add_study(request, pk=None):
 
     if pk:
         return render(
-            request,
-            "add_study.html",
-            {'form': StudyForm(instance=study)}
+            request, "add_study.html", {'form': StudyForm(instance=study)}
         )
     else:
-        return render(
-            request,
-            "add_study.html",
-            {'form': form}
-        )
+        return render(request, "add_study.html", {'form': form})
 
 
 @login_required(login_url='/login')
@@ -234,9 +241,13 @@ def create_job_offer(request, pk=None):
 
 
 @login_required(login_url='/login')
-def job_offer(request, offer_id):
+def job_offer(request, offer_id=None):
     offer_list = JobOffer.objects.all()
-    current_offer = JobOffer.objects.get(pk=offer_id)
+    if offer_id:
+        current_offer = JobOffer.objects.get(pk=offer_id)
+    else:
+        current_offer = JobOffer.objects.all().first()
+
     context = {
         'offers': offer_list,
         'offer': current_offer,

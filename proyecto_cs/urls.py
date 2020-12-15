@@ -42,9 +42,10 @@ urlpatterns = [
     path('user/user-profile/<int:pk>', views.user_profile),
     path('pantallaprincipal/', views.pantallaprincipal),
     path('prueba/', views.prueba),
-
-    path('jobOffers/<int:offer_id>', views.job_offer, name='job_offer'),
-    path('my_posts', views.my_posts),
+    path('nuevoprincipal/', views.nuevoprincipal),
+    path('jobOffers/<int:offer_id>/', views.job_offer, name='job_offer'),
+    path('jobOffers/', views.job_offer, name='job_offer'),
+    path('my_posts/', views.my_posts),
 
     path('resetPassword/',
          auth_views.PasswordResetView.as_view(

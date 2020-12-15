@@ -1,17 +1,153 @@
+{% extends "format/base.html" %}
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Add Study</title>
-</head>
-<body>
-<h1>Work Day</h1>
-<h2>Add Study</h2>
+{% block css %}
+     <link rel="stylesheet" href="{% static 'lib/adminlte-3.0.4/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css' %}">
+     <link rel="stylesheet" href="{% static 'lib/adminlte-3.0.4/plugins/select2/css/select2.min.css' %}">
+     <link rel="stylesheet" href="{% static 'lib/adminlte-3.0.4/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css' %}">
+     <link rel="stylesheet" href="{% static 'lib/adminlte-3.0.4/plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css' %}">
+     <link rel="stylesheet" href="{% static 'lib/adminlte-3.0.4/plugins/bs-stepper/css/bs-stepper.min.css' %}">
+     <link rel="stylesheet" href="{% static 'lib/adminlte-3.0.4/plugins/dropzone/min/dropzone.min.css' %}">
+     <link rel="stylesheet" href="{% static 'lib/adminlte-3.0.4/plugins/fontawesome-free/css/fontawesome.css' %}">
 
-<form method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_p }}
-<button type="submit">Save</button>
-</form>
+
+<!-- pagina principal ya se juntó el menú y la barra vertical sh-->
+<link rel="stylesheet" type="text/css" href="{% static '/lib/adminlte-3.0.4/Principal/CSS/header.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static '/lib/adminlte-3.0.4/Principal/CSS/profile.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static '/lib/adminlte-3.0.4/Principal/CSS/home.css'%}">
+    <link rel="stylesheet"  href="{% static '/lib/adminlte-3.0.4/Principal/fonts/font-awesome/css/font-awesome.min.css'%}">
+
+{% endblock %}
+
+{% block content %}
+    <!-- Header Employments sdsd-->
+    <div class="content-header">
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-4">
+                    <h1 class="m-0"><i class="fa fa-suitcase" aria-hidden="true"></i> Employments</h1>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+            <!-- /.container-fluid -->
+        </div>
+    </div>
+    <!-- End header Employments -->
+
+    <!-- start Content  Main Page-->
+
+<!-- end Content Main Page -->
+    <div class="headerfixed" >
+		<!-- Header start -->
+             <div class="card">
+                 <h1 class="text-center" ><a><b>Add Study</b></a></h1></div>
+	<!-- End of header -->
+	</div>
+	<!-- End of header section -->
+
+<body class="hold-transition register-page">
+<div class="register-box">
+
+
+  <div class="register-logo"  >
+
+ <div class="col-sm-12 d-flex justify-content-center">
+
+
+      </div>
+  </div>
+
+  </div>
+
+
+    <div class="card">
+        <div class="card-body register-card-body">
+
+
+            <form method="post">
+            <p class="login">Write a name</p>
+                <div class="input-group mb-3">
+                  {{ form.name }}
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-user"></span>
+
+                        </div>
+                    </div>
+                </div>
+
+            <p class="login">Select a profession</p>
+                <div class="input-group mb-3">
+                  {{ form.profession }}
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-user"></span>
+
+                        </div>
+                    </div>
+                </div>
+
+                    <p class="login">Select a school</p>
+                <div class="input-group mb-3">
+                     {{ form.school }}
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-user"></span>
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row">
+
+                    {% csrf_token %}
+                    <!-- /.col -->
+                    <div class="col-12" >
+                        <button type="submit" class="btn btn-primary btn-block">Add Study</button>
+                    </div>
+                    <!-- /.col -->
+                </div>
+            </form>
+
+
+
+            </form>
+    </div>
+    <!-- /.form-box -->
+  </div><!-- /.card -->
+
+
+<!-- /.register-box -->
+
+
+			<!-- End of main content section -->
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'lib/adminlte-3.0.4/plugins/select2/js/select2.full.min.js' %}"></script>
+    <script src="{% static 'lib/adminlte-3.0.4/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js'%} "></script>
+    <script src="{% static 'lib/adminlte-3.0.4/plugins/inputmask/jquery.inputmask.min.js' %}"></script>
+    <script src="{% static 'lib/adminlte-3.0.4/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js' %}"></script>
+    <script src="{% static 'lib/adminlte-3.0.4/plugins/bootstrap-switch/js/bootstrap-switch.min.js' %}"></script>
+    <script src="{% static 'lib/adminlte-3.0.4/plugins/bs-stepper/js/bs-stepper.min.js' %}"></script>
+    <script src="{% static 'lib/adminlte-3.0.4/plugins/dropzone/min/dropzone.min.js' %}"></script>
+
+	<script src="{% static 'lib/adminlte-3.0.4/Principal/javascript/header.js' %}"></script>
+<script src="{% static 'lib/adminlte-3.0.4/Principal/javascript/home.js' %}"></script>
+    <script>
+  $(function () {
+    //Initialize Select2 Elements
+    $('.select2').select2()
+    //Date range picker
+    $('#reservationdate').datetimepicker({
+        format: 'L'
+    });
+  })
+</script>
+
+
 </body>
 </html>
+{% endblock %}
