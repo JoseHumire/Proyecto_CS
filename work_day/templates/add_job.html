@@ -38,37 +38,26 @@
     <!-- start Content  Main Page-->
 
 <!-- end Content Main Page -->
+<div class="card" style="width: 50%;margin-right: auto;margin-left: auto">
     <div class="headerfixed" >
 		<!-- Header start -->
-             <div class="card">
-                 <h1 class="text-center" ><a><b>Add job </b></a></h1></div>
+
+                 <h1 class="text-center" ><a><b>Add Job</b></a></h1></div>
 	<!-- End of header -->
-	</div>
+
 	<!-- End of header section -->
 
-<body class="hold-transition register-page">
-<div class="register-box">
 
+</div>
 
-  <div class="register-logo"  >
+    <div class="card" style="margin-left: auto;margin-right: auto;width: 50%;height: auto;border-radius: 5%">
+        <div class="card-body register-card-body" style="border-radius:15%;padding-top: 5%;padding-bottom: 15%">
 
- <div class="col-sm-12 d-flex justify-content-center">
-
-
-      </div>
-  </div>
-
-  </div>
-
-
-    <div class="card">
-        <div class="card-body register-card-body">
-            <p class="login">Select profession</p>
 
             <form method="post">
-
+            <p class="login">Select profession</p>
                 <div class="input-group mb-3">
-                    {{ form.profession }}
+                   {{ form.profession }}
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-user"></span>
@@ -79,9 +68,10 @@
 
             <p class="login">Write a description</p>
                 <div class="input-group mb-3">
-                    {{ form.description }}
+                   {{ form.description }}
                     <div class="input-group-append">
                         <div class="input-group-text">
+
 
                         </div>
                     </div>
@@ -89,14 +79,16 @@
 
                     <p class="login">Start date</p>
                 <div class="input-group mb-3">
-                    {{ form.start_date }}
+                     {{ form.start_date }}
                     <div class="input-group-append">
                         <div class="input-group-text">
-                            <span class="fas fa-user-clock"></span>
+                           <span class="fas fa-user-clock"></span>
+
                         </div>
                     </div>
                 </div>
-                <p class="login">Finish date</p>
+
+                 <p class="login">Finish date</p>
                 <div class="input-group mb-3">
                     {{ form.finish_date }}
                     <div class="input-group-append">
@@ -107,7 +99,8 @@
                     </div>
                 </div>
 
-                <div class="row">
+
+               <div class="row">
 
                     {% csrf_token %}
                     <!-- /.col -->
