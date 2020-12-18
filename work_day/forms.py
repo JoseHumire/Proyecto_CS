@@ -1,7 +1,11 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.forms import PasswordResetForm
+from django.contrib.auth.forms import (
+    PasswordResetForm,
+    SetPasswordForm,
+)
+from django.contrib.auth import password_validation
 from django.forms import inlineformset_factory
 
 from .models import *
@@ -190,3 +194,24 @@ class UserPasswordResetForm(PasswordResetForm):
         'class': 'form-control',
         'placeholder': 'Email',
         }))
+
+
+class UserPasswordResetConfirmForm(SetPasswordForm):
+
+    new_password1 = forms.CharField(
+        label="New password",
+        widget=forms.PasswordInput(attrs={
+            'autocomplete': 'new-password',
+            'class': 'form-control',
+        }),
+        strip=False,
+        help_text=password_validation.password_validators_help_text_html(),
+    )
+    new_password2 = forms.CharField(
+        label="New password confirmation",
+        strip=False,
+        widget=forms.PasswordInput(attrs={
+            'autocomplete': 'new-password',
+            'class': 'form-control',
+        }),
+    )
