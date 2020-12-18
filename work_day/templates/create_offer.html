@@ -1,9 +1,13 @@
 {% extends "format/base.html" %}
 {% load static %}
 {% block css %}
-    <link rel="stylesheet" href="{%static 'lib/adminlte-3.0.4/css/adminlte.min.css'">
-  <!-- overlayScrollbars -->
-  <link rel="stylesheet" href="{%static 'lib/adminlte-3.0.4/plugins/overlayScrollbars/css/OverlayScrollbars.min.css'">
+<link rel="stylesheet" href="{%static 'lib/adminlte-3.0.4/css/adminlte.min.css'%}">
+<!-- overlayScrollbars -->
+<link rel="stylesheet" href="{%static 'lib/adminlte-3.0.4/plugins/overlayScrollbars/css/OverlayScrollbars.min.css'%}">
+<!-- Font Awesome -->
+<link rel="stylesheet" href="{% static 'lib/adminlte-3.0.4/plugins/fontawesome-free/css/all.min.css' %}">
+<!-- icheck bootstrap -->
+<link rel="stylesheet" href="{% static 'lib/adminlte-3.0.4/plugins/icheck-bootstrap/icheck-bootstrap.min.css' %}">
 <html>
 {% endblock %}
 
@@ -13,62 +17,112 @@
     <meta charset="UTF-8">
     <title>Create offer</title>
 </head>
-    <div class="container">
-        <div class="row mb-2">
-          <div class="col">
-    <p><h1 class="text-center">Create job offer</h1> </p>
-
-    <form id="offerForm" method="POST">
-        <div id='employmentFormContent'>
-        {% csrf_token %}
-
+<body class="hold-transition register-page">
+<div class="container" align="center" text-align="left">
+    <div class="col-md-6">
+        <div class="col">
             <p>
-               <h3>Offer</h3>
-            </p>
-        {{ offer_form.as_p }}
-        {{ employment_formset.management_form }}
-        <h4>Employment</h4>
-            {% for f in employment_formset  %}
-                {{ f }}
-                <p></p>
-            {% endfor %}
+            <h1 class="text-center">Create job offer</h1> </p>
+            <div class="card">
+                <div class="card-body register-card-body">
+                    <form id="offerForm" method="POST">
+                        <div id='employmentFormContent'>
+                            {% csrf_token %}
+
+                            <p>
+                            <div class="card car-primary">
+                                <div class="card-header">
+                                    <h2 align="left">Offer</h2>
+                                </div>
+                            </div>
+                            </p>
+                            {{ offer_form.as_p }}
+                            {{ employment_formset.management_form }}
+                            {% for f in employment_formset %}
+                            <p></p>
+                            <div class="card car-primary">
+                                <div class="card-header">
+                                    <h2 align="left">Employment</h2>
+                                </div>
+                            </div>
+                            <p></p>
+                            {{ f }}
+                            <p></p>
+                            {% endfor %}
+                        </div>
+                        <div class="social-auth-links text-center mt-2 mb-3">
+                            <p></p>
+                            <button type="submit" class="btn btn-primary" class="toast-bottom-center">Save</button>
+                            </p>
+                        </div>
+                    </form>
+                    <div class="social-auth-links text-center mt-2 mb-3">
+                        <p></p>
+                        <button onclick="addInput() " class="btn btn-primary">Add input</button>
+                        </p>
+                    </div>
+                    <script>
+                        function addInput() {
+                            let n = document.createElement('h6');
+                            var t2 = document.createTextNode("Employment");
+                            n.appendChild(t2);
+
+                            document.querySelector('#employmentFormContent').append(n);
+                            let forms = document.querySelector('#id_employments-TOTAL_FORMS');
+                            let newProfInput = document.getElementById("id_employments-0-profession").cloneNode(true);
+                            newProfInput.name = 'employments-' + forms.value + '-profession';
+                            newProfInput.id = 'id_employments-' + forms.value + '-profession';
+                            newProfInput.label = 'label_employments-' + forms.value + '-profession';
+                            let newDescInput = document.getElementById('id_employments-0-description').cloneNode(true);
+                            newDescInput.name = 'employments-' + forms.value + '-description';
+                            newDescInput.id = 'id_employments-' + forms.value + '-description';
+                            let newRewInput = document.getElementById('id_employments-0-reward').cloneNode(true);
+                            newRewInput.name = 'employments-' + forms.value + '-reward';
+                            newRewInput.id = 'id_employments-' + forms.value + '-reward';
+                            let newStatInput = document.getElementById('id_employments-0-status').cloneNode(true);
+                            newStatInput.name = 'employments-' + forms.value + '-status';
+                            newStatInput.id = 'id_employments-' + forms.value + '-status';
+                            let newDelInput = document.getElementById('id_employments-0-DELETE').cloneNode(true);
+                            let a = document.createElement('p');
+                            var t = document.createTextNode("Profession:");
+                            a.appendChild(t);
+                            newDelInput.name = 'employments-' + forms.value + '-DELETE';
+                            newDelInput.id = 'id_employments-' + forms.value + '-DELETE';
+                            document.querySelector('#employmentFormContent').append(a);
+                            document.querySelector('#employmentFormContent').append(newProfInput);
+                            let b = document.createElement('p');
+                            var t2 = document.createTextNode("Description:");
+                            b.appendChild(t2);
+                            document.querySelector('#employmentFormContent').append(b);
+                            document.querySelector('#employmentFormContent').append(newDescInput);
+                            let c = document.createElement('p');
+                            var t3 = document.createTextNode("Reward:");
+                            c.appendChild(t3);
+                            document.querySelector('#employmentFormContent').append(c);
+                            document.querySelector('#employmentFormContent').append(newRewInput);
+                            let d = document.createElement('p');
+                            var t4 = document.createTextNode("Status:");
+                            d.appendChild(t4);
+                            document.querySelector('#employmentFormContent').append(d);
+                            document.querySelector('#employmentFormContent').append(newStatInput);
+                            let e = document.createElement('p');
+                            var t5 = document.createTextNode("Delete:");
+                            e.appendChild(t5);
+                            e.appendChild(newDelInput);
+                            document.querySelector('#employmentFormContent').append(e);
+                            document.querySelector('#employmentFormContent').append(newDelInput);
+                            let p = document.createElement('p');
+                            document.querySelector('#employmentFormContent').append(p);
+                            forms.value = parseInt(forms.value) + 1;
+                        }
+                    </script>
+                </div>
+            </div>
+
         </div>
-        <div class="social-auth-links text-center mt-2 mb-3">
-         <p></p><button type="submit" class="btn btn-primary" class="toast-bottom-center">Save</button></p>
-        </div>
-    </form>
-        <div class="social-auth-links text-center mt-2 mb-3">
-            <p></p><button onclick="addInput() " class="btn btn-primary" >Add input</button></p>
-        </div>
-    <script>
-        function addInput(){
-            let forms = document.querySelector('#id_employments-TOTAL_FORMS');
-            let newProfInput = document.getElementById("id_employments-0-profession").cloneNode(true);
-            newProfInput.name = 'employments-'+forms.value+'-profession';
-            newProfInput.id = 'id_employments-'+forms.value+'-profession';
-            let newDescInput = document.getElementById('id_employments-0-description').cloneNode(true);
-            newDescInput.name = 'employments-'+forms.value+'-description';
-            newDescInput.id = 'id_employments-'+forms.value+'-description';
-            let newRewInput = document.getElementById('id_employments-0-reward').cloneNode(true);
-            newRewInput.name = 'employments-'+forms.value+'-reward';
-            newRewInput.id = 'id_employments-'+forms.value+'-reward';
-            let newStatInput = document.getElementById('id_employments-0-status').cloneNode(true);
-            newStatInput.name = 'employments-'+forms.value+'-status';
-            newStatInput.id = 'id_employments-'+forms.value+'-status';
-            let newDelInput = document.getElementById('id_employments-0-DELETE').cloneNode(true);
-            newDelInput.name = 'employments-'+forms.value+'-DELETE';
-            newDelInput.id = 'id_employments-'+forms.value+'-DELETE';
-            document.querySelector('#employmentFormContent').append(newProfInput);
-            document.querySelector('#employmentFormContent').append(newDescInput);
-            document.querySelector('#employmentFormContent').append(newRewInput);
-            document.querySelector('#employmentFormContent').append(newStatInput);
-            document.querySelector('#employmentFormContent').append(newDelInput);
-            let p = document.createElement('p');
-            document.querySelector('#employmentFormContent').append(p);
-            forms.value = parseInt(forms.value) + 1;
-        }
-    </script>
     </div>
-    </div>
+</div>
+</center>
+</body>
 {% endblock %}
 </html>
