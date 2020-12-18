@@ -1,22 +1,202 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    <div>
-        <form method="get">
-            Name: {{ filter.form.user__first_name }}
-            Last name. {{ filter.form.user__last_name }}
-            City:{{ filter.form.city }}
-            Profession: {{ filter.form.professions }}
-            <button type="submit">Search</button>
-        </form>
+{% extends "format/base.html" %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet"
+      href="{% static 'lib/adminlte-3.0.4/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css' %}">
+<link rel="stylesheet" href="{% static 'lib/adminlte-3.0.4/plugins/select2/css/select2.min.css' %}">
+<link rel="stylesheet"
+      href="{% static 'lib/adminlte-3.0.4/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css' %}">
+<link rel="stylesheet"
+      href="{% static 'lib/adminlte-3.0.4/plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css' %}">
+<link rel="stylesheet" href="{% static 'lib/adminlte-3.0.4/plugins/bs-stepper/css/bs-stepper.min.css' %}">
+<link rel="stylesheet" href="{% static 'lib/adminlte-3.0.4/plugins/dropzone/min/dropzone.min.css' %}">
+<link rel="stylesheet" href="{% static 'lib/adminlte-3.0.4/plugins/fontawesome-free/css/fontawesome.css' %}">
+{% endblock %}
+
+
+<!-- /.navbar -->
+
+<!-- Content Wrapper. Contains page content -->
+{% block content %}
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Professional page</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">Professional page</li>
+                </ol>
+            </div>
+        </div>
     </div>
-    {% for professional in professionals %}
-        <p>{{ professional.user.first_name }}</p>
-        <p>{{ professional.city }}</p>
-    {% endfor %}
+    <!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+
+    <!-- Default box -->
+    <div class="row">
+        <div class="col-md-10 offset-md-2">
+            <h4 class="text ">Find your employment</h4>
+            <div class="row">
+                <div class="col-5">
+                    <div class="form-group">
+                        <select class="select2" multiple="multiple" data-placeholder="Select a employment"
+                                style="width: 100%;">
+                            <option>Digital Strategist</option>
+                            <option>Engineer</option>
+                            <option>Doctor</option>
+                            <option>Software engineer</option>
+                            <option>Programmer</option>
+                            <option>Administration</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-5">
+                    <div class="form-group">
+                        <select class="select2" multiple="multiple" data-placeholder="Select a city"
+                                style="width: 100%;">
+                            <option>Alabama</option>
+                            <option>Alaska</option>
+                            <option>California</option>
+                            <option>Delaware</option>
+                            <option>Tennessee</option>
+                            <option>Texas</option>
+                            <option>Washington</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <center>
+            <section class="col-lg-9" align="center">
+                <div class="card card-solid">
+                    <div class="card-body pb-0">
+                        <div class="row d-flex align-items-stretch">
+                            {% for f in professionals %}
+                            <div class="col-12 col-sm-6 col-md-4  align-items-stretch">
+                                <div class="card bg-light">
+                                    <div class="card-body pt-0">
+                                        <div class="row">
+                                            <div class="col-7">
+                                                <span class="username"><h4>{{f}}</h4></span>
+                                                <p class="text-muted text-sm" align="left"><b>Info: </b>
+                                                    City: {{f.city}} / DNI: {{f.id_number}} / Phone: {{f.phone}}</p>
+
+                                            </div>
+                                            <div class="col-5 text-left">
+                                                {% if f.profile_picture %}
+                                                <img class="img-circle"
+                                                     src="{{f.profile_picture.url}}"
+                                                     alt="Professional Image" width=100px height="100">
+                                                {% else %}
+                                                <p></p>
+                                                no imagen
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card collapsed-card  w">
+                                        <div class="card-header h-25 ">
+                                            <h1 class="card-title">More Info</h1>
+
+                                            <div class="card-tools">
+                                                <button type="button" class="btn btn-tool"
+                                                        data-card-widget="collapse">
+                                                    <i class="fas fa-plus"></i>
+                                                </button>
+                                            </div>
+                                            <!-- /.card-tools -->
+                                        </div>
+                                        <!-- /.card-header -->
+                                        <div class="card-body" style="display: none;">
+                                            <ul>
+                                                <p class="text-muted">
+                                                <h5 align="left">Professions</h5>
+                                                {% if f.professions.all %}
+                                                {% for profession in f.professions.all %}
+                                                <li align="left">{{profession }}</li>
+                                                {% endfor %}
+                                                {%else%}
+                                                <li align="left">Has no professions</li>
+                                                {% endif %}
+                                                </p>
+                                                <h5 align="left">Create Date</h5>
+                                                <li align="left">{{f.creation_date}}</li>
+                                            </ul>
+                                        </div>
+                                        <!-- /.card-body -->
+                                    </div>
+
+                                    <div class="card-footer">
+                                        <div class="text-right">
+                                            <a href="../messages" class="btn btn-sm bg-teal">
+                                                <i class="fas fa-comments"></i>
+                                            </a>
+                                            <a href="../user-profile"
+                                               class="btn btn-sm btn-primary">
+                                                <i class="fas fa-user"></i> View Profile</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <!-- /.card-header -->
+
+                            <!-- /.card-body -->
+                            {% endfor %}
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </center>
+        <!-- /.card-body -->
+
+        <!-- /.card-footer -->
+    </div>
+
+    <!-- /.card -->
+
+</section>
+<!-- /.content -->
+</div>
+{% endblock %}
+{% block scripts %}
+<script src="{% static 'lib/adminlte-3.0.4/plugins/select2/js/select2.full.min.js' %}"></script>
+<script src="{% static 'lib/adminlte-3.0.4/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js'%} "></script>
+<script src="{% static 'lib/adminlte-3.0.4/plugins/inputmask/jquery.inputmask.min.js' %}"></script>
+<script src="{% static 'lib/adminlte-3.0.4/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js' %}"></script>
+<script src="{% static 'lib/adminlte-3.0.4/plugins/bootstrap-switch/js/bootstrap-switch.min.js' %}"></script>
+<script src="{% static 'lib/adminlte-3.0.4/plugins/bs-stepper/js/bs-stepper.min.js' %}"></script>
+<script src="{% static 'lib/adminlte-3.0.4/plugins/dropzone/min/dropzone.min.js' %}"></script>
+
+
+<script>
+    $(function () {
+        //Initialize Select2 Elements
+        $('.select2').select2()
+        //Date range picker
+        $('#reservationdate').datetimepicker({
+            format: 'L'
+        });
+    })
+</script>
+{% endblock %}
+<!-- ./wrapper -->
+
+<!-- jQuery -->
+<script src="../../plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- AdminLTE App -->
+<script src="../../dist/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="../../dist/js/demo.js"></script>
 </body>
 </html>
