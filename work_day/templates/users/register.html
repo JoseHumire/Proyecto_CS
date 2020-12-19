@@ -11,11 +11,14 @@
     <link rel="stylesheet"
           href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="{% static 'lib/adminlte-3.0.4/plugins/fontawesome-free/css/all.min.css' %}">
+    <link rel="stylesheet"
+          href="{% static 'lib/adminlte-3.0.4/plugins/fontawesome-free/css/all.min.css' %}">
     <!-- icheck bootstrap -->
-    <link rel="stylesheet" href="{% static 'lib/adminlte-3.0.4/plugins/icheck-bootstrap/icheck-bootstrap.min.css' %}">
+    <link rel="stylesheet"
+          href="{% static 'lib/adminlte-3.0.4/plugins/icheck-bootstrap/icheck-bootstrap.min.css' %}">
     <!-- Theme style -->
-    <link rel="stylesheet" href="{% static 'lib/adminlte-3.0.4/css/adminlte.min.css' %}">
+    <link rel="stylesheet"
+          href="{% static 'lib/adminlte-3.0.4/css/adminlte.min.css' %}">
 </head>
 
 <body class="hold-transition register-page">
@@ -85,10 +88,25 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="input-group mb-3" id="birthdate"
+                     data-target-input="nearest">
+                    {{ professional_form.birthdate }}
+                    <label class="date-back">Birthdate</label>
+                    <div class="input-group-append"
+                         data-target="#reservationdate"
+                         data-toggle="datetimepicker">
+                        <div class="input-group-text">
+                            <i class="fa fa-calendar"></i>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="input-group">
                     <div class="custom-file">
                         {{ professional_form.profile_picture }}
-                        <label class="custom-file-label">Profile file</label>
+                        <label class="custom-file-label">Profile
+                            picture</label>
                     </div>
                 </div>
                 <br>
@@ -131,35 +149,26 @@
 
                 <div class="row">
                     <div class="col-8">
-                        <div class="icheck-primary">
-                            <input type="checkbox" id="agreeTerms" name="terms" value="agree">
+                        <div class="form-control">
+                            {{ professional_form.status }}
                             <label for="agreeTerms">
-                                I agree to the <a href="#">terms</a>
+                                I agree to the terms
                             </label>
                         </div>
                     </div>
                     {% csrf_token %}
                     <!-- /.col -->
                     <div class="col-4">
-                        <button type="submit" class="btn btn-primary btn-block">Register</button>
+                        <button type="submit"
+                                class="btn btn-primary btn-block">Register
+                        </button>
                     </div>
                     <!-- /.col -->
                 </div>
             </form>
 
-            <div class="social-auth-links text-center">
-                <p>- OR -</p>
-                <a href="#" class="btn btn-block btn-primary">
-                    <i class="fab fa-facebook mr-2"></i>
-                    Sign up using Facebook
-                </a>
-                <a href="#" class="btn btn-block btn-danger">
-                    <i class="fab fa-google-plus mr-2"></i>
-                    Sign up using Google+
-                </a>
-            </div>
-
-            <a href="/login" class="text-center">I already have a membership</a>
+            <a href="/login" class="text-center">I already have a
+                membership</a>
         </div>
         <!-- /.form-box -->
     </div><!-- /.card -->

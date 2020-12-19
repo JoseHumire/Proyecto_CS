@@ -78,9 +78,9 @@ class ProfessionalForm(forms.ModelForm):
                 attrs={'class': 'form-control',
                        'placeholder': 'Identification document'}
             ),
-            'status': forms.CheckboxInput(
-                attrs={'class': 'custom-file-input'}
-            ),
+            'status': forms.CheckboxInput(),
+            'birthdate': forms.DateInput(
+                attrs={'class': 'form-control datetimepicker-input'}),
             'id_image': forms.FileInput(
                 attrs={'class': 'custom-file-input'}
             ),
