@@ -1,6 +1,6 @@
 {% extends "format/base.html" %}
 {% load static %}
-
+{% load i18n %}
 {% block css %}
      <link rel="stylesheet" href="{% static 'lib/adminlte-3.0.4/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css' %}">
      <link rel="stylesheet" href="{% static 'lib/adminlte-3.0.4/plugins/select2/css/select2.min.css' %}">
@@ -19,7 +19,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-2">
-                    <h1 class="m-0"><i class="fa fa-book" aria-hidden="true"></i> My posts</h1>
+                    <h1 class="m-0"><i class="fa fa-book" aria-hidden="true"></i>{% trans "My posts" %} </h1>
                 </div><!-- /.col -->
             </div><!-- /.row -->
             <!-- /.container-fluid -->
@@ -36,7 +36,7 @@
             <section class="col-lg-3">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="text-center align-content-center">You offers</h4>
+                        <h4 class="text-center align-content-center">{% trans "You offers" %}</h4>
                     </div>
 
                     <div class="card-body p-0 ">
@@ -47,12 +47,12 @@
                                     {% if offer.id == 1 %}
 
                                         <a class="btn btn-block btn-outline-info active" data-toggle="pill" href="#v-pills-Offer-{{ offer.id }}"
-                                       role="tab" ria-selected="true" style="margin-top: 5%; margin-bottom: 5%;">Offer {{ offer.id }}  {{ offer.creation_date }}</a>
+                                       role="tab" ria-selected="true" style="margin-top: 5%; margin-bottom: 5%;">{% blocktrans %}Offer {{ offer.id }}  {{ offer.creation_date }}{% endblocktrans %}</a>
 
 
                                     {% else %}
                                         <a class="btn btn-block btn-outline-info" data-toggle="pill" href="#v-pills-Offer-{{ offer.id }}"
-                                       role="tab" ria-selected="true" style="margin-top: 5%; margin-bottom: 5%;">Offer {{ offer.id }}  {{ offer.creation_date }} </a>
+                                       role="tab" ria-selected="true" style="margin-top: 5%; margin-bottom: 5%;">{% blocktrans %}Offer {{ offer.id }}  {{ offer.creation_date }}{% endblocktrans %} </a>
                                     {% endif %}
 
 
@@ -62,7 +62,7 @@
                             <div class="text-center m-2 " style="padding-left: 10%; padding-right: 10%;">
                                 <a type="button" class="btn btn-primary btn-success " href="/createOffer">
                                     <i class="fa fa-bell"></i>
-                                    Create new offer
+                                    {% trans "Create new offer" %}
                                 </a>
                             </div>
                         </div>
@@ -84,24 +84,24 @@
 
                                 <div class="card card-solid">
                             <div class="card-header">
-                                <h2 class="text-center">Offer {{ offer.id }}</h2>
+                                <h2 class="text-center">{% blocktrans %}Offer {{ offer.id }}{% endblocktrans %} </h2>
                                 <div class="row">
                                     <div class="card-text col-lg-10">
-                                        <h3> Description:</h3>
+                                        <h3> {% trans "Description:" %}</h3>
                                         <p class="text-muted">
-                                            {{ offer.description  }}
+                                            {% blocktrans %}{{ offer.description  }}{% endblocktrans %}
                                         </p>
                                     </div>
                                     <div class="card-text col-lg-2">
                                         <a class="btn btn-info btn-sm w-100" href="#">
                                             <i class="fas fa-pencil-alt">
                                             </i>
-                                            Edit
+                                            {% trans 'Edit' %}
                                         </a>
                                         <a class="btn btn-danger btn-sm w-100" href="#">
                                             <i class="fas fa-trash">
                                             </i>
-                                            Delete
+                                            {% trans 'Delete' %}
                                         </a>
                                     </div>
                                 </div>
@@ -113,20 +113,20 @@
                                     <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch">
                                         <div class="card bg-light">
                                             <div class="card-header text-muted border-bottom-0">
-                                                Employment {{ employment.id }}
+                                                {% blocktrans %}Employment {{ employment.id }}{% endblocktrans %}
                                             </div>
                                             <div class="card-body pt-0">
                                                 <div class="row">
                                                     <div class="col-12">
-                                                        <h2 class="lead"><b>{{ employment.profession }}</b></h2>
-                                                        <p class="text-muted"><b>About: </b> {{ employment.description }} </p>
+                                                        <h2 class="lead"><b>{% blocktrans %}{{ employment.profession }}{% endblocktrans %}</b></h2>
+                                                        <p class="text-muted"><b>{% trans 'About:' %}</b> {% blocktrans %}{{ employment.description }}{% endblocktrans %} </p>
                                                         <ul class="ml-4 mb-0 fa-ul text-muted">
                                                             <li class="small"><span class="fa-li"><i
-                                                                    class="fas fa-lg fa-building"></i></span> City: {{ offer.city }}
+                                                                    class="fas fa-lg fa-building"></i></span> {% blocktrans %}City: {{ offer.city }}{% endblocktrans %}
                                                             </li>
                                                             <li class="small"><span class="fa-li"><i
                                                                     class="fas fa-lg fa-money-bill"></i></span>
-                                                                Payment: {{ employment.reward }}
+                                                                 {% blocktrans %}Payment: {{ employment.reward }}{% endblocktrans %}
                                                             </li>
                                                         </ul>
                                                     </div>
@@ -140,12 +140,12 @@
                                                     <a class="btn btn-info btn-sm" href="#">
                                                         <i class="fas fa-pencil-alt">
                                                         </i>
-                                                        Edit
+                                                        {% trans 'Edit' %}
                                                     </a>
                                                     <a class="btn btn-danger btn-sm" href="#">
                                                         <i class="fas fa-trash">
                                                         </i>
-                                                        Delete
+                                                        {% trans 'Delete' %}
                                                     </a>
 
 
@@ -162,16 +162,16 @@
                                             <div class="card-body pt-0">
                                                 <div class="row">
                                                     <div class="col-12">
-                                                        <h2 class="lead"><b>New Employment</b></h2>
-                                                        <p class="text-muted"><b>About: </b> Add the description of the new
-                                                            employment</p>
+                                                        <h2 class="lead"><b>{% trans "New Employment" %}</b></h2>
+                                                        <p class="text-muted"><b>{% trans 'About:' %}</b>{% trans "Add the description of the new
+                                                            employment" %} </p>
                                                         <ul class="ml-4 mb-0 fa-ul text-muted">
                                                             <div class="text-center m-2 "
                                                                  style="padding-left: 10%; padding-right: 10%;">
                                                                 <a type="button" class="btn btn-primary btn-success "
                                                                    href="/createEmployment">
                                                                     <i class="fa fa-bell"></i>
-                                                                    Create new employment
+                                                                    {% trans "Create new employment" %}
                                                                 </a>
                                                             </div>
                                                         </ul>

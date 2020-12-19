@@ -1,4 +1,6 @@
 {% load static %}
+{% load i18n %}
+
 <!-- main-sidebar elevation-4 sidebar-light-info -->
 <aside class="main-sidebar elevation-4 sidebar-light-info ">
     <!-- Brand Logo -->
@@ -35,7 +37,7 @@
 
                         {% endfor %}
                     {% else %}
-                        <a class="d-block"> You have not registered professions.</a>
+                        <a class="d-block">{%  trans "You have not registered professions." %} </a>
                     {% endif %}
                 </div>
             </div>
@@ -51,45 +53,45 @@
                 <li class="nav-item user-panel  mt-0 pb-1 ">
                     <a href="/home" class="nav-link">
                         <i class="nav-icon fas fa-home"></i>
-                        <p> Home </p>
+                        <p>{%  trans "Home" %}  </p>
                     </a>
                 </li>
 
                 <li class="nav-item user-panel    mt-2 pb-1 ">
                     <a href="/professionals" class="nav-link">
                         <i class="nav-icon fas fa-graduation-cap"></i>
-                        <p> Professionals </p>
+                        <p> {%  trans "Professionals" %} </p>
                     </a>
                 </li>
 
                 <li class="nav-item user-panel mt-2 pb-1 ">
                     <a href="/employments" class="nav-link">
                         <i class="nav-icon fas fa-suitcase"></i>
-                        <p> Employments </p>
+                        <p> {%  trans "Employments" %} </p>
                     </a>
                 </li>
                 <li class="nav-item user-panel mt-2 pb-1 ">
                     <a href="/messages" class="nav-link">
                         <i class="nav-icon fas fa-comments"></i>
-                        <p> Messages </p>
+                        <p> {%  trans "Messages" %} </p>
                     </a>
                 </li>
                 <li class="nav-item user-panel mt-2 pb-1 ">
                     <a href="/notifications" class="nav-link">
                         <i class="nav-icon fas fa-bell"></i>
-                        <p> Notifications </p>
+                        <p> {%  trans "Notifications" %} </p>
                     </a>
                 </li>
                 <li class="nav-item user-panel mt-2 pb-1 ">
                     <a href="/my_posts" class="nav-link">
                         <i class="nav-icon fas fa-book"></i>
-                        <p> My posts </p>
+                        <p> {%  trans "My posts" %} </p>
                     </a>
                 </li>
                 <li class="nav-item user-panel mt-2 pb-1 ">
                     <a href="/logout" class="nav-link">
                         <i class="nav-icon fas fa-sign-out-alt"></i>
-                        <p> Logout </p>
+                        <p> {%  trans "Logout" %} </p>
                     </a>
                 </li>
 

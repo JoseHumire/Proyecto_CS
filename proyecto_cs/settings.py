@@ -14,7 +14,7 @@ import os
 import socket
 
 from pathlib import Path
-
+from django.utils.translation import ugettext_lazy as _
 
 ROOT = environ.Path(__file__) - 2
 env = environ.Env()
@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'parler',
     'work_day',
     'django_filters',
 ]
@@ -52,6 +53,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -72,6 +74,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.i18n'
             ],
         },
     },
@@ -110,16 +113,40 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'en'
+
 
 TIME_ZONE = 'UTC'
 
-USE_I18N = True
+USE_I18N = True  # Enable Internationalization
 
 USE_L10N = True
 
 USE_TZ = True
 
+LANGUAGES = [ # Available languages
+    ('en', _("English")),
+    ('es', _("Spanish"))
+]
+
+LOCALE_PATHS = [
+    os.path.join(BASE_DIR, 'locale')
+]
+
+# configuraciones django-parler
+PARLER_LANGUAGES = {
+    None: (
+        {'code': 'en', },
+        {'code': 'es', },
+    ),
+    'default': {
+        'fallback': 'en',
+        'hide_untranslated': False,
+    }
+}
+
+PARLER_DEFAULT_LANGUAGE = 'en'
+PARLER_SHOW_EXCLUDED_LANGUAGE_TABS = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/

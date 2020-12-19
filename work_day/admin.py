@@ -1,25 +1,26 @@
 from django.contrib import admin
+from parler.admin import TranslatableAdmin
 from .models import *
 # Register your models here.
 
 
 @admin.register(Country)
-class CountryAdmin(admin.ModelAdmin):
+class CountryAdmin(TranslatableAdmin):
     list_display = ('name', 'creation_date')
 
 
 @admin.register(City)
-class CityAdmin(admin.ModelAdmin):
+class CityAdmin(TranslatableAdmin):
     list_display = ('country', 'name')
 
 
 @admin.register(School)
-class SchoolAdmin(admin.ModelAdmin):
+class SchoolAdmin(TranslatableAdmin):
     list_display = ('city', 'name')
 
 
 @admin.register(Profession)
-class ProfessionAdmin(admin.ModelAdmin):
+class ProfessionAdmin(TranslatableAdmin):
     list_display = ('name', 'description')
 
 
@@ -35,9 +36,7 @@ class CurriculumAdmin(admin.ModelAdmin):
 
 @admin.register(Job)
 class JobAdmin(admin.ModelAdmin):
-    list_display = (
-        'description', 'cv', 'profession', 'start_date', 'finish_date'
-    )
+    list_display = ('description', 'cv', 'profession', 'start_date', 'finish_date')
 
 
 @admin.register(JobOffer)

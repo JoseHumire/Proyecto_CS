@@ -1,5 +1,5 @@
 {% extends "format/base.html" %}
-
+{% load i18n %}
 
 {% block content %}
     <div class="content-wrapper">
@@ -28,7 +28,7 @@
 
             {% for offer in offers %}
                 <h3>Offer:</h3>
-                <h5>User:{{ offer.user }}</h5>
+                <h5>{% blocktrans %}User:{{ offer.user }}{% endblocktrans %}</h5>
                 <h5>Date:{{ offer.creation_date }}</h5>
                 <h5>City:{{ offer.city }}</h5>
                 <h5>Description:{{ offer.description }}</h5>

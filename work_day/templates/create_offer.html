@@ -1,9 +1,9 @@
 {% extends "format/base.html" %}
 {% load static %}
 {% block css %}
-    <link rel="stylesheet" href="{%static 'lib/adminlte-3.0.4/css/adminlte.min.css'">
+    <link rel="stylesheet" href="{%static 'lib/adminlte-3.0.4/css/adminlte.min.css'%}">
   <!-- overlayScrollbars -->
-  <link rel="stylesheet" href="{%static 'lib/adminlte-3.0.4/plugins/overlayScrollbars/css/OverlayScrollbars.min.css'">
+  <link rel="stylesheet" href="{%static 'lib/adminlte-3.0.4/plugins/overlayScrollbars/css/OverlayScrollbars.min.css'%}">
 <html>
 {% endblock %}
 
@@ -27,7 +27,7 @@
             </p>
         {{ offer_form.as_p }}
         {{ employment_formset.management_form }}
-        <h4>Employment</h4>
+        <h4>{% trans 'Employment'%}</h4>
             {% for f in employment_formset  %}
                 {{ f }}
                 <p></p>

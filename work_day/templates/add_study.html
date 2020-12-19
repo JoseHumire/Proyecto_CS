@@ -1,5 +1,7 @@
 {% extends "format/base.html" %}
 {% load static %}
+
+{% load i18n %}
 <!DOCTYPE html>
 <html lang="en">
 {% block css %}
@@ -27,7 +29,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-4">
-                    <h1 class="m-0"><i class="fa fa-suitcase" aria-hidden="true"></i> Employments</h1>
+                    <h1 class="m-0"><i class="fa fa-suitcase" aria-hidden="true"></i>{% trans 'Employments' %}</h1>
                 </div><!-- /.col -->
             </div><!-- /.row -->
             <!-- /.container-fluid -->
@@ -41,7 +43,7 @@
     <div class="headerfixed" >
 		<!-- Header start -->
              <div class="card">
-                 <h1 class="text-center" ><a><b>Add Study</b></a></h1></div>
+                 <h1 class="text-center" ><a><b>{% trans "Add Study" %}</b></a></h1></div>
 	<!-- End of header -->
 	</div>
 	<!-- End of header section -->
@@ -66,7 +68,7 @@
 
 
             <form method="post">
-            <p class="login">Write a name</p>
+            <p class="login">{% trans "Write a name" %}</p>
                 <div class="input-group mb-3">
                   {{ form.name }}
                     <div class="input-group-append">
@@ -77,7 +79,7 @@
                     </div>
                 </div>
 
-            <p class="login">Select a profession</p>
+            <p class="login">{% trans "Select a profession" %}</p>
                 <div class="input-group mb-3">
                   {{ form.profession }}
                     <div class="input-group-append">
@@ -88,7 +90,7 @@
                     </div>
                 </div>
 
-                    <p class="login">Select a school</p>
+                    <p class="login">{% trans "Select a school" %}</p>
                 <div class="input-group mb-3">
                      {{ form.school }}
                     <div class="input-group-append">
@@ -105,7 +107,7 @@
                     {% csrf_token %}
                     <!-- /.col -->
                     <div class="col-12" >
-                        <button type="submit" class="btn btn-primary btn-block">Add Study</button>
+                        <button type="submit" class="btn btn-primary btn-block">{% trans "Add Study" %}</button>
                     </div>
                     <!-- /.col -->
                 </div>

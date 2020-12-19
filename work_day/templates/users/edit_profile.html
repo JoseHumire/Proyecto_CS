@@ -1,6 +1,6 @@
 {% extends "format/base.html" %}
 {% load static %}
-
+{% load i18n %}
 {% block css %}
     <link rel="stylesheet"
           href="{% static 'lib/adminlte-3.0.4/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css' %}">
@@ -20,7 +20,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-5">
-                    <h1 class="m-0"><i class="fa fa-cog" aria-hidden="true"></i> Profile settings</h1>
+                    <h1 class="m-0"><i class="fa fa-cog" aria-hidden="true"></i>{% trans "Profile settings" %} </h1>
                 </div><!-- /.col -->
             </div><!-- /.row -->
             <!-- /.container-fluid -->
@@ -34,29 +34,29 @@
                 <div class="col">
                     <div class="card card-default">
                         <div class="card-header">
-                            <h3 class="card-title">Personal information settings</h3>
+                            <h3 class="card-title">{% trans "Personal information settings" %}</h3>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
                             <form method="POST" enctype="multipart/form-data">
 
-                                <label for="id_email">Email address:</label><br>
+                                <label for="id_email">{% trans "Email address:" %}</label><br>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-envelope"></i></span>
                                     </div>
-                                    {{ user_form.email }}
+                                    {% blocktrans %}{{ user_form.email }}{% endblocktrans %}
                                 </div>
 
-                                <label for="id_first_name">First Name:</label><br>
+                                <label for="id_first_name">{% trans "First Name:" %}</label><br>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-user"></i></span>
                                     </div>
-                                    {{ user_form.first_name }}
+                                    {% blocktrans %}{{ user_form.first_name }}{% endblocktrans %}
                                 </div>
 
-                                <label for="id_last_name">Last Name:</label><br>
+                                <label for="id_last_name">{% trans "Last Name:" %}</label><br>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text "><i class="fas fa-user"></i></span>
@@ -65,7 +65,7 @@
                                 </div>
 
 
-                                <label for="id_city">City:</label>
+                                <label for="id_city">{% trans 'City:' %}</label>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-city"></i></span>
@@ -73,7 +73,7 @@
                                     {{ professional_form.city }}
                                 </div>
 
-                                <label for="id_phone">Phone number:</label>
+                                <label for="id_phone">{% trans "Phone number:" %}</label>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-phone"></i></span>
@@ -81,7 +81,7 @@
                                     {{ professional_form.phone }}
                                 </div>
 
-                                <label for="id_id_number">ID Number:</label>
+                                <label for="id_id_number">{% trans "ID Number:" %}</label>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-id-card"></i></span>
@@ -90,32 +90,32 @@
                                 </div>
 
 
-                                <label for="exampleInputFile">ID Card:</label>
+                                <label for="exampleInputFile">{% trans "ID Card:" %}</label>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-upload"></i></span>
                                     </div>
                                     <div class="custom-file">
                                         {{ professional_form.id_image }}
-                                        <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                                        <label class="custom-file-label" for="exampleInputFile">{% trans "Choose file" %}</label>
                                     </div>
                                 </div>
 
 
-                                <label for="exampleInputFile">Profile picture:</label>
+                                <label for="exampleInputFile">{% trans "Profile picture:" %}</label>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-upload"></i></span>
                                     </div>
                                     <div class="custom-file">
                                         {{ professional_form.profile_picture }}
-                                        <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                                        <label class="custom-file-label" for="exampleInputFile">{% trans "Choose file" %}</label>
                                     </div>
                                 </div>
 
 
                                 {% csrf_token %}
-                                <button type="submit">Registrar</button>
+                                <button type="submit">{% trans 'Register' %}</button>
                             </form>
 
                         </div>
