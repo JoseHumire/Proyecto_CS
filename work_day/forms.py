@@ -1,5 +1,4 @@
 from django import forms
-from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.forms import (
     PasswordResetForm,
@@ -56,29 +55,38 @@ class ProfessionalForm(forms.ModelForm):
         model = Professional
         fields = [
             'city', 'phone', 'id_number', 'id_image',
-            'status', 'profile_picture',
+            'status', 'birthdate', 'profile_picture',
         ]
         labels = {
             'city': 'City',
-            'professions': 'Profession',
             'phone': 'Phone number',
             'id_number': 'ID Number',
             'status': 'Status',
+            'birthdate': 'Birthdate'
         }
         widgets = {
             'city': forms.Select(
-                attrs={'class': 'form-control select2bs4', 'placeholder': 'City', 'style' : 'height:100%;',}),
-            'professions': forms.CheckboxSelectMultiple(),
-            'phone': forms.TextInput(attrs={'class': 'form-control',
-                                            'placeholder': 'Phone number'}),
+                attrs={'class': 'form-control select2bs4',
+                       'placeholder': 'City',
+                       'style': 'height:100%;'}
+            ),
+            'phone': forms.TextInput(
+                attrs={'class': 'form-control',
+                       'placeholder': 'Phone number'}
+            ),
             'id_number': forms.TextInput(
                 attrs={'class': 'form-control',
                        'placeholder': 'Identification document'}
             ),
-            'status':forms.CheckboxInput(attrs={'class':'custom-file-input'}),
-            'id_image': forms.FileInput(attrs={'class':'custom-file-input'}),
-            'profile_picture': forms.FileInput(attrs={'class':'custom-file-input'}),
-
+            'status': forms.CheckboxInput(
+                attrs={'class': 'custom-file-input'}
+            ),
+            'id_image': forms.FileInput(
+                attrs={'class': 'custom-file-input'}
+            ),
+            'profile_picture': forms.FileInput(
+                attrs={'class': 'custom-file-input'}
+            ),
         }
 
 
@@ -133,7 +141,10 @@ class JobOfferForm(forms.ModelForm):
         }
         widgets = {
             'city': forms.Select(attrs={'class': 'form-control'}),
-            'description': forms.TextInput(attrs={'class': 'form-control', 'placeholder' : 'Enter description'}),
+            'description': forms.TextInput(
+                attrs={'class': 'form-control',
+                       'placeholder': 'Enter description'}
+            ),
         }
 
 
@@ -149,12 +160,13 @@ class EmploymentForm(forms.ModelForm):
         }
         widgets = {
             'profession': forms.Select(attrs={'class': 'form-control'}),
-            'description': forms.Textarea(attrs={'class': 'form-control', 'placeholder' : 'Enter description'}),
+            'description': forms.Textarea(
+                attrs={'class': 'form-control',
+                       'placeholder': 'Enter description'}
+            ),
             'reward': forms.TextInput(
-                attrs={
-                    'class': 'form-control',
-                    'type': 'number',
-                }
+                attrs={'class': 'form-control',
+                       'type': 'number'}
             ),
         }
 
@@ -165,7 +177,6 @@ EmploymentInlineFormSet = inlineformset_factory(
 
 
 class EditUserForm(forms.ModelForm):
-
     class Meta:
         model = User
         fields = (
@@ -189,29 +200,28 @@ class EditUserForm(forms.ModelForm):
 
 
 class UserPasswordResetForm(PasswordResetForm):
-
-    email = forms.EmailField(label='', widget=forms.EmailInput(attrs={
-        'class': 'form-control',
-        'placeholder': 'Email',
-        }))
+    email = forms.EmailField(
+        label='',
+        widget=forms.EmailInput(
+            attrs={'class': 'form-control', 'placeholder': 'Email'}
+        )
+    )
 
 
 class UserPasswordResetConfirmForm(SetPasswordForm):
-
     new_password1 = forms.CharField(
         label="New password",
-        widget=forms.PasswordInput(attrs={
-            'autocomplete': 'new-password',
-            'class': 'form-control',
-        }),
+        widget=forms.PasswordInput(
+            attrs={'autocomplete': 'new-password',
+                   'class': 'form-control'}
+        ),
         strip=False,
         help_text=password_validation.password_validators_help_text_html(),
     )
     new_password2 = forms.CharField(
         label="New password confirmation",
         strip=False,
-        widget=forms.PasswordInput(attrs={
-            'autocomplete': 'new-password',
-            'class': 'form-control',
-        }),
+        widget=forms.PasswordInput(
+            attrs={'autocomplete': 'new-password', 'class': 'form-control'}
+        ),
     )

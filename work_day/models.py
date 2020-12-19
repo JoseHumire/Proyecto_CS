@@ -12,7 +12,8 @@ class Country(TranslatableModel):
     translations = TranslatedFields(
         name=models.CharField(max_length=40, verbose_name=_('Name'))
     )
-    creation_date = models.DateTimeField(default=timezone.now, verbose_name=_("Creation Date"))
+    creation_date = models.DateTimeField(
+        default=timezone.now, verbose_name=_("Creation Date"))
 
     class Meta:
         verbose_name = _('Country')
@@ -47,7 +48,8 @@ class School(TranslatableModel):
     translations = TranslatedFields(
         name=models.CharField(max_length=200, verbose_name=_('Name'))
     )
-    city = models.ForeignKey(City, on_delete=models.CASCADE, verbose_name=_('City'))
+    city = models.ForeignKey(
+        City, on_delete=models.CASCADE, verbose_name=_('City'))
 
     class Meta:
         verbose_name = _('School')
@@ -61,7 +63,8 @@ class Profession(TranslatableModel):
 
     translations = TranslatedFields(
         name=models.CharField(max_length=50, verbose_name=_('Name')),
-        description=models.CharField(max_length=100, default='', verbose_name=_('Description'))
+        description=models.CharField(
+            max_length=200, default='', verbose_name=_('Description'))
     )
 
     class Meta:
@@ -73,7 +76,8 @@ class Profession(TranslatableModel):
 
 
 class Professional(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, verbose_name=_('User'))
+    user = models.OneToOneField(
+        User, on_delete=models.CASCADE, verbose_name=_('User'))
     city = models.ForeignKey(
         City,
         related_name=_('professionals'),
@@ -81,13 +85,21 @@ class Professional(models.Model):
         default='',
         verbose_name=_('City')
     )
-    professions = models.ManyToManyField(Profession, verbose_name=_('Professions'))
-    phone = models.CharField(max_length=9, default='', verbose_name=_('Phone'))
-    id_number = models.CharField(max_length=11, default='', verbose_name=_('Id Number'))
-    id_image = models.ImageField(null=False, blank=True, verbose_name=_('Id Image'))
+    professions = models.ManyToManyField(
+        Profession, verbose_name=_('Professions'))
+    phone = models.CharField(
+        max_length=9, default='', verbose_name=_('Phone'))
+    id_number = models.CharField(
+        max_length=11, default='', verbose_name=_('Id Number'))
+    id_image = models.ImageField(
+        null=False, blank=True, verbose_name=_('Id Image'))
     status = models.BooleanField(default=True, verbose_name=_('Status'))
-    creation_date = models.DateTimeField(default=timezone.now, verbose_name=_('Creation Date'))
-    profile_picture = models.ImageField(null=True, blank=True, verbose_name=_('Profile Picture'))
+    birthdate = models.DateField(
+        default=datetime.date.today, verbose_name=_('Birthdate'))
+    creation_date = models.DateTimeField(
+        default=timezone.now, verbose_name=_('Creation Date'))
+    profile_picture = models.ImageField(
+        null=True, blank=True, verbose_name=_('Profile Picture'))
 
     class Meta:
         verbose_name = _('Professional')
@@ -98,8 +110,10 @@ class Professional(models.Model):
 
 
 class Curriculum(models.Model):
-    owner = models.OneToOneField(Professional, on_delete=models.CASCADE, verbose_name=_('Owner'))
-    contract_price = models.IntegerField(default=0, verbose_name=_('Contract price'))
+    owner = models.OneToOneField(
+        Professional, on_delete=models.CASCADE, verbose_name=_('Owner'))
+    contract_price = models.IntegerField(
+        default=0, verbose_name=_('Contract price'))
     score = models.IntegerField(default=5, verbose_name=_('Score'))
 
     class Meta:
@@ -117,10 +131,14 @@ class Job(models.Model):
         related_name=_('jobs'),
         on_delete=models.CASCADE
     )
-    profession = models.ForeignKey(Profession, on_delete=models.CASCADE, verbose_name=_('Profession'))
-    description = models.TextField(max_length=500, default='', verbose_name=_('Description'))
-    start_date = models.DateTimeField(default=timezone.now, verbose_name=_('Start Date'))
-    finish_date = models.DateTimeField(default=timezone.now, verbose_name=_('Finish Date'))
+    profession = models.ForeignKey(
+        Profession, on_delete=models.CASCADE, verbose_name=_('Profession'))
+    description = models.TextField(
+        max_length=500, default='', verbose_name=_('Description'))
+    start_date = models.DateTimeField(
+        default=timezone.now, verbose_name=_('Start Date'))
+    finish_date = models.DateTimeField(
+        default=timezone.now, verbose_name=_('Finish Date'))
 
     class Meta:
         verbose_name = _('Job')
@@ -141,11 +159,13 @@ class JobOffer(models.Model):
         City,
         related_name='job_offers',
         on_delete=models.CASCADE, default='',
-        verbose_name = _('City')
+        verbose_name=_('City')
     )
 
-    description = models.CharField(max_length=100, default='', verbose_name=_('Description'))
-    creation_date = models.DateTimeField(default=timezone.now, verbose_name=_('Creation Date'))
+    description = models.CharField(
+        max_length=100, default='', verbose_name=_('Description'))
+    creation_date = models.DateTimeField(
+        default=timezone.now, verbose_name=_('Creation Date'))
     status = models.BooleanField(default=True, verbose_name=_('Status'))
 
     class Meta:
@@ -160,8 +180,10 @@ class Employment(models.Model):
         on_delete=models.CASCADE,
         verbose_name=_('Offer')
     )
-    profession = models.ForeignKey(Profession, on_delete=models.CASCADE, verbose_name=_('Profession'))
-    description = models.TextField(max_length=200, default='', verbose_name=_('Description'))
+    profession = models.ForeignKey(
+        Profession, on_delete=models.CASCADE, verbose_name=_('Profession'))
+    description = models.TextField(
+        max_length=200, default='', verbose_name=_('Description'))
     reward = models.FloatField(default=0, verbose_name=_('Reward'))
     status = models.BooleanField(default=True, verbose_name=_('Status'))
 
@@ -176,9 +198,13 @@ class Study(models.Model):
         related_name='studies',
         on_delete=models.CASCADE
     )
-    school = models.ForeignKey(School, on_delete=models.CASCADE, verbose_name=_('School'))
-    profession = models.ForeignKey(Profession, on_delete=models.CASCADE, verbose_name=_('Profession'))
-    name = models.CharField(max_length=50, default='', verbose_name=_('Name'))
+    school = models.ForeignKey(
+        School, on_delete=models.CASCADE, verbose_name=_('School')
+    )
+    profession = models.ForeignKey(
+        Profession, on_delete=models.CASCADE, verbose_name=_('Profession')
+    )
+    name = models.CharField(max_length=100, default='', verbose_name=_('Name'))
     image = models.ImageField(null=False, blank=True, verbose_name=_('Image'))
 
     class Meta:
@@ -188,7 +214,9 @@ class Study(models.Model):
 
 class ChatRoom(models.Model):
     users = models.ManyToManyField(Professional, verbose_name=_('Users'))
-    creation_date = models.DateTimeField(default=timezone.now, verbose_name=_('Creation Date'))
+    creation_date = models.DateTimeField(
+        default=timezone.now, verbose_name=_('Creation Date')
+    )
     status = models.BooleanField(default=True, verbose_name=_('Status'))
 
     class Meta:
@@ -197,10 +225,14 @@ class ChatRoom(models.Model):
 
 
 class Message(models.Model):
-    chat_room = models.ForeignKey(ChatRoom, on_delete=models.CASCADE, verbose_name=_('Chat Room'))
-    user = models.ForeignKey(Professional, on_delete=models.CASCADE, verbose_name=_('User'))
-    message = models.CharField(max_length=400, verbose_name=_('Message'))
-    creation_date = models.DateTimeField(default=timezone.now, verbose_name=_('Creation Date'))
+    chat_room = models.ForeignKey(
+        ChatRoom, on_delete=models.CASCADE, verbose_name=_('Chat Room'))
+    user = models.ForeignKey(
+        Professional, on_delete=models.CASCADE, verbose_name=_('User'))
+    message = models.CharField(
+        max_length=400, verbose_name=_('Message'))
+    creation_date = models.DateTimeField(
+        default=timezone.now, verbose_name=_('Creation Date'))
 
     class Meta:
         verbose_name = _('Message')

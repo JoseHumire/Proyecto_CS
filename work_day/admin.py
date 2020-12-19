@@ -11,12 +11,12 @@ class CountryAdmin(TranslatableAdmin):
 
 @admin.register(City)
 class CityAdmin(TranslatableAdmin):
-    list_display = ('country', 'name')
+    list_display = ('name', 'country')
 
 
 @admin.register(School)
 class SchoolAdmin(TranslatableAdmin):
-    list_display = ('city', 'name')
+    list_display = ('name', 'city')
 
 
 @admin.register(Profession)
@@ -26,7 +26,9 @@ class ProfessionAdmin(TranslatableAdmin):
 
 @admin.register(Professional)
 class ProfessionalAdmin(admin.ModelAdmin):
-    list_display = ('user', 'city', 'phone', 'id', 'status', 'creation_date')
+    list_display = (
+        'user', 'city', 'birthdate', 'phone', 'id', 'status', 'creation_date'
+    )
 
 
 @admin.register(Curriculum)
