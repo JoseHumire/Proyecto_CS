@@ -32,7 +32,7 @@
         {% csrf_token %}
           <p class="login">New password</p>
         <div class="input-group mb-3">
-          {{ form.password1}}
+          {{ form.new_password1}}
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
@@ -43,7 +43,7 @@
 
           <p class="login">Confirm password</p>
                 <div class="input-group mb-3">
-                    {{ form.password2 }}
+                    {{ form.new_password2 }}
                     <div class="input-group-append">
                         <div class="input-group-text">
                         <span class="fas fa-lock"></span>

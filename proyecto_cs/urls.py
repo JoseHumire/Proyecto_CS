@@ -20,7 +20,10 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 from work_day import views
-from work_day.forms import UserPasswordResetForm
+from work_day.forms import (
+    UserPasswordResetForm,
+    UserPasswordResetConfirmForm,
+)
 
 urlpatterns = [
     path('i18n/', include('django.conf.urls.i18n')),
@@ -55,9 +58,20 @@ urlpatterns = [
              form_class=UserPasswordResetForm,
          ),
          name='reset_password'),
-    path('resetPasswordSent/', auth_views.PasswordResetDoneView.as_view(), name='password_reset_done'),
-    path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
-    path('resetPasswordComplete/', auth_views.PasswordResetCompleteView.as_view(), name='password_reset_complete'),
+    path('resetPasswordSent/',
+         auth_views.PasswordResetDoneView.as_view(
+             template_name='users/resetPasswordSent.html',
+         ),
+         name='password_reset_done'),
+    path('reset/<uidb64>/<token>/',
+         auth_views.PasswordResetConfirmView.as_view(
+             template_name='users/reset.html',
+             form_class=UserPasswordResetConfirmForm,
+         ), name='password_reset_confirm'),
+    path('resetPasswordComplete/',
+         auth_views.PasswordResetCompleteView.as_view(
+             template_name='users/resetPasswordComplete.html',
+         ), name='password_reset_complete'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

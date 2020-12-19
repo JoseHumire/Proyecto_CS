@@ -1,43 +1,212 @@
 {% extends "format/base.html" %}
+
 {% load i18n %}
 
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet"
+          href="{% static 'lib/adminlte-3.0.4/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css' %}">
+    <link rel="stylesheet" href="{% static 'lib/adminlte-3.0.4/plugins/select2/css/select2.min.css' %}">
+    <link rel="stylesheet"
+          href="{% static 'lib/adminlte-3.0.4/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css' %}">
+    <link rel="stylesheet"
+          href="{% static 'lib/adminlte-3.0.4/plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css' %}">
+    <link rel="stylesheet" href="{% static 'lib/adminlte-3.0.4/plugins/bs-stepper/css/bs-stepper.min.css' %}">
+    <link rel="stylesheet" href="{% static 'lib/adminlte-3.0.4/plugins/dropzone/min/dropzone.min.css' %}">
+    <link rel="stylesheet" href="{% static 'lib/adminlte-3.0.4/plugins/fontawesome-free/css/fontawesome.css' %}">
+    <link rel="stylesheet" href="{% static  'lib/adminlte-3.0.4/plugins/fontawesome-free/css/all.min.cs' %}">
+    <link rel="stylesheet" href="{% static 'https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css' %}">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="{% static 'lib/adminlte-3.0.4/css/adminlte.min.css' %}">
+    <!-- Google Font: Source Sans Pro -->
+
+{% endblock %}
+
+
 {% block content %}
-    <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
-        <div class="content-header">
-            <div class="container-fluid">
-                <div class="row mb-2">
-                    <div class="col-sm-6">
-                        <h1 class="m-0">Dashboard</h1>
-                    </div><!-- /.col -->
-                    <div class="col-sm-6">
-                        <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">Home</a>
-                            </li>
-                            <li class="breadcrumb-item active">Dashboard v1
-                            </li>
-                        </ol>
-                    </div><!-- /.col -->
-                </div><!-- /.row -->
-            </div><!-- /.container-fluid -->
+    <!-- Header Employments sdsd-->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-2">
+                    <h1 class="m-0"><i class="fa fa-suitcase" aria-hidden="true"></i> Home</h1>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+            <!-- /.container-fluid -->
         </div>
-        <!-- /.content-header -->
 
-        <!-- Main content -->
-        <section class="content">
-
-            {% for offer in offers %}
-                <h3>Offer:</h3>
-                <h5>{% blocktrans %}User:{{ offer.user }}{% endblocktrans %}</h5>
-                <h5>Date:{{ offer.creation_date }}</h5>
-                <h5>City:{{ offer.city }}</h5>
-                <h5>Description:{{ offer.description }}</h5>
-                <h5>Employments:</h5>
-                {% for employment in offer.employments.all %}
-                    <li>{{ employment.profession }}: {{ employment.description }}</li>
-                {% endfor %}
-            {% endfor %}
-        </section>
-        <!-- /.content -->
     </div>
+    <div class="container-fluid">
+        <h1 class="text-center ">Welcome to back {{ request.user.first_name }} {{ request.user.last_name }}</h1>
+        {% for offer in offers.all %}
+            <div class="col-md-9" style="margin-right:auto;margin-left:auto;max-width:60%;">
+            <div class="card" style="box-shadow: 0 0 36px rgb(0 0 0 / 16%), 0 1px 9px 3px rgb(0 56 34 / 13%);
+    margin-bottom: 1rem;">
+                <div class="card-header w-100" style="background: #c5c8dc7d;">
+
+                    <div class="user-block">
+                                    <img class="img-circle img-bordered-sm"
+                                         src="https://adminlte.io/themes/dev/AdminLTE/dist/img/user7-128x128.jpg"
+                                         alt="Imagen de usuario">
+                            <span class="username">
+                          <a href="#"><font style="vertical-align: inherit;"><font
+                                  style="vertical-align: inherit;">{{ offer.user }}</font></font></a>
+                          <a href="#" class="float-right btn-tool"><i class="fas fa-times"></i></a>
+                            </span>
+                                    <span class="description"><font style="vertical-align: inherit;"><font
+                                            style="vertical-align: inherit;">Fecha de creacion: {{ offer.creation_date }}</font></font></span>
+                    </div>
+                </div>
+
+
+                <div class="card-body-content" style="background: #ead7d6;flex: 1 1 auto;
+    min-height: 1px;
+    padding: 1.25rem;">
+                    <div class="tab-content">
+                        <div class="active tab-pane" id="activity">
+                            <div class="post clearfix">
+
+                                <div class="w-100">
+
+
+                                </div>
+
+                          {% for employment in offer.employments.all %}
+                                                <div class="card-footer card-comments"
+                                                     style="background: #efe0d799; box-shadow:0 0 1px rgba(0,0,0,.125), 0 1px 3px rgba(0,0,0,.2);margin-bottom:1rem;">
+                                                    <div class="card-comment" style="  box-shadow: 0 0 1px rgba(0,0,0,.125), 0 1px 3px rgba(0,0,0,.2);
+    margin-bottom: 1rem;">
+                                                        <div class="comment-text">
+                                                    <span class="username">
+                                                      <span class="text-lg" style="text-transform: uppercase;text-align: justify"> {{ offer.description }} </span>
+                                                      <span class="text-muted float-right"> {{ offer.creation_date }}</span>
+                                                    </span>
+
+
+                                                            <div class="row">
+                                                                <div class="col-lg-auto"><i class="fa fa-lg fa-book"
+                                                                                            aria-hidden="true"></i>
+                                                                </div>
+                                                                <div class="col-10"><span class="align-items-center">  Desciption: {{ employment.description }} </span> </span>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="row">
+                                                                <div class="col-lg-auto"><i
+                                                                        class="fa fa-lg  fa-suitcase"
+                                                                        aria-hidden="true"></i></div>
+                                                                <div class="col-10"><span class="align-items-center"> Profession: {{ employment.profession }} </span>
+                                                                </div>
+                                                            </div>
+
+
+
+                                                            <div class="row">
+                                                                <div class="col-lg-auto"><i class="fa fa-lg fa-building"
+                                                                                            aria-hidden="true"></i>
+                                                                </div>
+                                                                <div class="col-10"><span
+                                                                        class="align-items-center">  City: {{ offer.city }} </span>
+                                                                </div>
+                                                            </div>
+
+                                <!-- estado
+                                                            <div class="row">
+                                                                <div class="col-lg-auto"><i
+                                                                        class="glyphicon .glyphicon-list-alt"></i></div>
+                                                                <div class="col-10"><span
+                                                                        class="align-items-center">  Estado: {{ offer.status }} </span>
+                                                                </div>
+                                                            </div>
+                               -->
+
+                                                            <div class="row ">
+                                                                <div class="col-lg-auto"><i
+                                                                        class="fa fa-lg fa-dollar-sign "></i>
+                                                                </div>
+                                                                <div class="col-10"><span
+                                                                        class="align-items-center">  Payment: {{ employment.reward }}</span>
+                                                                </div>
+                                                            </div>
+
+
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                 <form class="form-horizontal">
+                                    <div class="input-group input-group-sm mb-0">
+
+                                           {% if offer.status == 1 %}
+                                         <button type="submit" class="btn btn-danger"
+                                                      style="margin-right: auto;margin-left: auto;width: 20%">
+                                               <font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Me interesa </font></font></button>
+
+                                           {% else %}
+
+                                        <h9>No se encuentra disponible</h9>
+                                         <button type="submit" class="btn btn-danger"
+                                                      style="margin-left: 20%;width: 20%;opacity: 0.4">
+
+                                               <font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Me interesa </font></font></button>
+
+                                        {% endif %}
+                                    </div>
+                                </form>
+                                {% endfor %}
+
+                                <!-- termina for-->
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- /.tab-pane -->
+
+                    <!-- /.tab-content -->
+                </div><!-- /.card-body -->
+            </div>
+            </div>
+        {% endfor %}
+        <!-- /.nav-tabs-custom -->
+
+    </div>
+
+    <!-- End of header section -->
+
+
+    <!-- End of main content section -->
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'lib/adminlte-3.0.4/plugins/select2/js/select2.full.min.js' %}"></script>
+    <script src="{% static 'lib/adminlte-3.0.4/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js' %} "></script>
+    <script src="{% static 'lib/adminlte-3.0.4/plugins/inputmask/jquery.inputmask.min.js' %}"></script>
+    <script src="{% static 'lib/adminlte-3.0.4/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js' %}"></script>
+    <script src="{% static 'lib/adminlte-3.0.4/plugins/bootstrap-switch/js/bootstrap-switch.min.js' %}"></script>
+    <script src="{% static 'lib/adminlte-3.0.4/plugins/bs-stepper/js/bs-stepper.min.js' %}"></script>
+    <script src="{% static 'lib/adminlte-3.0.4/plugins/dropzone/min/dropzone.min.js' %}"></script>
+
+
+    <script src="{% static 'lib/adminlte-3.0.4/plugins/jquery/jquery.min.js' %}"></script>
+
+    <script src="{% static 'lib/adminlte-3.0.4/plugins/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <!-- AdminLTE App -->
+    <script src="{% static 'lib/adminlte-3.0.4/js/adminlte.min.js' %}"></script>
+    <!-- AdminLTE for demo purposes -->
+
+    <script src="{% static 'lib/adminlte-3.0.4/js/demo.js' %}"></script>
+    <script>
+        $(function () {
+            //Initialize Select2 Elements
+            $('.select2').select2()
+            //Date range picker
+            $('#reservationdate').datetimepicker({
+                format: 'L'
+            });
+        })
+    </script>
+
 {% endblock %}
