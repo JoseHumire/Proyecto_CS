@@ -1,184 +1,204 @@
 {% extends "format/base.html" %}
 {% load static %}
-
-    {% block content %}
-  <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <div class="container-fluid">
+{% block title %}
+    Profile
+{% endblock %}
+{% block content %}
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
         <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1>Profile</h1>
-          </div>
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">User Profile</li>
-            </ol>
-          </div>
+            <div class="col-sm-6">
+                <h1>Profile</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">User Profile</li>
+                </ol>
+            </div>
         </div>
-      </div><!-- /.container-fluid -->
-    </section>
+    </div><!-- /.container-fluid -->
+</section>
 
-    <!-- Main content -->
-    <section class="content">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-md-3">
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-md-3 ">
 
             <!-- Profile Image -->
             <div class="card card-primary card-outline">
-              <div class="card-body box-profile">
-                <div class="text-center">
-                  {% if professional.profile_picture %}
-                    <img class="img-circle"
-                           src="{{professional.profile_picture.url}}"
-                           alt="User Image" width=150px>
-                     {% endif %}
+                <div class="card-body box-profile">
+                    <div class="text-center">
+                        {% if professional.profile_picture %}
+                        <img class="img-circle"
+                             src="{{professional.profile_picture.url}}"
+                             alt="User Image" width=150px>
+                        {% endif %}
+                    </div>
+
+                    <h3 class="profile-username text-center">{{user.username}}</h3>
+
+                    <p class="text-muted text-center">
+                    <h3>{{ profession }}</h3>
+
+                    </p>
+
+                    <ul class="list-group list-group-unbordered mb-3">
+                        <li class="list-group-item">
+                            <b>Phone</b> <a class="float-right">{{ professional.phone }}</a>
+                        </li>
+                        <li class="list-group-item">
+                            <b>Email</b> <a class="float-right">{{ user.email }}</a>
+                        </li>
+                    </ul>
+
+                    <a href="#" class="btn btn-primary btn-block"><b>Contact</b></a>
                 </div>
-
-                <h3 class="profile-username text-center">{{user.username}}</h3>
-
-                <p class="text-muted text-center">
-                      <h3>{{ profession }}</h3>
-
-                </p>
-
-                <ul class="list-group list-group-unbordered mb-3">
-                  <li class="list-group-item">
-                    <b>Phone</b> <a class="float-right">{{ professional.phone }}</a>
-                  </li>
-                  <li class="list-group-item">
-                    <b>Email</b> <a class="float-right">{{ user.email }}</a>
-                  </li>
-                </ul>
-
-                <a href="#" class="btn btn-primary btn-block"><b>Contact</b></a>
-              </div>
-              <!-- /.card-body -->
+                <!-- /.card-body -->
             </div>
             <!-- /.card -->
 
 
             <!-- /.card -->
-          </div>
-          <!-- /.col -->
-          <div class="col-md-9">
-           <div class="card card-primary">
-              <div class="card-header">
-                <h3 class="card-title">Info</h3>
-              </div>
-              <!-- /.card-header -->
-              <div class="card-body">
-                  <strong><i class="far fa-file-alt mr-1"></i> Full name</strong>
+        </div>
+        <!-- /.col -->
+        <div class="col-md-9 ">
+            <div class="card card-primary ">
+                <div class="card-header">
+                    <h3 class="card-title">Info</h3>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <strong><i class="far fa-file-alt mr-1"></i> Full name</strong>
 
-                <p class="text-muted">
+                    <p class="text-muted">
                     <ul>
-                              <li>{{ user.first_name }} {{ user.last_name }}</li>
-                  </ul>
+                        <li>{{ user.first_name }} {{ user.last_name }}</li>
+                    </ul>
 
 
-                <hr>
+                    <hr>
 
-                <strong><i class="fas fa-map-marker-alt mr-1"></i> Location</strong>
-                <p class="text-muted"><ul>
-                              <li> {{ professional.city }}</li>
-              </ul>
-                  </p>
+                    <strong><i class="fas fa-map-marker-alt mr-1"></i> Location</strong>
+                    <p class="text-muted">
+                    <ul>
+                        <li> {{ professional.city }}</li>
+                    </ul>
+                    </p>
 
-                <hr>
-                <strong><i class="fas fa-book mr-1"></i> Profession</strong>
+                    <hr>
+                    <strong><i class="fas fa-book mr-1"></i> Profession</strong>
 
-                <p class="text-muted">
-                          {% for profession in professions %}
-                  <ul>
-                              <li> {{ profession }}</li>
-                  </ul>
-                          {% endfor %}
-                </p>
+                    <p class="text-muted">
+                        {% if professions %}
+                        {% for profession in professions %}
+                    <ul>
+                        <li> {{ profession }}</li>
+                    </ul>
+                    {% endfor %}
+                    {%else%}
+                    <p>Has no professions</p>
+                    {% endif %}
+                    </p>
 
-                <hr>
+                    <hr>
 
-                <strong><i class="fas fa-pencil-alt mr-1"></i> Register Date</strong>
+                    <strong><i class="fas fa-pencil-alt mr-1"></i> Register Date</strong>
 
-                <p class="text-muted">
-                  {{professional.creation_date}}
-                </p>
+                    <p class="text-muted">
+                        {{professional.creation_date}}
+                    </p>
 
-                <hr>
+                    <hr>
 
-                <strong><i class="fas fa-book mr-1"></i> Studies</strong>
+                    <strong><i class="fas fa-book mr-1"></i> Studies</strong>
 
-                <p class="text-muted">
-                          {% if studies %}
-                          {% for study in studies %}
-                            <h5> Description : {{ study.name }}</h5>
-                        <ul>
-                            <li> School : {{ study.school }}</li>
-                            <li>Profession : {{ study.profession }}</li>
-                            </ul>
-                          {% endfor %}
-                            {%else%}
-                      <p>Has no studies</p>
-                            {% endif %}
-                <hr>
-                <strong><i class="fas fa-book mr-1"></i> Jobs</strong>
+                    <p class="text-muted">
+                        {% if studies %}
+                        {% for study in studies %}
+                    <h5> Description : {{ study.name }}</h5>
+                    <ul>
+                        <li> School : {{ study.school }}</li>
+                        <li>Profession : {{ study.profession }}</li>
+                    </ul>
+                    {% endfor %}
+                    {%else%}
+                    <p>Has no studies</p>
+                    {% endif %}
+                    <p></p>
+                    <div>
+                        <a href="../addStudy" class="btn btn-sm btn-primary">Add Studies
+                        </a>
+                    </div>
+                    <hr>
+                    <strong><i class="fas fa-book mr-1"></i> Jobs</strong>
 
-                <p class="text-muted">
-                          {% if jobs %}
-                          {% for job in jobs %}
-                  <h5> {{ job.profession }}</h5>
-                  <ul>
-                              <li>{{ job.description }}</li>
-                              <li>Start date : {{ job.start_date }}</li>
-                              <li>Finish date : {{ job.finish_date }}</li>
-                  </ul>
-                          {% endfor %}
-                            {%else%}
-                      <p>Has no jobs</p>
-                            {% endif %}
-                </p>
-                  </p>
-              </div>
-              <!-- /.card-body -->
+                    <p class="text-muted">
+                        {% if jobs %}
+                        {% for job in jobs %}
+                    <h5> {{ job.profession }}</h5>
+                    <ul>
+                        <li>{{ job.description }}</li>
+                        <li>Start date : {{ job.start_date }}</li>
+                        <li>Finish date : {{ job.finish_date }}</li>
+                    </ul>
+                    {% endfor %}
+                    {%else%}
+                    <p>Has no jobs</p>
+                    {% endif %}
+                    </p>
+
+                    <div>
+                        <a href="../addJob" class="btn btn-sm btn-primary">Add Jobs
+                        </a>
+                    </div>
+
+                    <hr>
+
+                    <strong><i class="fas fa-pencil-alt mr-1"></i> DNI </strong>
+
+                    <p class="text-muted">
+                    <ul>
+                        <li>{{professional.id_number}}</li>
+                    </ul>
+                    </p>
+
+                    <hr>
+
+                    <strong><i class="fas fa-pencil-alt mr-1"></i> Documents </strong>
+
+                    <div>
+                        {% if professional.id_image %}
+                        <img class="img-fluid"
+                             src="{{professional.id_image.url}}"
+                             alt="ID Image">
+                        {%else%}
+                        <p>Has no doc</p>
+                        {% endif %}
+
+                    </div>
+
+
+                </div>
+                <!-- /.card-body -->
             </div>
-          <!-- /.col -->
+            <!-- /.col -->
         </div>
         <!-- /.row -->
-      </div><!-- /.container-fluid -->
-    </section>
-    <!-- /.content -->
+    </div>
+    <!-- /.container-fluid -->
+</section>
+<!-- /.content -->
 
-    {% endblock %}
+{% endblock %}
 
-    {% block scripts %}
-        <script src="../../plugins/jquery/jquery.min.js"></script>
+{% block scripts %}
+<script src="../../plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
 <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="../../dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
-    {% endblock %}
-<!--<body>
-    {% if user %}
-        <h2>First Name: {{ user.first_name }} </h2>
-        <h2>Last Name: {{ user.last_name }} </h2>
-        <h2>Email: {{ user.email }}</h2>
-        <h2>Username: {{ user.username }}</h2>
-        <h2>City: {{ professional.city }}</h2>
-        <h2>Phone: {{ professional.phone }}</h2>
-        <h2>ID: {{ professional.id_number }}</h2>
-        <h2>Register Date: {{ professional.creation_date }}</h2>
-        {% if professions %}
-            <h2>Professions:</h2>
-            <ul>
-                {% for profession in professions %}
-                    <li><h3>{{ profession }}</h3></li>
-                {% endfor %}
-            </ul>
-        {% endif %}
-        {% else %}
-            <h1>Profession not found</h1>
-    {% endif %}
-</body>
--->
+{% endblock %}

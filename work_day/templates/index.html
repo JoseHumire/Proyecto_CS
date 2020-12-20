@@ -1,10 +1,14 @@
 {% load static %}
+{% load i18n %}
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AdminLTE 3 | Lockscreen</title>
+    <title>Work Day</title>
+    <link rel="shortcut icon" href="{% static 'lib/adminlte-3.0.4/img/logo.png' %}" />
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
           href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&amp;display=fallback">
@@ -34,15 +38,15 @@
 <div class="wrapper">
 
 
-
+    {% include 'users/change_language.html' %}
     <div class="lockscreen-logo " style="color:white; margin-top: 15%; ">
         <!-- text-shadow: 0.1em 0.1em #333; -->
 
         <h1 style=" font-size: 250%; font-weight: 900;">
-            Welcome to Work Day
+            {% trans "Welcome to Work Day" %}
         </h1>
         <h4 style=" font-weight: 900;">
-            Find employments or post your employment advertise.
+            {% trans "Find employments or post your employment advertise." %}
         </h4>
     </div>
 
@@ -56,11 +60,11 @@
 
         <div class="row ">
             <div class="col-6" style="padding-left: 5%; padding-right: 5%;">
-                <a href="/login" type="button" class="btn btn-block btn-outline-info" style=" font-weight: 900; ">Login
+                <a href="/login" type="button" class="btn btn-block btn-outline-info" style=" font-weight: 900; ">{%  trans 'Login' %}
                 </a>
             </div>
             <div class="col-6" style="padding-left: 5%; padding-right: 5%;">
-                <a href="/register" type="button" class="btn btn-block btn-outline-info" style=" font-weight: 900;">Register
+                <a href="/register" type="button" class="btn btn-block btn-outline-info" style=" font-weight: 900;">{%  trans 'Register' %}
                 </a>
             </div>
 

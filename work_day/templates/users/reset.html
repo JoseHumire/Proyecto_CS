@@ -4,7 +4,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AdminLTE 3 </title>
+  <title>Reset Password</title>
+<link rel="shortcut icon" href="{% static 'lib/adminlte-3.0.4/img/logo.png' %}" />
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -32,7 +33,7 @@
         {% csrf_token %}
           <p class="login">New password</p>
         <div class="input-group mb-3">
-          {{ form.password1}}
+          {{ form.new_password1}}
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
@@ -43,7 +44,7 @@
 
           <p class="login">Confirm password</p>
                 <div class="input-group mb-3">
-                    {{ form.password2 }}
+                    {{ form.new_password2 }}
                     <div class="input-group-append">
                         <div class="input-group-text">
                         <span class="fas fa-lock"></span>

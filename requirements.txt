@@ -18,7 +18,9 @@ hyperlink==20.0.1
 idna==2.10
 incremental==17.5.0
 msgpack==1.0.0
+django-parler==2.2
 Pillow==8.0.1
+pkg-resources==0.0.0
 psycopg2==2.8.6
 pyasn1==0.4.8
 pyasn1-modules==0.2.8
@@ -32,3 +34,6 @@ sqlparse==0.4.1
 Twisted==20.3.0
 txaio==20.4.1
 zope.interface==5.2.0
+selenium==3.141.0
+sqlparse==0.4.1
+urllib3==1.26.2
