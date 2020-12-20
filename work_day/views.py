@@ -275,7 +275,7 @@ def chat_index(request):
 def start_room(request, user_id):
     user = request.user.professional
     other_user = User.objects.get(pk=user_id).professional
-    current_room = ChatRoom.objects.filter(users__in=[user, other_user]).first()
+    current_room = ChatRoom.get_room(user, other_user)
     if not current_room:
         current_room = ChatRoom.objects.create()
         current_room.users.add(user)
@@ -287,9 +287,11 @@ def start_room(request, user_id):
 def room(request, room_id):
     user = request.user.professional
     current_room = ChatRoom.objects.get(pk=room_id)
+    other_user = ChatRoom.get_other_user(user)
     chat_messages = Message.objects.filter(chat_room=current_room)
     context = {
         'user': user,
+        'other_user': other_user,
         'messages': chat_messages,
         'room_name': room_id,
     }
