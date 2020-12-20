@@ -164,7 +164,8 @@ def add_study(request, pk=None):
     )
     if request.method == 'POST':
         if form.is_valid():
-            form.save()
+            saved_study = form.save()
+            request.user.professional.professions.add(saved_study.profession)
             return redirect('home')
 
     if pk:
