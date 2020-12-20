@@ -2,6 +2,7 @@
 import json
 from channels.generic.websocket import AsyncWebsocketConsumer
 from channels.db import database_sync_to_async
+from datetime import datetime
 
 from .models import (
     Message,
@@ -25,7 +26,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
     async def connect(self):
         self.room_name = self.scope['url_route']['kwargs']['room_name']
         self.room_group_name = 'chat_%s' % self.room_name
-
+        self.user = self.scope['user']
         # Join room group
         await self.channel_layer.group_add(
             self.room_group_name,
@@ -52,7 +53,10 @@ class ChatConsumer(AsyncWebsocketConsumer):
             self.room_group_name,
             {
                 'type': 'chat_message',
-                'message': message
+                'message': message,
+                'user': user_id,
+                'time': str(datetime.now().day) + " " + str(datetime.now().strftime("%b")) +
+                        " " + str(datetime.now().strftime("%I:%M" " %p")),
             }
         )
 
@@ -62,5 +66,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
 
         # Send message to WebSocket
         await self.send(text_data=json.dumps({
-            'message': message
+            'message': message,
+            'user': event['user'],
+            'time': event['time'],
         }))
