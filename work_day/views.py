@@ -1,4 +1,3 @@
-from django.forms import formset_factory
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate
 from django.contrib.auth import logout as do_logout
@@ -6,17 +5,11 @@ from django.contrib.auth import login as do_login
 from django.contrib.auth.forms import AuthenticationForm
 from django.http import HttpResponseForbidden, HttpResponse
 from django.template import loader
-from django.views.generic.edit import FormView
 from django.contrib.auth.decorators import login_required
+from django.urls import reverse
 
 from .forms import *
 from .filters import ProfessionalFilter
-
-
-def welcome(request):
-    if request.user.is_authenticated:
-        return render(request, "users/welcome.html")
-    return redirect('login')
 
 
 def register(request):
@@ -59,10 +52,11 @@ def login(request):
             if user is not None:
                 do_login(request, user)
                 return redirect('/home')
-
-    return render(
-        request, "users/login.html", {'form': form}
-    )
+    template = loader.get_template('users/login.html')
+    context = {
+        'form': form
+    }
+    return HttpResponse(template.render(context, request))
 
 
 @login_required(login_url='/login')
@@ -73,7 +67,16 @@ def logout(request):
 
 @login_required(login_url='/login')
 def home(request):
-    offers = JobOffer.objects.order_by('creation_date')
+    try:
+        offers = JobOffer.objects.filter(
+            employments__profession=
+            request.user.professional.professions.all()[0]
+        ).distinct()
+    except IndexError:
+        professional = Professional.objects.get(user=request.user)
+        offers = JobOffer.objects.filter(
+            city=professional.city
+        )
     template = loader.get_template('home.html')
     context = {
         'offers': offers
@@ -84,14 +87,6 @@ def home(request):
 @login_required(login_url='/login')
 def messages(request):
     return render(request, "messages.html")
-
-# Mensajes
-def pantallaprincipal(request):
-    return render(request, "pantallaprincipal.html")
-
-# Mensajes
-def prueba(request):
-    return render(request, "prueba.html")
 
 
 @login_required(login_url='/login')
@@ -119,7 +114,8 @@ def user_profile(request, pk=None):
 
 @login_required(login_url='/login')
 def view_professionals(request):
-    professionals = Professional.objects.all()
+    professionals = Professional.objects.filter(
+        status=True)
     template = loader.get_template('professionals.html')
     professional_filter = ProfessionalFilter(
         request.GET, queryset=professionals
@@ -168,26 +164,16 @@ def add_study(request, pk=None):
     )
     if request.method == 'POST':
         if form.is_valid():
-            form.save()
+            saved_study = form.save()
+            request.user.professional.professions.add(saved_study.profession)
             return redirect('home')
 
     if pk:
         return render(
-            request,
-            "add_study.html",
-            {'form': StudyForm(instance=study)}
+            request, "add_study.html", {'form': StudyForm(instance=study)}
         )
     else:
-        return render(
-            request,
-            "add_study.html",
-            {'form': form}
-        )
-
-
-@login_required(login_url='/login')
-def employments(request):
-    return render(request, "employments.html")
+        return render(request, "add_study.html", {'form': form})
 
 
 def index(request):
@@ -215,13 +201,14 @@ def create_job_offer(request, pk=None):
     else:
         offer = JobOffer(user=request.user.professional)
     offer_form = JobOfferForm(data=request.POST or None, instance=offer)
-    employment_formset = EmploymentInlineFormSet(data=request.POST or None, instance=offer)
+    employment_formset = EmploymentInlineFormSet(
+        data=request.POST or None, instance=offer)
     if request.method == 'POST':
         if offer_form.is_valid():
             offer.save()
             if employment_formset.is_valid():
                 employment_formset.save()
-            return redirect('home/')
+            return redirect(reverse('my_posts'))
 
     return render(
         request,
@@ -234,9 +221,13 @@ def create_job_offer(request, pk=None):
 
 
 @login_required(login_url='/login')
-def job_offer(request, offer_id):
+def job_offer(request, offer_id=None):
     offer_list = JobOffer.objects.all()
-    current_offer = JobOffer.objects.get(pk=offer_id)
+    if offer_id:
+        current_offer = JobOffer.objects.get(pk=offer_id)
+    else:
+        current_offer = JobOffer.objects.all().first()
+
     context = {
         'offers': offer_list,
         'offer': current_offer,

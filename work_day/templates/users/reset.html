@@ -1,11 +1,10 @@
-
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Recover </title>
+  <title>Reset Password</title>
 <link rel="shortcut icon" href="{% static 'lib/adminlte-3.0.4/img/logo.png' %}" />
 
   <!-- Google Font: Source Sans Pro -->
@@ -25,43 +24,42 @@
       <a href="../../index2.html" class="h1"><b>Admin</b>LTE</a>
     </div>
     <div class="card-body">
-      <p class="login-box-msg">Recover password
-</p>
+      <p class="login-box-msg">Enter new password
 
+      </p>
+     <p> Please enter your new password twice so we can verify you typed it in correctly</p>
       <form method="POST">
 
         {% csrf_token %}
+          <p class="login">New password</p>
         <div class="input-group mb-3">
-          {{ form.email }}
+          {{ form.new_password1}}
           <div class="input-group-append">
             <div class="input-group-text">
-              <span class="fas fa-envelope"></span>
+              <span class="fas fa-lock"></span>
             </div>
           </div>
         </div>
 
 
+          <p class="login">Confirm password</p>
+                <div class="input-group mb-3">
+                    {{ form.new_password2 }}
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                        <span class="fas fa-lock"></span>
+                        </div>
+                    </div>
+                </div>
 
-        <div class="row">
-          <div class="col-8">
-            <div class="icheck-primary">
-                <input type="checkbox" id="remember">
-              <label for="remember">
-                  <a href="#">I'm not robot</a>
 
-              </label>
-            </div>
-          </div>
+
           <!-- /.col -->
-          <div class="col-5">
-           &nbsp; &nbsp;  <button type="submit" class="btn btn-primary btn-block">Submit</button> &nbsp; &nbsp;
+          <div class="col-7">
+           &nbsp; &nbsp;  <button type="submit" class="btn btn-primary btn-block">Change my password</button> &nbsp; &nbsp;
 
 
-          </div>
-          <div class="col-5">
-            &nbsp; &nbsp;  <button type="submit" class="btn btn-primary btn-block">Cancel</button> &nbsp; &nbsp;
 
-          </div>
 
 
           </div>
