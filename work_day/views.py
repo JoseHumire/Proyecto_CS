@@ -1,4 +1,3 @@
-from django.forms import formset_factory
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate
 from django.contrib.auth import logout as do_logout
@@ -6,17 +5,11 @@ from django.contrib.auth import login as do_login
 from django.contrib.auth.forms import AuthenticationForm
 from django.http import HttpResponseForbidden, HttpResponse
 from django.template import loader
-from django.views.generic.edit import FormView
 from django.contrib.auth.decorators import login_required
+from django.urls import reverse
 
 from .forms import *
 from .filters import ProfessionalFilter
-
-
-def welcome(request):
-    if request.user.is_authenticated:
-        return render(request, "users/welcome.html")
-    return redirect('login')
 
 
 def register(request):
@@ -76,7 +69,7 @@ def logout(request):
 def home(request):
     try:
         offers = JobOffer.objects.filter(
-            employments__profession__name__contains=
+            employments__profession=
             request.user.professional.professions.all()[0]
         ).distinct()
     except IndexError:
@@ -95,17 +88,6 @@ def home(request):
 def messages(request):
     return render(request, "messages.html")
 
-# Mensajes
-def pantallaprincipal(request):
-    return render(request, "pantallaprincipal.html")
-
-# Mensajes
-def prueba(request):
-    return render(request, "prueba.html")
-
-# Mensajes
-def nuevoprincipal(request):
-    return render(request, "nuevoprincipal.html")
 
 @login_required(login_url='/login')
 def user_profile(request, pk=None):
@@ -132,7 +114,8 @@ def user_profile(request, pk=None):
 
 @login_required(login_url='/login')
 def view_professionals(request):
-    professionals = Professional.objects.all()
+    professionals = Professional.objects.filter(
+        status=True)
     template = loader.get_template('professionals.html')
     professional_filter = ProfessionalFilter(
         request.GET, queryset=professionals
@@ -192,11 +175,6 @@ def add_study(request, pk=None):
         return render(request, "add_study.html", {'form': form})
 
 
-@login_required(login_url='/login')
-def employments(request):
-    return render(request, "employments.html")
-
-
 def index(request):
     return render(request, "index.html")
 
@@ -222,13 +200,14 @@ def create_job_offer(request, pk=None):
     else:
         offer = JobOffer(user=request.user.professional)
     offer_form = JobOfferForm(data=request.POST or None, instance=offer)
-    employment_formset = EmploymentInlineFormSet(data=request.POST or None, instance=offer)
+    employment_formset = EmploymentInlineFormSet(
+        data=request.POST or None, instance=offer)
     if request.method == 'POST':
         if offer_form.is_valid():
             offer.save()
             if employment_formset.is_valid():
                 employment_formset.save()
-            return redirect('home/')
+            return redirect(reverse('my_posts'))
 
     return render(
         request,
@@ -277,4 +256,3 @@ def edit_profile(request):
             instance=request.user.professional),
     }
     return render(request, 'users/edit_profile.html', context)
-
