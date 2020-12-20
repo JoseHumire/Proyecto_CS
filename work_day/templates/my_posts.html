@@ -1,6 +1,9 @@
 {% extends "format/base.html" %}
 {% load static %}
 {% load i18n %}
+{% block title %}
+    My posts
+{% endblock %}
 {% block css %}
      <link rel="stylesheet" href="{% static 'lib/adminlte-3.0.4/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css' %}">
      <link rel="stylesheet" href="{% static 'lib/adminlte-3.0.4/plugins/select2/css/select2.min.css' %}">
@@ -61,7 +64,7 @@
                             </div>
                             <div class="text-center m-2 " style="padding-left: 10%; padding-right: 10%;">
                                 <a type="button" class="btn btn-primary btn-success " href="/createOffer">
-                                    <i class="fa fa-bell"></i>
+                                    <i class="fa fa-plus"></i>
                                     {% trans "Create new offer" %}
                                 </a>
                             </div>
@@ -111,7 +114,7 @@
                                 <div class="row d-flex align-items-stretch">
                                     {% for employment in offer.employments.all %}
                                     <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch">
-                                        <div class="card bg-light">
+                                        <div class="card bg-light w-100">
                                             <div class="card-header text-muted border-bottom-0">
                                                 {% blocktrans %}Employment {{ employment.id }}{% endblocktrans %}
                                             </div>
@@ -125,7 +128,7 @@
                                                                     class="fas fa-lg fa-building"></i></span> {% blocktrans %}City: {{ offer.city }}{% endblocktrans %}
                                                             </li>
                                                             <li class="small"><span class="fa-li"><i
-                                                                    class="fas fa-lg fa-money-bill"></i></span>
+                                                                    class="fas fa-lg fa-dollar-sign"></i></span>
                                                                  {% blocktrans %}Payment: {{ employment.reward }}{% endblocktrans %}
                                                             </li>
                                                         </ul>
@@ -155,7 +158,7 @@
                                     </div>
                                       {% endfor %}
                                     <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch">
-                                        <div class="card bg-light">
+                                        <div class="card bg-light w-100">
                                             <div class="card-header text-muted border-bottom-0">
 
                                             </div>
@@ -170,7 +173,7 @@
                                                                  style="padding-left: 10%; padding-right: 10%;">
                                                                 <a type="button" class="btn btn-primary btn-success "
                                                                    href="/createEmployment">
-                                                                    <i class="fa fa-bell"></i>
+                                                                    <i class="fa fa-plus"></i>
                                                                     {% trans "Create new employment" %}
                                                                 </a>
                                                             </div>

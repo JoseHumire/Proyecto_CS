@@ -4,10 +4,10 @@
 <!-- main-sidebar elevation-4 sidebar-light-info -->
 <aside class="main-sidebar elevation-4 sidebar-light-info ">
     <!-- Brand Logo -->
-    <a href="/home" class="brand-link">
-        <img src="{% static 'lib/adminlte-3.0.4/img/AdminLTELogo.png' %}" alt="AdminLTE Logo"
+    <a href="/home" class="brand-link ">
+        <img src="{% static 'lib/adminlte-3.0.4/img/logo.png' %}" alt="AdminLTE Logo"
              class="brand-image img-circle elevation-3" style="opacity: .8">
-        <span class="brand-text font-weight-light">AdminLTE 3</span>
+        <span class="brand-text font-weight">  WORK DAY</span>
     </a>
     <!-- Sidebar -->
 
@@ -18,10 +18,10 @@
         <div class="card-primary ">
             <div class="card-body box-profile">
                 <div class="text-center">
-                    {% if request.professional.profile_picture %}
+                    {% if request.user.professional.profile_picture %}
                         <a href="/user/user-profile/">
                             <img class="profile-user-img img-fluid img-circle" img-size-64
-                                 src="{{ request.professional.profile_picture.url }}" alt="User profile"></a>
+                                 src="{{ request.user.professional.profile_picture.url }}" alt="User profile"></a>
                     {% else %}
                         <a href="/user/user-profile/">
                             <img class="profile-user-img img-fluid img-circle" img-size-64
@@ -37,7 +37,7 @@
 
                         {% endfor %}
                     {% else %}
-                        <a class="d-block">{%  trans "You have not registered professions." %} </a>
+                        <a class="d-block">{% trans "You have not registered professions." %} </a>
                     {% endif %}
                 </div>
             </div>
@@ -53,45 +53,39 @@
                 <li class="nav-item user-panel  mt-0 pb-1 ">
                     <a href="/home" class="nav-link">
                         <i class="nav-icon fas fa-home"></i>
-                        <p>{%  trans "Home" %}  </p>
+                        <p>{% trans "Home" %}  </p>
                     </a>
                 </li>
 
                 <li class="nav-item user-panel    mt-2 pb-1 ">
                     <a href="/professionals" class="nav-link">
                         <i class="nav-icon fas fa-graduation-cap"></i>
-                        <p> {%  trans "Professionals" %} </p>
+                        <p> {% trans "Professionals" %} </p>
                     </a>
                 </li>
 
                 <li class="nav-item user-panel mt-2 pb-1 ">
-                    <a href="/employments" class="nav-link">
+                    <a href="/jobOffers" class="nav-link">
                         <i class="nav-icon fas fa-suitcase"></i>
-                        <p> {%  trans "Employments" %} </p>
+                        <p> {% trans "Employments" %} </p>
                     </a>
                 </li>
                 <li class="nav-item user-panel mt-2 pb-1 ">
                     <a href="/messages" class="nav-link">
                         <i class="nav-icon fas fa-comments"></i>
-                        <p> {%  trans "Messages" %} </p>
-                    </a>
-                </li>
-                <li class="nav-item user-panel mt-2 pb-1 ">
-                    <a href="/notifications" class="nav-link">
-                        <i class="nav-icon fas fa-bell"></i>
-                        <p> {%  trans "Notifications" %} </p>
+                        <p> {% trans "Messages" %} </p>
                     </a>
                 </li>
                 <li class="nav-item user-panel mt-2 pb-1 ">
                     <a href="/my_posts" class="nav-link">
                         <i class="nav-icon fas fa-book"></i>
-                        <p> {%  trans "My posts" %} </p>
+                        <p> {% trans "My posts" %} </p>
                     </a>
                 </li>
                 <li class="nav-item user-panel mt-2 pb-1 ">
                     <a href="/logout" class="nav-link">
                         <i class="nav-icon fas fa-sign-out-alt"></i>
-                        <p> {%  trans "Logout" %} </p>
+                        <p> {% trans "Logout" %} </p>
                     </a>
                 </li>
 
