@@ -1,4 +1,253 @@
-<!DOCTYPE html>
+{% extends "format/base.html" %}
+{% load static %}
+
+{% load i18n %}
+{% block title %}
+    Offers
+{% endblock %}
+{% block css %}
+
+    <link rel="stylesheet"
+          href="{% static 'lib/adminlte-3.0.4/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css' %}">
+    <link rel="stylesheet" href="{% static 'lib/adminlte-3.0.4/plugins/select2/css/select2.min.css' %}">
+    <link rel="stylesheet"
+          href="{% static 'lib/adminlte-3.0.4/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css' %}">
+    <link rel="stylesheet"
+          href="{% static 'lib/adminlte-3.0.4/plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css' %}">
+    <link rel="stylesheet" href="{% static 'lib/adminlte-3.0.4/plugins/bs-stepper/css/bs-stepper.min.css' %}">
+    <link rel="stylesheet" href="{% static 'lib/adminlte-3.0.4/plugins/dropzone/min/dropzone.min.css' %}">
+    <link rel="stylesheet" href="{% static 'lib/adminlte-3.0.4/plugins/fontawesome-free/css/fontawesome.css' %}">
+
+{% endblock %}
+
+{% block content %}
+    <!-- Header Employments -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-2">
+                    <h1 class="m-0"><i class="fa fa-suitcase" aria-hidden="true"></i>{% trans 'Employments' %}</h1>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+            <!-- /.container-fluid -->
+        </div>
+    </div>
+    <!-- End header Employments -->
+
+    <!-- Content Employments -->
+    <div class="container-fluid">
+        <h4 class="text-center ">{% trans "Find your employment" %}</h4>
+        <!-- Search employment -->
+        <div class="row">
+            <!-- Select a profession -->
+            <div class="col-md-10 offset-md-2">
+                <div class="row">
+                    <div class="col-5">
+                        <div class="form-group">
+                            <select class="select2" multiple="multiple"
+                                    data-placeholder={% blocktrans %} "Select a employment" {% endblocktrans %}
+                                    style="width: 100%;">
+                                <option>Alabama</option>
+                                <option>Alaska</option>
+                                <option>California</option>
+                                <option>Delaware</option>
+                                <option>Tennessee</option>
+                                <option>Texas</option>
+                                <option>Washington</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-5">
+                        <div class="form-group">
+                            <select class="select2" multiple="multiple"
+                                    data-placeholder={% blocktrans %} "Select a city" {% endblocktrans %}
+                                    style="width: 100%;">
+                                <option>Alabama</option>
+                                <option>Alaska</option>
+                                <option>California</option>
+                                <option>Delaware</option>
+                                <option>Tennessee</option>
+                                <option>Texas</option>
+                                <option>Washington</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Select a profession -->
+        </div>
+        <!-- End Search employment -->
+
+        <div class="row">
+            <!-- Offer -->
+            <section class="col-lg-3">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">{% trans 'Offers' %}</h3>
+                        <div class="card-tools">
+                            <div class="input-group input-group-sm">
+                                <input type="text" class="form-control" placeholder="Search offer">
+                                <div class="input-group-append">
+                                    <div class="btn btn-primary">
+                                        <i class="fas fa-search"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="card-body p-0 ">
+                        <div class="table table-hover table-striped">
+
+                            <div class="nav flex-column nav-pills text-center m-2 nav-item user-panel"
+                                 style="padding-left: 10%; padding-right: 10%;">
+                                {% for offer in offers.all %}
+                                    {% if offer.id == 1 %}
+
+                                        <a class="btn btn-block btn-outline-info active" data-toggle="pill"
+                                           href="#v-pills-Offer-{{ offer.id }}"
+                                           role="tab" ria-selected="true" style="margin-top: 5%; margin-bottom: 5%;">
+                                            {% blocktrans %}Offer {{ offer.id }}
+                                                {{ offer.creation_date }}{% endblocktrans %}</a>
+
+
+                                    {% else %}
+                                        <a class="btn btn-block btn-outline-info" data-toggle="pill"
+                                           href="#v-pills-Offer-{{ offer.id }}"
+                                           role="tab" ria-selected="true" style="margin-top: 5%; margin-bottom: 5%;">
+                                            {% blocktrans %}Offer {{ offer.id }}
+                                                {{ offer.creation_date }}{% endblocktrans %} </a>
+                                    {% endif %}
+
+
+
+                                {% endfor %}
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+            <!-- End Offer -->
+
+            <!-- Employments -->
+            <section class="col-lg-9">
+                <div class="tab-content " id="v-pills-tabContent">
+
+                    {% for offer in offers.all %}
+                        {% if offer.id == 1 %}
+                            <div class="tab-pane fade show active" id="v-pills-Offer-{{ offer.id }}">
+                        {% else %}
+                            <div class="tab-pane fade show " id="v-pills-Offer-{{ offer.id }}">
+                        {% endif %}
+
+                    <div class="card card-solid">
+                        <div class="card-header">
+                            <h2 class="text-center">{% blocktrans %}Offer {{ offer.id }}{% endblocktrans %} </h2>
+                            <div class="row">
+                                <div class="card-text col-lg-12">
+                                    <h3> {% trans "Description:" %}</h3>
+                                    <p class="text-muted">
+                                        {% blocktrans %}{{ offer.description }}{% endblocktrans %}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card-body pb-0">
+                            <div class="row d-flex align-items-stretch">
+                                {% for employment in offer.employments.all %}
+                                    <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch">
+                                        <div class="card bg-light w-100">
+                                            <div class="card-header text-muted border-bottom-0">
+                                                {% blocktrans %}Employment {{ employment.id }}{% endblocktrans %}
+                                            </div>
+                                            <div class="card-body pt-0">
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <h2 class="lead"><b>{% blocktrans %}
+                                                            {{ employment.profession }}{% endblocktrans %}</b></h2>
+                                                        <p class="text-muted"><b>{% trans 'About:' %}</b>
+                                                            {% blocktrans %}
+                                                                {{ employment.description }}{% endblocktrans %} </p>
+                                                        <ul class="ml-4 mb-0 fa-ul text-muted">
+                                                            <li class="small"><span class="fa-li"><i
+                                                                    class="fas fa-lg fa-building"></i></span>
+                                                                {% blocktrans %}City:
+                                                                    {{ offer.city }}{% endblocktrans %}
+                                                            </li>
+                                                            <li class="small"><span class="fa-li"><i
+                                                                    class="fas fa-lg fa-dollar-sign"></i></span>
+                                                                {% blocktrans %}Payment:
+                                                                    {{ employment.reward }}{% endblocktrans %}
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="card-footer">
+                                                <div class="card-footer">
+                                                    <div class="text-right">
+                                                        <a href="#" class="btn btn-sm bg-teal">
+                                                            <i class="fas fa-comments"></i>
+                                                        </a>
+                                                        <a href="#" class="btn btn-sm btn-primary">
+                                                            <i class="fas fa-user"></i>{% trans "More information" %}
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                                                            </div>
+                        </div>
+                        <!-- /.card -->
+                    </div>
+                    </div>
+
+                    {% endfor %}
+
+                    </div>
+                    <!-- /.card-body -->
+
+
+            </section>
+
+
+        </div>
+    </div>
+    <!-- End Content Employments -->
+
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'lib/adminlte-3.0.4/plugins/select2/js/select2.full.min.js' %}"></script>
+    <script src="{% static 'lib/adminlte-3.0.4/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js' %} "></script>
+    <script src="{% static 'lib/adminlte-3.0.4/plugins/inputmask/jquery.inputmask.min.js' %}"></script>
+    <script src="{% static 'lib/adminlte-3.0.4/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js' %}"></script>
+    <script src="{% static 'lib/adminlte-3.0.4/plugins/bootstrap-switch/js/bootstrap-switch.min.js' %}"></script>
+    <script src="{% static 'lib/adminlte-3.0.4/plugins/bs-stepper/js/bs-stepper.min.js' %}"></script>
+    <script src="{% static 'lib/adminlte-3.0.4/plugins/dropzone/min/dropzone.min.js' %}"></script>
+
+
+    <script>
+        $(function () {
+            //Initialize Select2 Elements
+            $('.select2').select2()
+            //Date range picker
+            $('#reservationdate').datetimepicker({
+                format: 'L'
+            });
+        })
+    </script>
+
+
+
+{% endblock %}<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
