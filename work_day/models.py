@@ -130,6 +130,18 @@ class ChatRoom(models.Model):
     creation_date = models.DateTimeField(default=timezone.now)
     status = models.BooleanField(default=True)
 
+    def get_room(self, user, other_user):
+        room = self.objects.filter(users__in=[user]).filter(
+            users__in=[other_user]).first()
+        return room
+
+    def get_other_user(self, user):
+        users = self.users.all()
+        other_user = users[0]
+        if users[0] == user:
+            other_user = users[1]
+        return other_user
+
 
 class Message(models.Model):
     class Meta:
