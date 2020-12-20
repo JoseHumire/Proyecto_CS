@@ -1,6 +1,6 @@
 from time import sleep
 
-from work_day.tests.functional_test.base_test_case import SeleniumBaseTestCase
+from .base_test_case import SeleniumBaseTestCase
 
 
 class LoginTest(SeleniumBaseTestCase):
@@ -10,11 +10,22 @@ class LoginTest(SeleniumBaseTestCase):
 
     def test_verify_login_with_valid_inputs(self):
         self.driver.find_element_by_xpath(
-            "//input[@id='id_username']").send_keys('raulmanuel')
+            "//*[@id='id_username']").send_keys('nur1234')
         self.driver.find_element_by_xpath(
-            "//input[@id='id_password']").send_keys('raul1812')
+            "//input[@id='id_password']").send_keys('shamas5432')
         self.driver.find_element_by_xpath(
             "//button[contains(text(),'Sign In')]").click()
         self.assertEqual(
             self.driver.current_url, 'http://127.0.0.1:8000/home/'
+        )
+
+    def test_verify_login_with_invalid_inputs(self):
+        self.driver.find_element_by_xpath(
+            "//*[@id='id_username']").send_keys('jfioeajfoa')
+        self.driver.find_element_by_xpath(
+            "//input[@id='id_password']").send_keys('fewjiofwje')
+        self.driver.find_element_by_xpath(
+            "//button[contains(text(),'Sign In')]").click()
+        self.assertEqual(
+            self.driver.current_url, 'http://127.0.0.1:8000/login/'
         )
