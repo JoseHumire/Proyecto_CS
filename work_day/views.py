@@ -259,10 +259,12 @@ def edit_profile(request):
     return render(request, 'users/edit_profile.html', context)
 
 
+@login_required(login_url='/login')
 def chat_index(request):
     return render(request, 'chat/index.html')
 
 
+@login_required(login_url='/login')
 def start_room(request, user_id):
     user = request.user.professional
     other_user = User.objects.get(pk=user_id).professional
@@ -275,15 +277,20 @@ def start_room(request, user_id):
     return redirect(new_url)
 
 
+@login_required(login_url='/login')
 def room(request, room_id):
     user = request.user.professional
     current_room = ChatRoom.objects.get(pk=room_id)
-    other_user = ChatRoom.get_other_user(user)
+    if not current_room.has_user(user):
+        return redirect('/home')
+    other_user = current_room.get_other_user(user)
     chat_messages = Message.objects.filter(chat_room=current_room)
+    rooms = user.chatroom_set.all()
     context = {
         'user': user,
         'other_user': other_user,
         'messages': chat_messages,
         'room_name': room_id,
+        'rooms': rooms,
     }
     return render(request, 'chat/room.html', context)

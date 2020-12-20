@@ -223,8 +223,9 @@ class ChatRoom(models.Model):
         verbose_name = _('Chat Room')
         verbose_name_plural = _('Chat Rooms')
 
-    def get_room(self, user, other_user):
-        room = self.objects.filter(users__in=[user]).filter(
+    @staticmethod
+    def get_room(user, other_user):
+        room = ChatRoom.objects.filter(users__in=[user]).filter(
             users__in=[other_user]).first()
         return room
 
@@ -234,6 +235,10 @@ class ChatRoom(models.Model):
         if users[0] == user:
             other_user = users[1]
         return other_user
+
+    def has_user(self, user):
+        users = self.users.all()
+        return user == users[0] or user == users[1]
 
 
 class Message(models.Model):
