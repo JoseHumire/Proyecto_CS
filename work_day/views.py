@@ -166,7 +166,7 @@ def add_study(request, pk=None):
         if form.is_valid():
             saved_study = form.save()
             request.user.professional.professions.add(saved_study.profession)
-            return redirect('home')
+            return redirect('../user-profile/')
 
     if pk:
         return render(

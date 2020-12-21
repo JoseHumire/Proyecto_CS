@@ -127,6 +127,9 @@ class StudyForm(forms.ModelForm):
             'school': forms.Select(attrs={'class': 'form-control'}),
             'profession': forms.Select(attrs={'class': 'form-control'}),
             'name': forms.TextInput(attrs={'class': 'form-control'}),
+            'image': forms.FileInput(
+                attrs={'class': 'custom-file-input'}
+            ),
         }
 
 
