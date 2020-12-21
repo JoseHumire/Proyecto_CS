@@ -1,6 +1,8 @@
 {% extends "format/base.html" %}
 {% load static %}
 
+{% load i18n %}
+
 {% block css %}
      <link rel="stylesheet" href="{% static 'lib/adminlte-3.0.4/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css' %}">
      <link rel="stylesheet" href="{% static 'lib/adminlte-3.0.4/plugins/select2/css/select2.min.css' %}">
@@ -18,7 +20,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-2">
-                    <h1 class="m-0"><i class="fa fa-suitcase" aria-hidden="true"></i> Employments</h1>
+                    <h1 class="m-0"><i class="fa fa-suitcase" aria-hidden="true"></i>{% trans 'Employments' %}</h1>
                 </div><!-- /.col -->
             </div><!-- /.row -->
             <!-- /.container-fluid -->
@@ -28,7 +30,7 @@
 
     <!-- Content Employments -->
     <div class="container-fluid">
-        <h4 class="text-center ">Find your employment</h4>
+        <h4 class="text-center ">{% trans "Find your employment" %}</h4>
         <!-- Search employment -->
         <div class="row">
             <!-- Select a profession -->
@@ -36,7 +38,7 @@
                 <div class="row">
                     <div class="col-5">
                         <div class="form-group">
-                            <select class="select2" multiple="multiple" data-placeholder="Select a employment"
+                            <select class="select2" multiple="multiple" data-placeholder={% blocktrans%} "Select a employment" {%endblocktrans%}
                                     style="width: 100%;">
                                 <option>Alabama</option>
                                 <option>Alaska</option>
@@ -50,7 +52,7 @@
                     </div>
                     <div class="col-5">
                         <div class="form-group">
-                            <select class="select2" multiple="multiple" data-placeholder="Select a city"
+                            <select class="select2" multiple="multiple" data-placeholder={% blocktrans%} "Select a city" {%endblocktrans%}
                                     style="width: 100%;">
                                 <option>Alabama</option>
                                 <option>Alaska</option>
@@ -73,7 +75,7 @@
             <section class="col-lg-3">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Offers</h3>
+                        <h3 class="card-title">{% trans 'Offers' %}</h3>
                         <div class="card-tools">
                             <div class="input-group input-group-sm">
                                 <input type="text" class="form-control" placeholder="Search offer">
@@ -95,8 +97,8 @@
                                             <img class="img-circle"
                                                  src="{% static 'lib/adminlte-3.0.4/img/default-150x150.png' %}"
                                                  alt="User Image">
-                                            <span class="username"><a href="#">Offer 01</a></span>
-                                            <span class="description">City: Arequipa</span>
+                                            <span class="username"><a href="#">{% trans "Offer 01" %}</a></span>
+                                            <span class="description">{% trans "City: Arequipa" %}</span>
                                         </div>
                                     </td>
                                 </tr>
@@ -106,8 +108,8 @@
                                             <img class="img-circle"
                                                  src="{% static 'lib/adminlte-3.0.4/img/default-150x150.png' %}"
                                                  alt="User Image">
-                                            <span class="username"><a href="#">Offer 02</a></span>
-                                            <span class="description">City: Arequipa</span>
+                                            <span class="username"><a href="#">{% trans "Offer 02" %}</a></span>
+                                            <span class="description">{% trans "City: Arequipa" %}</span>
                                         </div>
                                     </td>
                                 </tr>
@@ -117,8 +119,8 @@
                                             <img class="img-circle"
                                                  src="{% static 'lib/adminlte-3.0.4/img/default-150x150.png' %}"
                                                  alt="User Image">
-                                            <span class="username"><a href="#">Offer 03</a></span>
-                                            <span class="description">City: Arequipa</span>
+                                            <span class="username"><a href="#">{% trans "Offer 03" %}</a></span>
+                                            <span class="description">{% trans "City: Arequipa" %}</span>
                                         </div>
                                     </td>
                                 </tr>
@@ -129,8 +131,8 @@
                                             <img class="img-circle"
                                                  src="{% static 'lib/adminlte-3.0.4/img/default-150x150.png' %}"
                                                  alt="User Image">
-                                            <span class="username"><a href="#">Offer 04</a></span>
-                                            <span class="description">City: Arequipa</span>
+                                            <span class="username"><a href="#">{% trans "Offer 04" %}</a></span>
+                                            <span class="description">{% trans "City: Arequipa" %}</span>
                                         </div>
                                     </td>
                                     </td>
@@ -151,15 +153,11 @@
 
 
                     <div class="card-header">
-                        <h2 class="text-center">Offer 01</h2>
+                        <h2 class="text-center">{% trans "Offer 01" %}</h2>
                         <div class="row">
                             <div class="card-text col-lg-12">
-                                <h3> Description:</h3>
-                                <p class="text-muted">
-                                    Professionals are needed to perform the cleaning task and activity that are not
-                                    related
-                                    to your career.
-                                </p>
+                                <h3> {% trans 'Description:' %}</h3>
+                                <p class="text-muted">{% trans "Professionals are needed to perform the cleaning task and activity that are not related to your career." %}</p>
                             </div>
                         </div>
                     </div>
@@ -170,24 +168,20 @@
                             <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch">
                                 <div class="card bg-light">
                                     <div class="card-header text-muted border-bottom-0">
-                                        Employment 01
+                                        {% trans "Employment 01" %}
                                     </div>
                                     <div class="card-body pt-0">
                                         <div class="row">
                                             <div class="col-12">
-                                                <h2 class="lead"><b>Software Engineer</b></h2>
-                                                <p class="text-muted"><b>About: </b> Web Designer / UX /
-                                                    Graphic
-                                                    Artist / Coffee Lover </p>
+                                                <h2 class="lead"><b>{% trans "Software Engineer" %}</b></h2>
+                                                <p class="text-muted"><b>{% trans 'About:' %} </b>{% trans "Web Designer / UX / Graphic Artist / Coffee Lover" %}</p>
                                                 <ul class="ml-4 mb-0 fa-ul text-muted">
                                                     <li class="small"><span class="fa-li"><i
-                                                            class="fas fa-lg fa-building"></i></span> Address: Demo
-                                                        Street
-                                                        123, Demo City 04312, NJ
+                                                            class="fas fa-lg fa-building"></i></span>{% trans "Address: Demo Street 123, Demo City 04312, NJ" %}
                                                     </li>
                                                     <li class="small"><span class="fa-li"><i
-                                                            class="fas fa-lg fa-phone"></i></span>
-                                                        Phone #: + 800 - 12 12 23 52
+                                                            class="fas fa-lg fa-phone"></i></span>{% trans "Phone #: + 800 - 12 12 23 52" %}
+
                                                     </li>
                                                 </ul>
                                             </div>
@@ -200,7 +194,7 @@
                                                 <i class="fas fa-comments"></i>
                                             </a>
                                             <a href="#" class="btn btn-sm btn-primary">
-                                                <i class="fas fa-user"></i> More information
+                                                <i class="fas fa-user"></i>{% trans "More information" %}
                                             </a>
                                         </div>
                                     </div>
@@ -209,24 +203,20 @@
                             <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch">
                                 <div class="card bg-light">
                                     <div class="card-header text-muted border-bottom-0">
-                                        Employment 01
+                                        {% trans "Employment 01" %}
                                     </div>
                                     <div class="card-body pt-0">
                                         <div class="row">
                                             <div class="col-12">
-                                                <h2 class="lead"><b>Software Engineer</b></h2>
-                                                <p class="text-muted"><b>About: </b> Web Designer / UX /
-                                                    Graphic
-                                                    Artist / Coffee Lover </p>
+                                                <h2 class="lead"><b>{% trans "Software Engineer" %}</b></h2>
+                                                <p class="text-muted"><b>{% trans 'About:' %} </b>{% trans "Web Designer / UX / Graphic Artist / Coffee Lover" %} </p>
                                                 <ul class="ml-4 mb-0 fa-ul text-muted">
                                                     <li class="small"><span class="fa-li"><i
-                                                            class="fas fa-lg fa-building"></i></span> Address: Demo
-                                                        Street
-                                                        123, Demo City 04312, NJ
+                                                            class="fas fa-lg fa-building"></i></span> {% trans "Address: Demo Street 123, Demo City 04312, NJ" %}
                                                     </li>
                                                     <li class="small"><span class="fa-li"><i
                                                             class="fas fa-lg fa-phone"></i></span>
-                                                        Phone #: + 800 - 12 12 23 52
+                                                        {% trans "Phone #: + 800 - 12 12 23 52" %}
                                                     </li>
                                                 </ul>
                                             </div>
@@ -239,7 +229,7 @@
                                                 <i class="fas fa-comments"></i>
                                             </a>
                                             <a href="#" class="btn btn-sm btn-primary">
-                                                <i class="fas fa-user"></i> More information
+                                                <i class="fas fa-user"></i>{% trans "More information" %}
                                             </a>
                                         </div>
                                     </div>
@@ -248,24 +238,20 @@
                             <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch">
                                 <div class="card bg-light">
                                     <div class="card-header text-muted border-bottom-0">
-                                        Employment 01
+                                        {% trans "Employment 01" %}
                                     </div>
                                     <div class="card-body pt-0">
                                         <div class="row">
                                             <div class="col-12">
-                                                <h2 class="lead"><b>Software Engineer</b></h2>
-                                                <p class="text-muted"><b>About: </b> Web Designer / UX /
-                                                    Graphic
-                                                    Artist / Coffee Lover </p>
+                                                <h2 class="lead"><b>{% trans "Software Engineer" %}</b></h2>
+                                                <p class="text-muted"><b>{% trans 'About:' %}</b> {% trans "Web Designer / UX / Graphic Artist / Coffee Lover" %} </p>
                                                 <ul class="ml-4 mb-0 fa-ul text-muted">
                                                     <li class="small"><span class="fa-li"><i
-                                                            class="fas fa-lg fa-building"></i></span> Address: Demo
-                                                        Street
-                                                        123, Demo City 04312, NJ
+                                                            class="fas fa-lg fa-building"></i></span> {% trans "Address: Demo Street 123, Demo City 04312, NJ" %}
                                                     </li>
                                                     <li class="small"><span class="fa-li"><i
                                                             class="fas fa-lg fa-phone"></i></span>
-                                                        Phone #: + 800 - 12 12 23 52
+                                                         {% trans "Phone #: + 800 - 12 12 23 52" %}
                                                     </li>
                                                 </ul>
                                             </div>
@@ -278,7 +264,7 @@
                                                 <i class="fas fa-comments"></i>
                                             </a>
                                             <a href="#" class="btn btn-sm btn-primary">
-                                                <i class="fas fa-user"></i> More information
+                                                <i class="fas fa-user"></i> {% trans "More information" %}
                                             </a>
                                         </div>
                                     </div>
@@ -287,24 +273,20 @@
                             <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch">
                                 <div class="card bg-light">
                                     <div class="card-header text-muted border-bottom-0">
-                                        Employment 01
+                                        {% trans "Employment 01" %}
                                     </div>
                                     <div class="card-body pt-0">
                                         <div class="row">
                                             <div class="col-12">
-                                                <h2 class="lead"><b>Software Engineer</b></h2>
-                                                <p class="text-muted"><b>About: </b> Web Designer / UX /
-                                                    Graphic
-                                                    Artist / Coffee Lover </p>
+                                                <h2 class="lead"><b>{% trans "Software Engineer" %}</b></h2>
+                                                <p class="text-muted"><b>{% trans 'About:' %}</b> {% trans "Web Designer / UX / Graphic Artist / Coffee Lover" %} </p>
                                                 <ul class="ml-4 mb-0 fa-ul text-muted">
                                                     <li class="small"><span class="fa-li"><i
-                                                            class="fas fa-lg fa-building"></i></span> Address: Demo
-                                                        Street
-                                                        123, Demo City 04312, NJ
+                                                            class="fas fa-lg fa-building"></i></span> {% trans "Address: Demo Street 123, Demo City 04312, NJ" %}
                                                     </li>
                                                     <li class="small"><span class="fa-li"><i
                                                             class="fas fa-lg fa-phone"></i></span>
-                                                        Phone #: + 800 - 12 12 23 52
+                                                        {% trans "Phone #: + 800 - 12 12 23 52" %}
                                                     </li>
                                                 </ul>
                                             </div>
@@ -317,7 +299,7 @@
                                                 <i class="fas fa-comments"></i>
                                             </a>
                                             <a href="#" class="btn btn-sm btn-primary">
-                                                <i class="fas fa-user"></i> More information
+                                                <i class="fas fa-user"></i> {% trans "More information" %}
                                             </a>
                                         </div>
                                     </div>
@@ -326,24 +308,20 @@
                             <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch">
                                 <div class="card bg-light">
                                     <div class="card-header text-muted border-bottom-0">
-                                        Employment 01
+                                        {% trans "Employment 01" %}
                                     </div>
                                     <div class="card-body pt-0">
                                         <div class="row">
                                             <div class="col-12">
-                                                <h2 class="lead"><b>Software Engineer</b></h2>
-                                                <p class="text-muted"><b>About: </b> Web Designer / UX /
-                                                    Graphic
-                                                    Artist / Coffee Lover </p>
+                                                <h2 class="lead"><b>{% trans "Software Engineer" %}</b></h2>
+                                                <p class="text-muted"><b>{% trans 'About:' %}</b> {% trans "Web Designer / UX / Graphic Artist / Coffee Lover" %}</p>
                                                 <ul class="ml-4 mb-0 fa-ul text-muted">
                                                     <li class="small"><span class="fa-li"><i
-                                                            class="fas fa-lg fa-building"></i></span> Address: Demo
-                                                        Street
-                                                        123, Demo City 04312, NJ
+                                                            class="fas fa-lg fa-building"></i></span> {% trans "Address: Demo Street 123, Demo City 04312, NJ" %}
                                                     </li>
                                                     <li class="small"><span class="fa-li"><i
                                                             class="fas fa-lg fa-phone"></i></span>
-                                                        Phone #: + 800 - 12 12 23 52
+                                                        {% trans "Phone #: + 800 - 12 12 23 52" %}
                                                     </li>
                                                 </ul>
                                             </div>
@@ -356,7 +334,7 @@
                                                 <i class="fas fa-comments"></i>
                                             </a>
                                             <a href="#" class="btn btn-sm btn-primary">
-                                                <i class="fas fa-user"></i> More information
+                                                <i class="fas fa-user"></i>{% trans "More information" %}
                                             </a>
                                         </div>
                                     </div>
@@ -365,24 +343,20 @@
                             <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch">
                                 <div class="card bg-light">
                                     <div class="card-header text-muted border-bottom-0">
-                                        Employment 01
+                                        {% trans "Employment 01" %}
                                     </div>
                                     <div class="card-body pt-0">
                                         <div class="row">
                                             <div class="col-12">
-                                                <h2 class="lead"><b>Software Engineer</b></h2>
-                                                <p class="text-muted"><b>About: </b> Web Designer / UX /
-                                                    Graphic
-                                                    Artist / Coffee Lover </p>
+                                                <h2 class="lead"><b>{% trans "Software Engineer" %}</b></h2>
+                                                <p class="text-muted"><b>{% trans 'About:' %}</b> {% trans "Web Designer / UX / Graphic Artist / Coffee Lover" %}</p>
                                                 <ul class="ml-4 mb-0 fa-ul text-muted">
                                                     <li class="small"><span class="fa-li"><i
-                                                            class="fas fa-lg fa-building"></i></span> Address: Demo
-                                                        Street
-                                                        123, Demo City 04312, NJ
+                                                            class="fas fa-lg fa-building"></i></span> {% trans "Address: Demo Street 123, Demo City 04312, NJ" %}
                                                     </li>
                                                     <li class="small"><span class="fa-li"><i
                                                             class="fas fa-lg fa-phone"></i></span>
-                                                        Phone #: + 800 - 12 12 23 52
+                                                        {% trans "Phone #: + 800 - 12 12 23 52" %}
                                                     </li>
                                                 </ul>
                                             </div>
@@ -395,7 +369,7 @@
                                                 <i class="fas fa-comments"></i>
                                             </a>
                                             <a href="#" class="btn btn-sm btn-primary">
-                                                <i class="fas fa-user"></i> More information
+                                                <i class="fas fa-user"></i> {% trans "More information" %}
                                             </a>
                                         </div>
                                     </div>
@@ -404,24 +378,20 @@
                             <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch">
                                 <div class="card bg-light">
                                     <div class="card-header text-muted border-bottom-0">
-                                        Employment 01
+                                        {% trans "Employment 01" %}
                                     </div>
                                     <div class="card-body pt-0">
                                         <div class="row">
                                             <div class="col-12">
-                                                <h2 class="lead"><b>Software Engineer</b></h2>
-                                                <p class="text-muted"><b>About: </b> Web Designer / UX /
-                                                    Graphic
-                                                    Artist / Coffee Lover </p>
+                                                <h2 class="lead"><b>{% trans "Software Engineer" %}</b></h2>
+                                                <p class="text-muted"><b>{% trans 'About:' %}</b> {% trans "Web Designer / UX / Graphic Artist / Coffee Lover" %}</p>
                                                 <ul class="ml-4 mb-0 fa-ul text-muted">
                                                     <li class="small"><span class="fa-li"><i
-                                                            class="fas fa-lg fa-building"></i></span> Address: Demo
-                                                        Street
-                                                        123, Demo City 04312, NJ
+                                                            class="fas fa-lg fa-building"></i></span> {% trans "Address: Demo Street 123, Demo City 04312, NJ" %}
                                                     </li>
                                                     <li class="small"><span class="fa-li"><i
                                                             class="fas fa-lg fa-phone"></i></span>
-                                                        Phone #: + 800 - 12 12 23 52
+                                                        {% trans "Phone #: + 800 - 12 12 23 52" %}
                                                     </li>
                                                 </ul>
                                             </div>
@@ -434,7 +404,7 @@
                                                 <i class="fas fa-comments"></i>
                                             </a>
                                             <a href="#" class="btn btn-sm btn-primary">
-                                                <i class="fas fa-user"></i> More information
+                                                <i class="fas fa-user"></i> {% trans "More information" %}
                                             </a>
                                         </div>
                                     </div>
@@ -443,24 +413,20 @@
                             <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch">
                                 <div class="card bg-light">
                                     <div class="card-header text-muted border-bottom-0">
-                                        Employment 01
+                                        {% trans "Employment 01" %}
                                     </div>
                                     <div class="card-body pt-0">
                                         <div class="row">
                                             <div class="col-12">
-                                                <h2 class="lead"><b>Software Engineer</b></h2>
-                                                <p class="text-muted"><b>About: </b> Web Designer / UX /
-                                                    Graphic
-                                                    Artist / Coffee Lover </p>
+                                                <h2 class="lead"><b>{% trans "Software Engineer" %}</b></h2>
+                                                <p class="text-muted"><b>{% trans 'About:' %}</b> {% trans "Web Designer / UX / Graphic Artist / Coffee Lover" %}</p>
                                                 <ul class="ml-4 mb-0 fa-ul text-muted">
                                                     <li class="small"><span class="fa-li"><i
-                                                            class="fas fa-lg fa-building"></i></span> Address: Demo
-                                                        Street
-                                                        123, Demo City 04312, NJ
+                                                            class="fas fa-lg fa-building"></i></span> {% trans "Address: Demo Street 123, Demo City 04312, NJ" %}
                                                     </li>
                                                     <li class="small"><span class="fa-li"><i
                                                             class="fas fa-lg fa-phone"></i></span>
-                                                        Phone #: + 800 - 12 12 23 52
+                                                        {% trans "Phone #: + 800 - 12 12 23 52" %}
                                                     </li>
                                                 </ul>
                                             </div>
@@ -473,7 +439,7 @@
                                                 <i class="fas fa-comments"></i>
                                             </a>
                                             <a href="#" class="btn btn-sm btn-primary">
-                                                <i class="fas fa-user"></i> More information
+                                                <i class="fas fa-user"></i> {% trans "More information" %}
                                             </a>
                                         </div>
                                     </div>
@@ -482,24 +448,20 @@
                             <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch">
                                 <div class="card bg-light">
                                     <div class="card-header text-muted border-bottom-0">
-                                        Employment 01
+                                        {% trans "Employment 01" %}
                                     </div>
                                     <div class="card-body pt-0">
                                         <div class="row">
                                             <div class="col-12">
-                                                <h2 class="lead"><b>Software Engineer</b></h2>
-                                                <p class="text-muted"><b>About: </b> Web Designer / UX /
-                                                    Graphic
-                                                    Artist / Coffee Lover </p>
+                                                <h2 class="lead"><b>{% trans "Software Engineer" %}</b></h2>
+                                                <p class="text-muted"><b>{% trans 'About:' %}</b> {% trans "Web Designer / UX / Graphic Artist / Coffee Lover" %}</p>
                                                 <ul class="ml-4 mb-0 fa-ul text-muted">
                                                     <li class="small"><span class="fa-li"><i
-                                                            class="fas fa-lg fa-building"></i></span> Address: Demo
-                                                        Street
-                                                        123, Demo City 04312, NJ
+                                                            class="fas fa-lg fa-building"></i></span> {% trans "Address: Demo Street 123, Demo City 04312, NJ" %}
                                                     </li>
                                                     <li class="small"><span class="fa-li"><i
                                                             class="fas fa-lg fa-phone"></i></span>
-                                                        Phone #: + 800 - 12 12 23 52
+                                                        {% trans "Phone #: + 800 - 12 12 23 52" %}
                                                     </li>
                                                 </ul>
                                             </div>
@@ -512,7 +474,7 @@
                                                 <i class="fas fa-comments"></i>
                                             </a>
                                             <a href="#" class="btn btn-sm btn-primary">
-                                                <i class="fas fa-user"></i> More information
+                                                <i class="fas fa-user"></i> {% trans "More information" %}
                                             </a>
                                         </div>
                                     </div>
@@ -521,24 +483,20 @@
                             <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch">
                                 <div class="card bg-light">
                                     <div class="card-header text-muted border-bottom-0">
-                                        Employment 01
+                                        {% trans "Employment 01" %}
                                     </div>
                                     <div class="card-body pt-0">
                                         <div class="row">
                                             <div class="col-12">
-                                                <h2 class="lead"><b>Software Engineer</b></h2>
-                                                <p class="text-muted"><b>About: </b> Web Designer / UX /
-                                                    Graphic
-                                                    Artist / Coffee Lover </p>
+                                                <h2 class="lead"><b>{% trans "Software Engineer" %}</b></h2>
+                                                <p class="text-muted"><b>{% trans 'About:' %}</b> {% trans "Web Designer / UX / Graphic Artist / Coffee Lover" %}</p>
                                                 <ul class="ml-4 mb-0 fa-ul text-muted">
                                                     <li class="small"><span class="fa-li"><i
-                                                            class="fas fa-lg fa-building"></i></span> Address: Demo
-                                                        Street
-                                                        123, Demo City 04312, NJ
+                                                            class="fas fa-lg fa-building"></i></span> {% trans "Address: Demo Street 123, Demo City 04312, NJ" %}
                                                     </li>
                                                     <li class="small"><span class="fa-li"><i
                                                             class="fas fa-lg fa-phone"></i></span>
-                                                        Phone #: + 800 - 12 12 23 52
+                                                        {% trans "Phone #: + 800 - 12 12 23 52" %}
                                                     </li>
                                                 </ul>
                                             </div>
@@ -551,7 +509,7 @@
                                                 <i class="fas fa-comments"></i>
                                             </a>
                                             <a href="#" class="btn btn-sm btn-primary">
-                                                <i class="fas fa-user"></i> More information
+                                                <i class="fas fa-user"></i> {% trans "More information" %}
                                             </a>
                                         </div>
                                     </div>
@@ -560,24 +518,20 @@
                             <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch">
                                 <div class="card bg-light">
                                     <div class="card-header text-muted border-bottom-0">
-                                        Employment 01
+                                        {% trans "Employment 01" %}
                                     </div>
                                     <div class="card-body pt-0">
                                         <div class="row">
                                             <div class="col-12">
-                                                <h2 class="lead"><b>Software Engineer</b></h2>
-                                                <p class="text-muted"><b>About: </b> Web Designer / UX /
-                                                    Graphic
-                                                    Artist / Coffee Lover </p>
+                                                <h2 class="lead"><b>{% trans "Software Engineer" %}</b></h2>
+                                                <p class="text-muted"><b>{% trans 'About:' %}</b> {% trans "Web Designer / UX / Graphic Artist / Coffee Lover" %}</p>
                                                 <ul class="ml-4 mb-0 fa-ul text-muted">
                                                     <li class="small"><span class="fa-li"><i
-                                                            class="fas fa-lg fa-building"></i></span> Address: Demo
-                                                        Street
-                                                        123, Demo City 04312, NJ
+                                                            class="fas fa-lg fa-building"></i></span>  {% trans "Address: Demo Street 123, Demo City 04312, NJ" %}
                                                     </li>
                                                     <li class="small"><span class="fa-li"><i
                                                             class="fas fa-lg fa-phone"></i></span>
-                                                        Phone #: + 800 - 12 12 23 52
+                                                        {% trans "Phone #: + 800 - 12 12 23 52" %}
                                                     </li>
                                                 </ul>
                                             </div>
@@ -590,7 +544,7 @@
                                                 <i class="fas fa-comments"></i>
                                             </a>
                                             <a href="#" class="btn btn-sm btn-primary">
-                                                <i class="fas fa-user"></i> More information
+                                                <i class="fas fa-user"></i> {% trans "More information" %}
                                             </a>
                                         </div>
                                     </div>

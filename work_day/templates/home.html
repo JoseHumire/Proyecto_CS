@@ -1,6 +1,11 @@
 {% extends "format/base.html" %}
-{% load static %}
 
+{% load i18n %}
+
+{% load static %}
+{% block title %}
+    Home
+{% endblock %}
 {% block css %}
     <link rel="stylesheet"
           href="{% static 'lib/adminlte-3.0.4/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css' %}">
@@ -20,6 +25,7 @@
 
 {% endblock %}
 
+
 {% block content %}
     <!-- Header Employments sdsd-->
     <div class="content-header">
@@ -31,6 +37,7 @@
             </div><!-- /.row -->
             <!-- /.container-fluid -->
         </div>
+
     </div>
     <div class="container-fluid">
         <h1 class="text-center ">Welcome to back {{ request.user.first_name }} {{ request.user.last_name }}</h1>

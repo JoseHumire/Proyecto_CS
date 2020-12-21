@@ -1,14 +1,20 @@
 {% extends "format/base.html" %}
 {% load static %}
-
+{% load i18n %}
+{% block title %}
+    My posts
+{% endblock %}
 {% block css %}
-     <link rel="stylesheet" href="{% static 'lib/adminlte-3.0.4/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css' %}">
-     <link rel="stylesheet" href="{% static 'lib/adminlte-3.0.4/plugins/select2/css/select2.min.css' %}">
-     <link rel="stylesheet" href="{% static 'lib/adminlte-3.0.4/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css' %}">
-     <link rel="stylesheet" href="{% static 'lib/adminlte-3.0.4/plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css' %}">
-     <link rel="stylesheet" href="{% static 'lib/adminlte-3.0.4/plugins/bs-stepper/css/bs-stepper.min.css' %}">
-     <link rel="stylesheet" href="{% static 'lib/adminlte-3.0.4/plugins/dropzone/min/dropzone.min.css' %}">
-     <link rel="stylesheet" href="{% static 'lib/adminlte-3.0.4/plugins/fontawesome-free/css/fontawesome.css' %}">
+    <link rel="stylesheet"
+          href="{% static 'lib/adminlte-3.0.4/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css' %}">
+    <link rel="stylesheet" href="{% static 'lib/adminlte-3.0.4/plugins/select2/css/select2.min.css' %}">
+    <link rel="stylesheet"
+          href="{% static 'lib/adminlte-3.0.4/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css' %}">
+    <link rel="stylesheet"
+          href="{% static 'lib/adminlte-3.0.4/plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css' %}">
+    <link rel="stylesheet" href="{% static 'lib/adminlte-3.0.4/plugins/bs-stepper/css/bs-stepper.min.css' %}">
+    <link rel="stylesheet" href="{% static 'lib/adminlte-3.0.4/plugins/dropzone/min/dropzone.min.css' %}">
+    <link rel="stylesheet" href="{% static 'lib/adminlte-3.0.4/plugins/fontawesome-free/css/fontawesome.css' %}">
 
 {% endblock %}
 
@@ -19,7 +25,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-2">
-                    <h1 class="m-0"><i class="fa fa-book" aria-hidden="true"></i> My posts</h1>
+                    <h1 class="m-0"><i class="fa fa-book" aria-hidden="true"></i>{% trans "My posts" %} </h1>
                 </div><!-- /.col -->
             </div><!-- /.row -->
             <!-- /.container-fluid -->
@@ -36,164 +42,179 @@
             <section class="col-lg-3">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="text-center align-content-center">You offers</h4>
+                        <h4 class="text-center align-content-center">{% trans "You offers" %}</h4>
                     </div>
+                    <div class="card-body">
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                            <tr>
+                                <th>Offer</th>
+                                <th>Date</th>
+                                <th>City</th>
+                                <th>View</th>
+                            </tr>
+                            </thead>
 
-                    <div class="card-body p-0 ">
-                        <div class="table table-hover table-striped">
-
-                            <div class="nav flex-column nav-pills text-center m-2 nav-item user-panel" style="padding-left: 10%; padding-right: 10%;">
+                                <div class="jsgrid-grid-body">
                                 {% for offer in offers.all %}
-                                    {% if offer.id == 1 %}
-
-                                        <a class="btn btn-block btn-outline-info active" data-toggle="pill" href="#v-pills-Offer-{{ offer.id }}"
-                                       role="tab" ria-selected="true" style="margin-top: 5%; margin-bottom: 5%;">Offer {{ offer.id }}  {{ offer.creation_date }}</a>
-
-
-                                    {% else %}
-                                        <a class="btn btn-block btn-outline-info" data-toggle="pill" href="#v-pills-Offer-{{ offer.id }}"
-                                       role="tab" ria-selected="true" style="margin-top: 5%; margin-bottom: 5%;">Offer {{ offer.id }}  {{ offer.creation_date }} </a>
-                                    {% endif %}
-
-
-
+                                    <tr data-widget="expandable-table" aria-expanded="false">
+                                        <td>{{ offer.id }}</td>
+                                        <td>{{ offer.creation_date|date:"M d, Y" }}</td>
+                                        <td>{{ offer.city }}</td>
+                                        <td><a class="link btn btn-block btn-outline-info" href="#about"
+                                               data-link="offer-{{ offer.id }}">View</a></td>
+                                    </tr>
                                 {% endfor %}
                             </div>
-                            <div class="text-center m-2 " style="padding-left: 10%; padding-right: 10%;">
-                                <a type="button" class="btn btn-primary btn-success " href="/createOffer">
-                                    <i class="fa fa-bell"></i>
-                                    Create new offer
-                                </a>
-                            </div>
+                            </tbody>
+                        </table>
+                        <div class="text-center m-2 " style="padding-left: 10%; padding-right: 10%;">
+                            <a type="button" class="btn btn-primary btn-success " href="/createOffer">
+                                <i class="fa fa-plus"></i>
+                                {% trans "Create new offer" %}
+                            </a>
                         </div>
                     </div>
+
                 </div>
             </section>
             <!-- End Offer -->
 
             <!-- Employments -->
+
+
             <section class="col-lg-9">
-                <div class="tab-content " id="v-pills-tabContent">
+                <div class="tab-content " id="pages_about">
 
-                        {% for offer in offers.all %}
-                            {% if offer.id == 1 %}
-                            <div class="tab-pane fade show active" id="v-pills-Offer-{{ offer.id }}" >
-                            {% else %}
-                            <div class="tab-pane fade show " id="v-pills-Offer-{{ offer.id }}" >
-                            {% endif %}
+                    {% for offer in offers.all %}
 
-                                <div class="card card-solid">
-                            <div class="card-header">
-                                <h2 class="text-center">Offer {{ offer.id }}</h2>
-                                <div class="row">
-                                    <div class="card-text col-lg-10">
-                                        <h3> Description:</h3>
-                                        <p class="text-muted">
-                                            {{ offer.description  }}
-                                        </p>
-                                    </div>
-                                    <div class="card-text col-lg-2">
-                                        <a class="btn btn-info btn-sm w-100" href="#">
-                                            <i class="fas fa-pencil-alt">
-                                            </i>
-                                            Edit
-                                        </a>
-                                        <a class="btn btn-danger btn-sm w-100" href="#">
-                                            <i class="fas fa-trash">
-                                            </i>
-                                            Delete
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="card-body pb-0">
-                                <div class="row d-flex align-items-stretch">
-                                    {% for employment in offer.employments.all %}
-                                    <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch">
-                                        <div class="card bg-light">
-                                            <div class="card-header text-muted border-bottom-0">
-                                                Employment {{ employment.id }}
-                                            </div>
-                                            <div class="card-body pt-0">
-                                                <div class="row">
-                                                    <div class="col-12">
-                                                        <h2 class="lead"><b>{{ employment.profession }}</b></h2>
-                                                        <p class="text-muted"><b>About: </b> {{ employment.description }} </p>
-                                                        <ul class="ml-4 mb-0 fa-ul text-muted">
-                                                            <li class="small"><span class="fa-li"><i
-                                                                    class="fas fa-lg fa-building"></i></span> City: {{ offer.city }}
-                                                            </li>
-                                                            <li class="small"><span class="fa-li"><i
-                                                                    class="fas fa-lg fa-money-bill"></i></span>
-                                                                Payment: {{ employment.reward }}
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-
-                                                </div>
-                                            </div>
-                                            <div class="card-footer">
-                                                <div class="text-right">
+                        <div class="textWord_about" data-link="offer-{{ offer.id }}">
 
 
-                                                    <a class="btn btn-info btn-sm" href="#">
-                                                        <i class="fas fa-pencil-alt">
-                                                        </i>
-                                                        Edit
-                                                    </a>
-                                                    <a class="btn btn-danger btn-sm" href="#">
-                                                        <i class="fas fa-trash">
-                                                        </i>
-                                                        Delete
-                                                    </a>
-
-
-                                                </div>
-                                            </div>
+                            <div class="card card-solid">
+                                <div class="card-header">
+                                    <h2 class="text-center">{% blocktrans %}Offer
+                                        {{ offer.id }}{% endblocktrans %} </h2>
+                                    <div class="row">
+                                        <div class="card-text col-lg-10">
+                                            <h3> {% trans "Description:" %}</h3>
+                                            <p class="text-muted">
+                                                {% blocktrans %}{{ offer.description }}{% endblocktrans %}
+                                            </p>
+                                        </div>
+                                        <div class="card-text col-lg-2">
+                                            <a class="btn btn-info btn-sm w-100" href="#">
+                                                <i class="fas fa-pencil-alt">
+                                                </i>
+                                                {% trans 'Edit' %}
+                                            </a>
+                                            <a class="btn btn-danger btn-sm w-100" href="#">
+                                                <i class="fas fa-trash">
+                                                </i>
+                                                {% trans 'Delete' %}
+                                            </a>
                                         </div>
                                     </div>
-                                      {% endfor %}
-                                    <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch">
-                                        <div class="card bg-light">
-                                            <div class="card-header text-muted border-bottom-0">
+                                </div>
 
-                                            </div>
-                                            <div class="card-body pt-0">
-                                                <div class="row">
-                                                    <div class="col-12">
-                                                        <h2 class="lead"><b>New Employment</b></h2>
-                                                        <p class="text-muted"><b>About: </b> Add the description of the new
-                                                            employment</p>
-                                                        <ul class="ml-4 mb-0 fa-ul text-muted">
-                                                            <div class="text-center m-2 "
-                                                                 style="padding-left: 10%; padding-right: 10%;">
-                                                                <a type="button" class="btn btn-primary btn-success "
-                                                                   href="/createEmployment">
-                                                                    <i class="fa fa-bell"></i>
-                                                                    Create new employment
-                                                                </a>
+                                <div class="card-body pb-0">
+                                    <div class="row d-flex align-items-stretch">
+                                        {% for employment in offer.employments.all %}
+                                            <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch">
+                                                <div class="card bg-light w-100">
+                                                    <div class="card-header text-muted border-bottom-0">
+                                                        {% blocktrans %}Employment
+                                                            {{ employment.id }}{% endblocktrans %}
+                                                    </div>
+                                                    <div class="card-body pt-0">
+                                                        <div class="row">
+                                                            <div class="col-12">
+                                                                <h2 class="lead"><b>{% blocktrans %}
+                                                                    {{ employment.profession }}{% endblocktrans %}</b>
+                                                                </h2>
+                                                                <p class="text-muted"><b>{% trans 'About:' %}</b>
+                                                                    {% blocktrans %}
+                                                                        {{ employment.description }}{% endblocktrans %}
+                                                                </p>
+                                                                <ul class="ml-4 mb-0 fa-ul text-muted">
+                                                                    <li class="small"><span class="fa-li"><i
+                                                                            class="fas fa-lg fa-building"></i></span>
+                                                                        {% blocktrans %}City:
+                                                                            {{ offer.city }}{% endblocktrans %}
+                                                                    </li>
+                                                                    <li class="small"><span class="fa-li"><i
+                                                                            class="fas fa-lg fa-dollar-sign"></i></span>
+                                                                        {% blocktrans %}Payment:
+                                                                            {{ employment.reward }}{% endblocktrans %}
+                                                                    </li>
+                                                                </ul>
                                                             </div>
-                                                        </ul>
-                                                    </div>
 
+                                                        </div>
+                                                    </div>
+                                                    <div class="card-footer">
+                                                        <div class="text-right">
+
+
+                                                            <a class="btn btn-info btn-sm" href="#">
+                                                                <i class="fas fa-pencil-alt">
+                                                                </i>
+                                                                {% trans 'Edit' %}
+                                                            </a>
+                                                            <a class="btn btn-danger btn-sm" href="#">
+                                                                <i class="fas fa-trash">
+                                                                </i>
+                                                                {% trans 'Delete' %}
+                                                            </a>
+
+
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="card-footer">
+                                        {% endfor %}
+                                        <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch">
+                                            <div class="card bg-light w-100">
+                                                <div class="card-header text-muted border-bottom-0">
 
+                                                </div>
+                                                <div class="card-body pt-0">
+                                                    <div class="row">
+                                                        <div class="col-12">
+                                                            <h2 class="lead"><b>{% trans "New Employment" %}</b></h2>
+                                                            <p class="text-muted">
+                                                                <b>{% trans 'About:' %}</b>{% trans "Add the description of the new
+                                                                employment" %} </p>
+                                                            <ul class="ml-4 mb-0 fa-ul text-muted">
+                                                                <div class="text-center m-2 "
+                                                                     style="padding-left: 10%; padding-right: 10%;">
+                                                                    <a type="button"
+                                                                       class="btn btn-primary btn-success "
+                                                                       href="/createEmployment">
+                                                                        <i class="fa fa-plus"></i>
+                                                                        {% trans "Create new employment" %}
+                                                                    </a>
+                                                                </div>
+                                                            </ul>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                                <div class="card-footer">
+
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                                <!-- /.card -->
                             </div>
-                            <!-- /.card -->
                         </div>
-                            </div>
 
-                        {% endfor %}
+                    {% endfor %}
 
                 </div>
-                    <!-- /.card-body -->
+                <!-- /.card-body -->
 
 
             </section>
@@ -208,7 +229,7 @@
 
 {% block scripts %}
     <script src="{% static 'lib/adminlte-3.0.4/plugins/select2/js/select2.full.min.js' %}"></script>
-    <script src="{% static 'lib/adminlte-3.0.4/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js'%} "></script>
+    <script src="{% static 'lib/adminlte-3.0.4/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js' %} "></script>
     <script src="{% static 'lib/adminlte-3.0.4/plugins/inputmask/jquery.inputmask.min.js' %}"></script>
     <script src="{% static 'lib/adminlte-3.0.4/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js' %}"></script>
     <script src="{% static 'lib/adminlte-3.0.4/plugins/bootstrap-switch/js/bootstrap-switch.min.js' %}"></script>
@@ -217,16 +238,26 @@
 
 
     <script>
-  $(function () {
-    //Initialize Select2 Elements
-    $('.select2').select2()
-    //Date range picker
-    $('#reservationdate').datetimepicker({
-        format: 'L'
-    });
-  })
-</script>
+        $(function () {
+            //Initialize Select2 Elements
+            $('.select2').select2()
+            //Date range picker
+            $('#reservationdate').datetimepicker({
+                format: 'L'
+            });
+        })
+    </script>
+    <script type="text/javascript">
 
+        $('.textWord_about').hide();
+        $('.textWord_about[data-link=offer-{{ offers.first.id }}').show();
+        $('.link').click(function () {
+            $('.textWord_about').hide();
+            $('.textWord_about[data-link=' + $(this).data('link') + ']').fadeIn({
+                width: '200px'
+            }, 300);
+        });
+    </script>
 
 
 {% endblock %}

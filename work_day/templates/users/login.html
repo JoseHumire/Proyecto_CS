@@ -1,12 +1,12 @@
 {% load static %}
-
+{% load i18n %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AdminLTE 3 | Log in (v2)</title>
-
+  <title>{% trans "Login" %}</title>
+<link rel="shortcut icon" href="{% static 'lib/adminlte-3.0.4/img/logo.png' %}" />
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
@@ -21,17 +21,17 @@
   <!-- /.login-logo -->
   <div class="card card-outline card-primary">
     <div class="card-header text-center">
-      <a href="../../index2.html" class="h1"><b>Admin</b>LTE</a>
+      <a href="../../index2.html" class="h1"><b>Work</b>Day</a>
     </div>
     <div class="card-body">
-      <p class="login-box-msg">Sign in to start your session</p>
+      <p class="login-box-msg">{% trans "Sign in to start your session" %}</p>
 
       <form method="POST">
 
         {% csrf_token %}
         <div class="input-group mb-3">
           {{ form.username }}
-          <!--<input type="text" class="form-control" placeholder="Username"> -->
+          <!--<input type="text" class="form-control" placeholder={% blocktrans %}"Username"{% endblocktrans %}> -->
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
@@ -40,7 +40,7 @@
         </div>
         <div class="input-group mb-3">
           {{ form.password }}
-          <!-- <input type="password" class="form-control" placeholder="Password"> -->
+          <!-- <input type="password" class="form-control" placeholder={% blocktrans %}"Password"{% endblocktrans %}> -->
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
@@ -52,13 +52,13 @@
             <div class="icheck-primary">
               <input type="checkbox" id="remember">
               <label for="remember">
-                Remember Me
+                {% trans "Remember Me" %}
               </label>
             </div>
           </div>
           <!-- /.col -->
           <div class="col-4">
-            <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+            <button type="submit" class="btn btn-primary btn-block">{% trans "Sign In" %}</button>
           </div>
           <!-- /.col -->
         </div>
@@ -66,19 +66,19 @@
 
       <div class="social-auth-links text-center mt-2 mb-3">
         <a href="#" class="btn btn-block btn-primary">
-          <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
+          <i class="fab fa-facebook mr-2"></i> {% trans "Sign in using Facebook" %}
         </a>
         <a href="#" class="btn btn-block btn-danger">
-          <i class="fab fa-google-plus mr-2"></i> Sign in using Google+
+          <i class="fab fa-google-plus mr-2"></i> {% trans "Sign in using Google+" %}
         </a>
       </div>
       <!-- /.social-auth-links -->
 
       <p class="mb-1">
-        <a href="forgot-password.html">I forgot my password</a>
+        <a href="/resetPassword">{% trans "I forgot my password" %}</a>
       </p>
       <p class="mb-0">
-        <a href="/register" class="text-center">Register a new membership</a>
+        <a href="/register" class="text-center">{% trans "Register a new membership" %}</a>
       </p>
     </div>
     <!-- /.card-body -->
@@ -99,15 +99,11 @@
 <!--
 <h1>Work Day</h1>
 <h2>Iniciar sesión</h2>
-
 <form method="POST">
     {{ form.as_p }}
     {% csrf_token %}
-
     <button type="submit">Login</button>
 </form>
-
 <hr />
 <a href="/register">Registrar usuario</a>
-
 -->
