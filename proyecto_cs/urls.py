@@ -27,7 +27,7 @@ from work_day.forms import (
 
 urlpatterns = [
     path('i18n/', include('django.conf.urls.i18n')),
-    path('', views.index),
+    path('', views.index, name='index'),
     path('register/', views.register, name='register'),
     path('login/', views.login, name='login'),
     path('logout/', views.logout),
@@ -39,7 +39,7 @@ urlpatterns = [
     path('user/addStudy/', views.add_study, name='add_study'),
     path('user/editStudy/<int:pk>', views.add_study, name='edit_study'),
     path('user/editJob/<int:pk>', views.add_job, name='edit_job'),
-    path('professionals/', views.view_professionals),
+    path('professionals/', views.view_professionals, name='professionals'),
     path('createOffer/', views.create_job_offer, name='create_offer'),
     path('editOffer/<int:pk>', views.create_job_offer, name='edit_offer'),
     path('user/user-profile/', views.user_profile, name='user_profile'),

@@ -8,20 +8,31 @@
     Add study
 {% endblock %}
 {% block css %}
-     <link rel="stylesheet" href="{% static 'lib/adminlte-3.0.4/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css' %}">
-     <link rel="stylesheet" href="{% static 'lib/adminlte-3.0.4/plugins/select2/css/select2.min.css' %}">
-     <link rel="stylesheet" href="{% static 'lib/adminlte-3.0.4/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css' %}">
-     <link rel="stylesheet" href="{% static 'lib/adminlte-3.0.4/plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css' %}">
-     <link rel="stylesheet" href="{% static 'lib/adminlte-3.0.4/plugins/bs-stepper/css/bs-stepper.min.css' %}">
-     <link rel="stylesheet" href="{% static 'lib/adminlte-3.0.4/plugins/dropzone/min/dropzone.min.css' %}">
-     <link rel="stylesheet" href="{% static 'lib/adminlte-3.0.4/plugins/fontawesome-free/css/fontawesome.css' %}">
+    <link rel="stylesheet"
+          href="{% static 'lib/adminlte-3.0.4/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css' %}">
+    <link rel="stylesheet"
+          href="{% static 'lib/adminlte-3.0.4/plugins/select2/css/select2.min.css' %}">
+    <link rel="stylesheet"
+          href="{% static 'lib/adminlte-3.0.4/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css' %}">
+    <link rel="stylesheet"
+          href="{% static 'lib/adminlte-3.0.4/plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css' %}">
+    <link rel="stylesheet"
+          href="{% static 'lib/adminlte-3.0.4/plugins/bs-stepper/css/bs-stepper.min.css' %}">
+    <link rel="stylesheet"
+          href="{% static 'lib/adminlte-3.0.4/plugins/dropzone/min/dropzone.min.css' %}">
+    <link rel="stylesheet"
+          href="{% static 'lib/adminlte-3.0.4/plugins/fontawesome-free/css/fontawesome.css' %}">
 
 
-<!-- pagina principal ya se juntó el menú y la barra vertical sh-->
-<link rel="stylesheet" type="text/css" href="{% static '/lib/adminlte-3.0.4/Principal/CSS/header.css' %}">
-	<link rel="stylesheet" type="text/css" href="{% static '/lib/adminlte-3.0.4/Principal/CSS/profile.css' %}">
-<link rel="stylesheet" type="text/css" href="{% static '/lib/adminlte-3.0.4/Principal/CSS/home.css'%}">
-    <link rel="stylesheet"  href="{% static '/lib/adminlte-3.0.4/Principal/fonts/font-awesome/css/font-awesome.min.css'%}">
+    <!-- pagina principal ya se juntó el menú y la barra vertical sh-->
+    <link rel="stylesheet" type="text/css"
+          href="{% static '/lib/adminlte-3.0.4/Principal/CSS/header.css' %}">
+    <link rel="stylesheet" type="text/css"
+          href="{% static '/lib/adminlte-3.0.4/Principal/CSS/profile.css' %}">
+    <link rel="stylesheet" type="text/css"
+          href="{% static '/lib/adminlte-3.0.4/Principal/CSS/home.css' %}">
+    <link rel="stylesheet"
+          href="{% static '/lib/adminlte-3.0.4/Principal/fonts/font-awesome/css/font-awesome.min.css' %}">
 
 {% endblock %}
 
@@ -32,7 +43,9 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-4">
-                    <h1 class="m-0"><i class="fa fa-suitcase" aria-hidden="true"></i>{% trans 'Employments' %}</h1>
+                    <h1 class="m-0"><i class="fa fa-suitcase"
+                                       aria-hidden="true"></i>{% trans 'Study' %}
+                    </h1>
                 </div><!-- /.col -->
             </div><!-- /.row -->
             <!-- /.container-fluid -->
@@ -42,29 +55,32 @@
 
     <!-- start Content  Main Page-->
 
-<!-- end Content Main Page -->
-<div class="card" style="width: 50%;margin-right: auto;margin-left: auto">
-    <div class="headerfixed" >
-		<!-- Header start -->
+    <!-- end Content Main Page -->
+    <div class="card" style="width: 50%;margin-right: auto;margin-left: auto">
+        <div class="headerfixed">
+            <!-- Header start -->
 
-             <div class="card">
-                 <h1 class="text-center" ><a><b>{% trans "Add Study" %}</b></a></h1></div>
+            <div class="card">
+                <h1 class="text-center"><a><b>{% trans "Add Study" %}</b></a>
+                </h1></div>
+        </div>
+        <!-- End of header -->
+
+        <!-- End of header section -->
+
+
     </div>
-	<!-- End of header -->
 
-	<!-- End of header section -->
-
-
-</div>
-
-    <div class="card" style="margin-left: auto;margin-right: auto;width: 50%;height: auto;border-radius: 5%">
-        <div class="card-body register-card-body" style="border-radius:15%;padding-top: 5%;padding-bottom: 15%">
+    <div class="card"
+         style="margin-left: auto;margin-right: auto;width: 50%;height: auto;border-radius: 5%">
+        <div class="card-body register-card-body"
+             style="border-radius:15%;padding-top: 5%;padding-bottom: 15%">
 
 
-            <form method="post">
-            <p class="login">{% trans "Write a name" %}</p>
+            <form method="post" enctype="multipart/form-data">
+                <p class="login">{% trans "Write a name" %}</p>
                 <div class="input-group mb-3">
-                  {{ form.name }}
+                    {{ form.name }}
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-user"></span>
@@ -73,9 +89,9 @@
                     </div>
                 </div>
 
-            <p class="login">{% trans "Select a profession" %}</p>
+                <p class="login">{% trans "Select a profession" %}</p>
                 <div class="input-group mb-3">
-                  {{ form.profession }}
+                    {{ form.profession }}
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-user"></span>
@@ -84,9 +100,9 @@
                     </div>
                 </div>
 
-                    <p class="login">{% trans "Select a school" %}</p>
+                <p class="login">{% trans "Select a school" %}</p>
                 <div class="input-group mb-3">
-                     {{ form.school }}
+                    {{ form.school }}
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-user"></span>
@@ -95,55 +111,71 @@
                     </div>
                 </div>
 
+                <p class="login">{% trans "Update diploma" %}</p>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i
+                                class="fas fa-upload"></i></span>
+                    </div>
+                    <div class="custom-file">
+                        {{ form.image }}
+                        <label class="custom-file-label"
+                               for="exampleInputFile">Choose file</label>
+                    </div>
+                </div>
 
                 <div class="row">
 
                     {% csrf_token %}
                     <!-- /.col -->
-                    <div class="col-12" >
-                        <button type="submit" class="btn btn-primary btn-block">{% trans "Add Study" %}</button>
+                    <div class="col-12">
+                        <button type="submit"
+                                class="btn btn-primary btn-block">{% trans "Add Study" %}</button>
                     </div>
                     <!-- /.col -->
                 </div>
             </form>
 
 
-
             </form>
-    </div>
-    <!-- /.form-box -->
-  </div><!-- /.card -->
+        </div>
+        <!-- /.form-box -->
+    </div><!-- /.card -->
 
 
-<!-- /.register-box -->
+    <!-- /.register-box -->
 
 
-			<!-- End of main content section -->
+    <!-- End of main content section -->
 {% endblock %}
 
 {% block scripts %}
     <script src="{% static 'lib/adminlte-3.0.4/plugins/select2/js/select2.full.min.js' %}"></script>
-    <script src="{% static 'lib/adminlte-3.0.4/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js'%} "></script>
+    <script src="{% static 'lib/adminlte-3.0.4/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js' %} "></script>
     <script src="{% static 'lib/adminlte-3.0.4/plugins/inputmask/jquery.inputmask.min.js' %}"></script>
     <script src="{% static 'lib/adminlte-3.0.4/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js' %}"></script>
     <script src="{% static 'lib/adminlte-3.0.4/plugins/bootstrap-switch/js/bootstrap-switch.min.js' %}"></script>
     <script src="{% static 'lib/adminlte-3.0.4/plugins/bs-stepper/js/bs-stepper.min.js' %}"></script>
     <script src="{% static 'lib/adminlte-3.0.4/plugins/dropzone/min/dropzone.min.js' %}"></script>
 
-	<script src="{% static 'lib/adminlte-3.0.4/Principal/javascript/header.js' %}"></script>
-<script src="{% static 'lib/adminlte-3.0.4/Principal/javascript/home.js' %}"></script>
+    <script src="{% static 'lib/adminlte-3.0.4/Principal/javascript/header.js' %}"></script>
+    <script src="{% static 'lib/adminlte-3.0.4/Principal/javascript/home.js' %}"></script>
     <script>
-  $(function () {
-    //Initialize Select2 Elements
-    $('.select2').select2()
-    //Date range picker
-    $('#reservationdate').datetimepicker({
-        format: 'L'
-    });
-  })
-</script>
+        $(function () {
+            //Initialize Select2 Elements
+            $('.select2').select2()
+            //Date range picker
+            $('#reservationdate').datetimepicker({
+                format: 'L'
+            });
+        })
+    </script>
+    <script>
+        $(function () {
+            bsCustomFileInput.init();
+        });
+    </script>
 
-
-</body>
-</html>
+    </body>
+    </html>
 {% endblock %}
