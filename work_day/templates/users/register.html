@@ -6,7 +6,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Register</title>
-<link rel="shortcut icon" href="{% static 'lib/adminlte-3.0.4/img/logo.png' %}" />
+    <link rel="shortcut icon"
+          href="{% static 'lib/adminlte-3.0.4/img/logo.png' %}"/>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
@@ -29,7 +30,23 @@
     </div>
 
     <div class="card">
+
         <div class="card-body register-card-body">
+
+        {% if user_form.errors %}
+            {% for field in user_form %}
+                {% for error in field.errors %}
+                    <div class="alert alert-danger">
+                        <strong>{{ error|escape }}</strong>
+                    </div>
+                {% endfor %}
+            {% endfor %}
+            {% for error in user_form.non_field_errors %}
+                <div class="alert alert-danger">
+                    <strong>{{ error|escape }}</strong>
+                </div>
+            {% endfor %}
+        {% endif %}
             <p class="login-box-msg">Register a new membership</p>
 
             <form method="post" enctype="multipart/form-data">
@@ -143,7 +160,8 @@
                 <div class="input-group">
                     <div class="custom-file">
                         {{ professional_form.id_image }}
-                        <label class="custom-file-label">ID card image</label>
+                        <label class="custom-file-label">ID card
+                            image</label>
                     </div>
                 </div>
                 <br>
@@ -161,7 +179,8 @@
                     <!-- /.col -->
                     <div class="col-4">
                         <button type="submit"
-                                class="btn btn-primary btn-block">Register
+                                class="btn btn-primary btn-block">
+                            Register
                         </button>
                     </div>
                     <!-- /.col -->
