@@ -95,7 +95,7 @@ class Professional(models.Model):
         null=False, blank=True, verbose_name=_('Id Image'))
     status = models.BooleanField(default=True, verbose_name=_('Status'))
     birthdate = models.DateField(
-        default=datetime.date.today, verbose_name=_('Birthdate'))
+        default=datetime.date.today, verbose_name=_('Birthdate'), blank=True)
     creation_date = models.DateTimeField(
         default=timezone.now, verbose_name=_('Creation Date'))
     profile_picture = models.ImageField(

@@ -251,6 +251,7 @@ def edit_profile(request):
             user_form.save()
             professional_form.save()
             return redirect('home')
+    print(professional_form.errors)
     context = {
         'user_form': user_form,
         'professional_form': ProfessionalForm(

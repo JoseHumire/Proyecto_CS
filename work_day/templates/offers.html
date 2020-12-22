@@ -40,46 +40,9 @@
 
     <!-- Content Employments -->
     <div class="container-fluid">
-        <h4 class="text-center ">{% trans "Find your employment" %}</h4>
-        <!-- Search employment -->
-        <div class="row">
-            <!-- Select a profession -->
-            <div class="col-md-10 offset-md-2 ">
-                <div class="row text-center">
-                    <div class="col-lg-5">
-                        <div class="form-group">
-                            <select class="select2" multiple="multiple"
-                                    data-placeholder={% blocktrans %} "Select a employment" {% endblocktrans %}
-                                    style="width: 100%;">
-                                <option>Alabama</option>
-                                <option>Alaska</option>
-                                <option>California</option>
-                                <option>Delaware</option>
-                                <option>Tennessee</option>
-                                <option>Texas</option>
-                                <option>Washington</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-lg-5">
-                        <div class="form-group">
-                            <select class="select2" multiple="multiple"
-                                    data-placeholder={% blocktrans %} "Select a city" {% endblocktrans %}
-                                    style="width: 100%;">
-                                <option>Alabama</option>
-                                <option>Alaska</option>
-                                <option>California</option>
-                                <option>Delaware</option>
-                                <option>Tennessee</option>
-                                <option>Texas</option>
-                                <option>Washington</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
             <!-- End Select a profession -->
-        </div>
+
         <!-- End Search employment -->
 
         <div class="row">
@@ -88,16 +51,6 @@
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title">{% trans 'Offers' %}</h3>
-                        <div class="card-tools">
-                            <div class="input-group input-group-sm">
-                                <input type="text" class="form-control" placeholder="Search offer">
-                                <div class="input-group-append">
-                                    <div class="btn btn-primary">
-                                        <i class="fas fa-search"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
 
 
@@ -190,7 +143,7 @@
                                                     <div class="card-footer">
                                                         <div class="card-footer">
                                                             <div class="text-right">
-                                                                <a href="#" class="btn btn-sm bg-teal">
+                                                                <a href="/startChat/{{ offer.user.id }}" class="btn btn-sm bg-teal">
                                                                     <i class="fas fa-comments"></i>
                                                                 </a>
 
