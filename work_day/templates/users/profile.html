@@ -11,8 +11,11 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">User Profile</li>
+                        <li class="breadcrumb-item"><a href="#">Home</a>
+                        </li>
+                        <li class="breadcrumb-item active">User
+                            Profile
+                        </li>
                     </ol>
                 </div>
             </div>
@@ -31,7 +34,8 @@
                             {% if professional.profile_picture %}
                                 <img class="img-circle"
                                      src="{{ professional.profile_picture.url }}"
-                                     alt="User Image" width=150px height="150">
+                                     alt="User Image" width=150px
+                                     height="150">
                             {% endif %}
                         </div>
 
@@ -74,19 +78,22 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
-                        <strong><i class="far fa-file-alt mr-1"></i> Full name</strong>
+                        <strong><i class="far fa-file-alt mr-1"></i>
+                            Full name</strong>
 
                         <p class="text-muted">
                         <ul>
                             <li>{{ user.first_name }} {{ user.last_name }}</li>
                         </ul>
 
-                        <strong><i class="fas fa-pencil-alt mr-1"></i> DNI
+                        <strong><i class="fas fa-pencil-alt mr-1"></i>
+                            DNI
                         </strong>
 
                         <p class="text-muted">
                         <ul>{% if professional.id_image %}
-                            <li><a href="{{ professional.id_image.url }}"
+                            <li>
+                                <a href="{{ professional.id_image.url }}"
                                    target="_blank">{{ professional.id_number }}</a>
                             </li>
 
@@ -97,7 +104,8 @@
                         </p>
 
 
-                        <strong><i class="fas fa-map-marker-alt mr-1"></i>
+                        <strong><i
+                                class="fas fa-map-marker-alt mr-1"></i>
                             Location</strong>
                         <p class="text-muted">
                         <ul>
@@ -122,7 +130,8 @@
                         </p>
 
 
-                        <strong><i class="fas fa-pencil-alt mr-1"></i> Register
+                        <strong><i class="fas fa-pencil-alt mr-1"></i>
+                            Register
                             Date</strong>
 
                         <p class="text-muted">
@@ -137,13 +146,15 @@
                                 {% for study in studies %}
                                     <h5> {{ study.name }}</h5>
                                     <ul>
-                                        <li> School : {{ study.school }}</li>
+                                        <li> School
+                                            : {{ study.school }}</li>
                                         <li>Profession
                                             : {{ study.profession }}</li>
                                         {% if study.image %}
-                                            <li><a href="{{ study.image.url }}"
+                                            <li>
+                                                <a href="{{ study.image.url }}"
                                                    target="_blank">See
-                                                diploma</a></li>
+                                                    diploma</a></li>
                                         {% endif %}
                                     </ul>
                                 {% endfor %}
@@ -151,13 +162,17 @@
                                 <p>Has no studies</p>
                             {% endif %}
                         <p></p>
-                        <div>
-                            <a href="../addStudy"
-                               class="btn btn-sm btn-primary">Add Studies
-                            </a>
-                        </div>
+                        {% if user.id == request.user.id %}
+                            <div>
+                                <a href="../addStudy"
+                                   class="btn btn-sm btn-primary">Add
+                                    Studies
+                                </a>
+                            </div>
+                        {% endif %}
                         <hr>
-                        <strong><i class="fas fa-book mr-1"></i> Jobs</strong>
+                        <strong><i class="fas fa-book mr-1"></i>
+                            Jobs</strong>
 
                         <p class="text-muted">
                             {% if jobs %}
@@ -176,12 +191,14 @@
                             {% endif %}
                         </p>
 
-                        <div>
-                            <a href="../addJob" class="btn btn-sm btn-primary">Add
-                                Jobs
-                            </a>
-                        </div>
-
+                        {% if user.id == request.user.id %}
+                            <div>
+                                <a href="../addJob"
+                                   class="btn btn-sm btn-primary">Add
+                                    Jobs
+                                </a>
+                            </div>
+                        {% endif %}
                         <hr>
 
 

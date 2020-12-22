@@ -93,13 +93,13 @@
 
                             <div class="card card-solid">
                                 <div class="card-header">
-                                    <h2 class="text-center">{% blocktrans %}Offer
-                                        {{ offer.id }}{% endblocktrans %} </h2>
+                                    <h2 class="text-center">Offer
+                                        {{ offer.id }} </h2>
                                     <div class="row">
                                         <div class="card-text col-lg-10">
                                             <h3> {% trans "Description:" %}</h3>
                                             <p class="text-muted">
-                                                {% blocktrans %}{{ offer.description }}{% endblocktrans %}
+                                                {{ offer.description }}
                                             </p>
                                         </div>
                                         <div class="card-text col-lg-2">
@@ -123,29 +123,29 @@
                                             <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch">
                                                 <div class="card bg-light w-100">
                                                     <div class="card-header text-muted border-bottom-0">
-                                                        {% blocktrans %}Employment
-                                                            {{ employment.id }}{% endblocktrans %}
+                                                        Employment
+                                                            {{ employment.id }}
                                                     </div>
                                                     <div class="card-body pt-0">
                                                         <div class="row">
                                                             <div class="col-12">
-                                                                <h2 class="lead"><b>{% blocktrans %}
-                                                                    {{ employment.profession }}{% endblocktrans %}</b>
+                                                                <h2 class="lead"><b>
+                                                                    {{ employment.profession }}</b>
                                                                 </h2>
                                                                 <p class="text-muted"><b>{% trans 'About:' %}</b>
-                                                                    {% blocktrans %}
-                                                                        {{ employment.description }}{% endblocktrans %}
+
+                                                                        {{ employment.description }}
                                                                 </p>
                                                                 <ul class="ml-4 mb-0 fa-ul text-muted">
                                                                     <li class="small"><span class="fa-li"><i
                                                                             class="fas fa-lg fa-building"></i></span>
-                                                                        {% blocktrans %}City:
-                                                                            {{ offer.city }}{% endblocktrans %}
+                                                                        City:
+                                                                            {{ offer.city }}
                                                                     </li>
                                                                     <li class="small"><span class="fa-li"><i
                                                                             class="fas fa-lg fa-dollar-sign"></i></span>
-                                                                        {% blocktrans %}Payment:
-                                                                            {{ employment.reward }}{% endblocktrans %}
+                                                                        Payment:
+                                                                            {{ employment.reward }}
                                                                     </li>
                                                                 </ul>
                                                             </div>
@@ -183,8 +183,8 @@
                                                         <div class="col-12">
                                                             <h2 class="lead"><b>{% trans "New Employment" %}</b></h2>
                                                             <p class="text-muted">
-                                                                <b>{% trans 'About:' %}</b>{% trans "Add the description of the new
-                                                                employment" %} </p>
+                                                                <b>{% trans 'About:' %}</b>Add the description of the new
+                                                                employment  </p>
                                                             <ul class="ml-4 mb-0 fa-ul text-muted">
                                                                 <div class="text-center m-2 "
                                                                      style="padding-left: 10%; padding-right: 10%;">

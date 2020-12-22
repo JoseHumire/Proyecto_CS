@@ -40,7 +40,7 @@
 
     </div>
     <div class="container-fluid">
-        <h1 class="text-center ">Welcome to back {{ request.user.first_name }} {{ request.user.last_name }}</h1>
+        <h1 class="text-center ">Welcome back {{ request.user.first_name }} {{ request.user.last_name }}</h1>
         {% for offer in offers.all %}
             <div class="col-md-9" style="margin-right:auto;margin-left:auto;max-width:60%;">
             <div class="card" style="box-shadow: 0 0 36px rgb(0 0 0 / 16%), 0 1px 9px 3px rgb(0 56 34 / 13%);
@@ -137,7 +137,7 @@
                                                     </div>
 
                                                 </div>
-                                 <form class="form-horizontal">
+                                 <form class="form-horizontal" action="/startChat/{{ offer.user.id }}">
                                     <div class="input-group input-group-sm mb-0">
 
                                            {% if offer.status == 1 %}

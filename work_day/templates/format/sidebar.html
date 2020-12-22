@@ -31,14 +31,7 @@
                 <div class="info text-center">
                     <a href="/user/user-profile/"
                        class="d-block big">{{ request.user.first_name }} {{ request.user.last_name }}</a>
-                    {% if request.user.profession %}
-                        {% for profession in request.user.profession %}
-                            <a class="d-block">{{ profession }}</a>
 
-                        {% endfor %}
-                    {% else %}
-                        <a class="d-block">{% trans "You have not registered professions." %} </a>
-                    {% endif %}
                 </div>
             </div>
         </div>
