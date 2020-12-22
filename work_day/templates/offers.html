@@ -84,7 +84,7 @@
 
         <div class="row">
             <!-- Offer -->
-            <section class="col-lg-3">
+            <section class="col-lg-4">
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title">{% trans 'Offers' %}</h3>
@@ -105,24 +105,22 @@
                         <table class="table table-bordered table-hover">
                             <thead>
                             <tr>
-                                <th>Offer</th>
                                 <th>Date</th>
                                 <th>City</th>
                                 <th>View</th>
                             </tr>
                             </thead>
+                            <tbody>
 
-                                <div class="jsgrid-grid-body">
-                                {% for offer in offers.all %}
-                                    <tr data-widget="expandable-table" aria-expanded="false">
-                                        <td>{{ offer.id }}</td>
-                                        <td>{{ offer.creation_date|date:"M d, Y" }}</td>
-                                        <td>{{ offer.city }}</td>
-                                        <td><a class="link btn btn-block btn-outline-info" href="#about"
-                                               data-link="offer-{{ offer.id }}">View</a></td>
-                                    </tr>
-                                {% endfor %}
-                            </div>
+                            {% for offer in offers.all %}
+                                <tr data-widget="expandable-table">
+                                    <td>{{ offer.creation_date|date:"M d, Y" }}</td>
+                                    <td>{{ offer.city }}</td>
+                                    <td><a class="link btn btn-block btn-outline-info" href="#about"
+                                           data-link="offer-{{ offer.id }}">View</a></td>
+                                </tr>
+                            {% endfor %}
+
                             </tbody>
                         </table>
                     </div>
@@ -135,7 +133,7 @@
             <!-- End Offer -->
 
             <!-- Employments -->
-            <section class="col-lg-9">
+            <section class="col-lg-8">
                 <div class="tab-content " id="pages_about">
 
                     {% for offer in offers.all %}
@@ -161,29 +159,28 @@
                                             <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch">
                                                 <div class="card bg-light w-100">
                                                     <div class="card-header text-muted border-bottom-0">
-                                                        {% blocktrans %}Employment
-                                                            {{ employment.id }}{% endblocktrans %}
+                                                        Employment {{ employment.id }}
                                                     </div>
                                                     <div class="card-body pt-0">
                                                         <div class="row">
                                                             <div class="col-12">
-                                                                <h2 class="lead"><b>{% blocktrans %}
-                                                                    {{ employment.profession }}{% endblocktrans %}</b>
+                                                                <h2 class="lead"><b>
+                                                                    {{ employment.profession }}</b>
                                                                 </h2>
                                                                 <p class="text-muted"><b>{% trans 'About:' %}</b>
-                                                                    {% blocktrans %}
-                                                                        {{ employment.description }}{% endblocktrans %}
+
+                                                                    {{ employment.description }}
                                                                 </p>
                                                                 <ul class="ml-4 mb-0 fa-ul text-muted">
                                                                     <li class="small"><span class="fa-li"><i
                                                                             class="fas fa-lg fa-building"></i></span>
-                                                                        {% blocktrans %}City:
-                                                                            {{ offer.city }}{% endblocktrans %}
+                                                                        City:
+                                                                        {{ offer.city }}
                                                                     </li>
                                                                     <li class="small"><span class="fa-li"><i
                                                                             class="fas fa-lg fa-dollar-sign"></i></span>
-                                                                        {% blocktrans %}Payment:
-                                                                            {{ employment.reward }}{% endblocktrans %}
+                                                                        Payment:
+                                                                        {{ employment.reward }}
                                                                     </li>
                                                                 </ul>
                                                             </div>
@@ -196,9 +193,7 @@
                                                                 <a href="#" class="btn btn-sm bg-teal">
                                                                     <i class="fas fa-comments"></i>
                                                                 </a>
-                                                                <a href="#" class="btn btn-sm btn-primary">
-                                                                    <i class="fas fa-user"></i>{% trans "More information" %}
-                                                                </a>
+
                                                             </div>
                                                         </div>
                                                     </div>

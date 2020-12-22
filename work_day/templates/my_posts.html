@@ -25,7 +25,9 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-2">
-                    <h1 class="m-0"><i class="fa fa-book" aria-hidden="true"></i>{% trans "My posts" %} </h1>
+                    <h1 class="m-0"><p></p><i class="fa fa-book" aria-hidden="true"></i> {% trans 'My posts' %}
+                    </h1>
+
                 </div><!-- /.col -->
             </div><!-- /.row -->
             <!-- /.container-fluid -->
@@ -39,7 +41,7 @@
 
         <div class="row">
             <!-- Offer -->
-            <section class="col-lg-3">
+            <section class="col-lg-4">
                 <div class="card">
                     <div class="card-header">
                         <h4 class="text-center align-content-center">{% trans "You offers" %}</h4>
@@ -48,24 +50,22 @@
                         <table class="table table-bordered table-hover">
                             <thead>
                             <tr>
-                                <th>Offer</th>
                                 <th>Date</th>
                                 <th>City</th>
                                 <th>View</th>
                             </tr>
                             </thead>
+                            <tbody>
 
-                                <div class="jsgrid-grid-body">
                                 {% for offer in offers.all %}
                                     <tr data-widget="expandable-table" aria-expanded="false">
-                                        <td>{{ offer.id }}</td>
                                         <td>{{ offer.creation_date|date:"M d, Y" }}</td>
                                         <td>{{ offer.city }}</td>
                                         <td><a class="link btn btn-block btn-outline-info" href="#about"
                                                data-link="offer-{{ offer.id }}">View</a></td>
                                     </tr>
                                 {% endfor %}
-                            </div>
+
                             </tbody>
                         </table>
                         <div class="text-center m-2 " style="padding-left: 10%; padding-right: 10%;">
@@ -83,7 +83,7 @@
             <!-- Employments -->
 
 
-            <section class="col-lg-9">
+            <section class="col-lg-8">
                 <div class="tab-content " id="pages_about">
 
                     {% for offer in offers.all %}

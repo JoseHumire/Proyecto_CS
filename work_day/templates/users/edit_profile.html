@@ -100,7 +100,8 @@
                                     </div>
                                     <div class="custom-file">
                                         {{ professional_form.id_image }}
-                                        <label class="custom-file-label" for="exampleInputFile">{% trans "Choose file" %}</label>
+                                        <label class="custom-file-label"
+                                               for="exampleInputFile">{% trans "Choose file" %}</label>
                                     </div>
                                 </div>
 
@@ -112,13 +113,23 @@
                                     </div>
                                     <div class="custom-file">
                                         {{ professional_form.profile_picture }}
-                                        <label class="custom-file-label" for="exampleInputFile">{% trans "Choose file" %}</label>
+                                        <label class="custom-file-label"
+                                               for="exampleInputFile">{% trans "Choose file" %}</label>
                                     </div>
                                 </div>
 
 
                                 {% csrf_token %}
-                                <button type="submit">{% trans 'Register' %}</button>
+
+                                <div class="input-group input-group-sm mb-0">
+
+
+                                    <button type="submit" class="btn btn-primary"
+                                            style="margin-right: auto;margin-left: auto;width: 30%">
+                                        <font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Register </font></font>
+                                    </button>
+
+                                </div>
                             </form>
 
                         </div>
